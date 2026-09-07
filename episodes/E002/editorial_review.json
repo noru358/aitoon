@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "episode_id": "E002",
-  "status": "PENDING",
+  "status": "APPROVED",
   "review_scope": [
     "SOURCE",
     "TOPIC",
@@ -12,8 +12,12 @@
     "THOUGHT_NARRATION",
     "COVER_CONCEPT"
   ],
-  "approved_hashes": null,
-  "approval_evidence": null,
-  "approved_at": null,
+  "approved_hashes": {
+    "source.md": "4f13b79b789eed2f72dcd8f89b45c6feb236ab797e8b7b6e0ff254fd3e48653b",
+    "story.md": "c9ea7ba75b56a57e451b1468d76ba4ab1f14d6e4187b49d83ee4ab16265430cb",
+    "storyboard.json": "e95d5782c49ea33845393eef399b416a6a0d28d441f45a7879e583fa5afc629b"
+  },
+  "approval_evidence": "User explicitly approved the presented E002 PREPRODUCTION_REVIEW in Chat; approval persisted at 2026-09-08 03:20 KST.",
+  "approved_at": "2026-09-07T18:20:00Z",
   "migration_note": "Protocol v2 migration invalidated the prior unreviewed creative locks. Existing rejected image evidence remains quarantine-only. The current source/story/storyboard are drafts until the user approves this review."
 }
