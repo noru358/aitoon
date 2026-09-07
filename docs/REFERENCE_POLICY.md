@@ -71,11 +71,17 @@ the drawing language; the operator may author a distinct episode-local identity 
 that language unless the task requires exact recurring-character identity continuity.
 
 When registered production-eligible references already provide the required coverage,
-requesting the user to re-upload those references or supply a new identity image is a
-protocol error. Retrieve the registered bytes from `aitoon` and proceed. Ask for new
-visual evidence only when the required visual role is genuinely uncovered after
-repository retrieval, or when the user explicitly requires an exact identity not
-represented by existing authority.
+requesting the user to re-upload those references as *new reference evidence* or supply
+a new identity image is a protocol error. Retrieve the registered bytes from `aitoon`
+first. Ask for new visual evidence only when the required visual role is genuinely
+uncovered after repository retrieval, or when the user explicitly requires an exact
+identity not represented by existing authority.
+
+A narrow transport exception exists when the repository bytes are valid but the
+current Chat/Work surface has no repository-binary-to-image-runtime bridge. In that
+case a user-supplied/current-session copy of the already locked reference may be used
+only as a session carrier. It does not become a new reference, does not change
+authority, does not require a new approval, and does not reset the episode or stage.
 
 ## 6. Repository retrieval semantics
 
@@ -85,11 +91,31 @@ the retrieval step:
 1. resolve it from `references/registry.json`;
 2. retrieve the actual bytes;
 3. inspect/hash-check them;
-4. bind those bytes to the image runtime.
+4. attempt direct binding of those bytes to the current image runtime;
+5. if the direct bridge is unavailable, map an eligible current-session attachment
+   to the already locked registry role as a transport-only fallback;
+6. immediately before generation/editing, verify that the current image runtime can
+   actually consume the carrier.
 
 A file not being attached in the current chat does not mean the bytes are missing.
 `WAITING_REQUIRED_BYTES` is valid only when repository retrieval or inspection
-actually fails.
+actually fails. Valid repository bytes plus an unavailable runtime transport bridge
+is `WAITING_TOOL_RECOVERY`.
+
+## 6.1 Runtime carrier semantics
+
+The repository reference is durable authority; the runtime carrier is ephemeral
+transport.
+
+- preferred carrier: direct repository materialization accepted by the current image runtime;
+- permitted fallback: current-session Chat/Work attachment corresponding to an already
+  locked registered reference, only after the direct bridge is unavailable;
+- carrier scope: current session/run only;
+- session or surface change: rerun preflight before the next image call;
+- opaque runtime handles and connector file URIs are never persisted as style authority;
+- platform re-encoding is allowed for transport lineage, so carrier bytes need not share
+  the repository SHA; the carrier must instead be mapped back to the source registry SHA;
+- an attachment alone never changes `state.json.exact_next_action`.
 
 ## 7. Rejection and promotion safety
 
