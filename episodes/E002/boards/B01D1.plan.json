@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "board_id": "B01D1",
+  "rows": 2,
+  "columns": 2,
+  "outer_margin_px": 0,
+  "gutter_px": 20,
+  "cells": [
+    {
+      "slide_id": "S01",
+      "row": 0,
+      "column": 0,
+      "intent": "casual handoff of stained dry jeans; low-bun GF and BF"
+    },
+    {
+      "slide_id": "S02",
+      "row": 0,
+      "column": 1,
+      "intent": "BF alone studies the same stained dry jeans while holding phone with viewer seeing phone back"
+    }
+  ],
+  "empty_cells": [
+    {
+      "row": 1,
+      "column": 0
+    },
+    {
+      "row": 1,
+      "column": 1
+    }
+  ]
+}
