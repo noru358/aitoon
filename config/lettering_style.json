@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "style_id": "AIT_V2_EDITORIAL_COMIC",
+  "status": "CALIBRATION_PENDING",
+  "note": "Current Noto Sans KR production typography was rejected as visually mismatched. Final v2 lettering must not PASS until a user-approved calibration locks this profile.",
+  "fallback_font": {
+    "path": "assets/fonts/NotoSansKR-Regular.woff2",
+    "use": "CALIBRATION_ONLY_UNTIL_LOCKED"
+  },
+  "defaults": {
+    "line_gap_ratio": 0.14,
+    "bubble_outline_width_range": [
+      2,
+      3
+    ],
+    "bubble_padding_range": [
+      22,
+      30
+    ],
+    "bubble_corner_radius_range": [
+      28,
+      42
+    ],
+    "max_bubble_area_ratio": 0.28
+  },
+  "roles": {
+    "DIALOGUE": {
+      "font_size_range": [
+        34,
+        44
+      ],
+      "align": [
+        "left",
+        "center"
+      ],
+      "bubble_default": true
+    },
+    "THOUGHT": {
+      "font_size_range": [
+        32,
+        40
+      ],
+      "align": [
+        "left",
+        "center"
+      ],
+      "bubble_default": false
+    },
+    "NARRATION": {
+      "font_size_range": [
+        30,
+        38
+      ],
+      "align": [
+        "left",
+        "center"
+      ],
+      "bubble_default": false
+    },
+    "SFX": {
+      "font_size_range": [
+        34,
+        58
+      ],
+      "align": [
+        "left",
+        "center",
+        "right"
+      ],
+      "bubble_default": false
+    },
+    "UI": {
+      "font_size_range": [
+        26,
+        36
+      ],
+      "align": [
+        "left",
+        "center",
+        "right"
+      ],
+      "bubble_default": false
+    },
+    "TITLE": {
+      "font_size_range": [
+        56,
+        88
+      ],
+      "align": [
+        "left",
+        "center"
+      ],
+      "bubble_default": false
+    }
+  }
+}
