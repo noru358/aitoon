@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 
 from pipeline.dispatch import DispatchError, compile_master_board_dispatch
-from pipeline.state import init_episode, sha256_file
+from pipeline.state import advance, approve_editorial_review, init_episode, sha256_file
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -25,6 +25,7 @@ class DispatchTests(unittest.TestCase):
         visual = {
             "schema_version": "1.0",
             "episode_id": "E001",
+            "status": "LOCKED",
             "references": [
                 {
                     "path": reference.relative_to(self.root).as_posix(),
@@ -38,6 +39,7 @@ class DispatchTests(unittest.TestCase):
             "palette": ["muted flat color"],
             "line_grammar": ["simple black hand line"],
             "shape_grammar": [],
+            "style_match_dimensions": ["LINE_GRAMMAR", "EYE_FACE_GRAMMAR", "DETAIL_BUDGET"],
             "reject_traits": ["glossy generic anime"]
         }
         (self.root / "episodes" / "E001" / "visual_packet.json").write_text(
@@ -46,6 +48,11 @@ class DispatchTests(unittest.TestCase):
         storyboard = {
             "schema_version": "1.0",
             "episode_id": "E001",
+            "cover": {
+                "title": "테스트",
+                "visual_concept": "simple approved-art crop",
+                "strategy": "DERIVED_FROM_APPROVED_ART"
+            },
             "slides": [
                 {
                     "slide_id": "S01",
@@ -56,6 +63,11 @@ class DispatchTests(unittest.TestCase):
                     "action": "친구가 봉투를 내민다",
                     "expression": "받는 사람은 살짝 의심",
                     "screen_geometry": None,
+                    "background_level": "NONE",
+                    "essential_background": [],
+                    "background_reason": None,
+                    "face_acting_intent": "slight suspicion with closed mouth",
+                    "emotion_delta": "baseline -> suspicion",
                     "anatomy_contract": {
                         "risk_reason": "prop plus gesture can duplicate a limb",
                         "limb_roles": [
@@ -76,6 +88,11 @@ class DispatchTests(unittest.TestCase):
         (self.root / "episodes" / "E001" / "storyboard.json").write_text(
             json.dumps(storyboard, ensure_ascii=False), encoding="utf-8"
         )
+        episode = self.root / "episodes" / "E001"
+        (episode / "source.md").write_text("# Source draft / lock\n- Source URL: https://example.com/post\n", encoding="utf-8")
+        (episode / "story.md").write_text("# Story draft / lock\n- Premise: test\n", encoding="utf-8")
+        advance("E001", "PREPRODUCTION_REVIEW", "review payload prepared", "present", self.root)
+        approve_editorial_review("E001", "user approved", self.root)
         self.plan = self.root / "episodes" / "E001" / "boards" / "B01.plan.json"
         self.plan.write_text(
             json.dumps(
@@ -105,6 +122,10 @@ class DispatchTests(unittest.TestCase):
         self.assertIn("TEXT-FREE", dispatch["prompt"])
         self.assertIn("anatomy_contract=", dispatch["prompt"])
         self.assertIn("extra limb", dispatch["prompt"])
+        self.assertIn("LOWEST-SUFFICIENT", dispatch["prompt"])
+        self.assertIn("background_level=NONE", dispatch["prompt"])
+        self.assertIn("face_acting_intent=", dispatch["prompt"])
+        self.assertIn("Palette match alone is not a style PASS", dispatch["prompt"])
         runtime = dispatch["runtime_attachment"]
         self.assertTrue(runtime["preflight_required_before_execute"])
         self.assertEqual(runtime["source_authority"], "REPOSITORY_REGISTRY_SHA256")
