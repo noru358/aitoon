@@ -164,7 +164,26 @@ def validate_episode(episode_dir: Path, root: Path = ROOT) -> None:
         _require(final_report.is_file(), f"{episode_id}: DONE without final QC")
         _require(read_json(final_report).get("status") == "PASS", f"{episode_id}: final QC is not PASS")
         exports = list((episode_dir / "export").glob("S*.png"))
-        _require(len(exports) == state["slide_count"], f"{episode_id}: export count mismatch")
+        if len(exports) != state["slide_count"]:
+            manifest_path = episode_dir / "export" / "manifest.json"
+            _require(manifest_path.is_file(), f"{episode_id}: export count mismatch and no stable-handle manifest")
+            manifest = read_json(manifest_path)
+            _require(manifest.get("episode_id") == episode_id, f"{episode_id}: export manifest episode mismatch")
+            slides = manifest.get("slides")
+            _require(isinstance(slides, list) and len(slides) == state["slide_count"], f"{episode_id}: export manifest count mismatch")
+            expected_size = (
+                policy(root).get("product", {}).get("width"),
+                policy(root).get("product", {}).get("height"),
+            )
+            seen: set[str] = set()
+            for item in slides:
+                slide_id = item.get("slide_id")
+                _require(isinstance(slide_id, str) and slide_id not in seen, f"{episode_id}: duplicate/bad export slide id")
+                seen.add(slide_id)
+                _require(bool(item.get("stable_app_handle")), f"{episode_id}: export manifest lacks stable app handle")
+                sha = item.get("sha256")
+                _require(isinstance(sha, str) and len(sha) == 64, f"{episode_id}: export manifest lacks SHA-256")
+                _require((item.get("width"), item.get("height")) == expected_size, f"{episode_id}: export manifest dimensions drift")
 
 
 def validate_repository(root: Path = ROOT) -> list[str]:
