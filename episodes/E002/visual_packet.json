@@ -1,16 +1,17 @@
 {
   "schema_version": "1.0",
   "episode_id": "E002",
+  "status": "LOCKED",
   "references": [
     {
       "id": "LEGACY_REF_V2_D",
       "path": "calibration/references/REF_V2_D_MAIN_CAST_GAEUN_HARIN_TAEMIN.jpeg",
       "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
-      "role": "person drawing-language reference; reference-character identity is not implied",
       "authority": "PRIMARY_STYLE",
+      "production_eligible": true,
+      "role": "person drawing-language reference; reference-character identity is not implied",
       "allowed_influence": "head/body proportion range, eye/face grammar, line behavior, flat-color behavior, hair massing abstraction",
       "forbidden_inference": "exact reference-character identity, hairstyle, clothing, current pose, camera, action, story or location unless a separate explicit identity role is bound",
-      "production_eligible": true,
       "byte_inspection": {
         "retrieved_from_repository": true,
         "size_bytes": 343173,
@@ -23,11 +24,11 @@
       "id": "LEGACY_REF_V2_E",
       "path": "calibration/references/REF_V2_E_3PERSON_INDOOR_SCENE.jpeg",
       "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
-      "role": "scene/background drawing-language reference only",
       "authority": "PRIMARY_STYLE",
+      "production_eligible": true,
+      "role": "scene/background drawing-language reference only",
       "allowed_influence": "background abstraction, line economy, restrained shading and local-color relationship",
       "forbidden_inference": "room layout, decorative asset inventory, current pose, story, clothing or cast requirement",
-      "production_eligible": true,
       "byte_inspection": {
         "retrieved_from_repository": true,
         "size_bytes": 392279,
@@ -42,52 +43,37 @@
       "id": "GF_E002",
       "scope": "EPISODE_LOCAL",
       "role": "girlfriend",
-      "note": "anonymous adult Korean woman; author a distinct episode-local identity within the bound PRIMARY_STYLE drawing language without copying a reference character; no new user upload or independent authorship proof is required when registered coverage is sufficient"
+      "appearance": "anonymous adult Korean woman; distinct from all PRIMARY_STYLE reference characters; dark-brown hair gathered in a loose low bun with soft face-framing strands; cream/off-white relaxed top; pale blue wide-leg pants; simple everyday silhouette; keep the identity stable across S01 and S04",
+      "note": "Appearance text is informed by the user-approved current-session preview only as a taste/continuity direction. That preview is not repository reference authority and does not replace PRIMARY_STYLE."
     },
     {
       "id": "BF_E002",
       "scope": "EPISODE_LOCAL",
       "role": "boyfriend",
-      "note": "anonymous adult Korean man; author a distinct episode-local identity within the bound PRIMARY_STYLE drawing language without copying a reference character; no new user upload or independent authorship proof is required when registered coverage is sufficient"
+      "appearance": "anonymous adult Korean man; distinct from all PRIMARY_STYLE reference characters; soft rounded black wavy hair; black crewneck top; light gray relaxed pants; simple everyday silhouette; keep the identity stable across S01-S04",
+      "note": "Appearance text is informed by the user-approved current-session preview only as a taste/continuity direction. That preview is not repository reference authority and does not replace PRIMARY_STYLE."
     }
   ],
   "palette": [
     "reference-led muted everyday local colors",
     "denim blue reserved for the story-bearing jeans",
+    "cream/off-white GF top and pale blue pants",
+    "black BF top and light gray pants",
     "no global beige wash"
   ],
   "line_grammar": [
     "simple hand-drawn black outline",
     "flat local color",
     "restrained or near-zero modeled shading",
-    "small consistent human irregularity"
+    "small consistent hand-made irregularity"
   ],
   "shape_grammar": [
     "simple readable silhouettes",
-    "faces remain minimally detailed at distance",
+    "faces minimally detailed rather than generic anime beautification",
     "hands and cloth contact prioritized over decorative detail",
-    "backgrounds functional and sparse"
+    "backgrounds obey storyboard lowest-sufficient levels",
+    "do not copy reference-character facial identity"
   ],
-  "reject_traits": [
-    "generic glossy anime or webtoon beautification",
-    "detailed irises and shiny hair",
-    "cinematic depth of field or lighting",
-    "global beige wash",
-    "uniform lead-like extras",
-    "generated letters numerals logos watermarks or readable UI",
-    "use of calibration quarantine or other rejected generated artifacts as reference"
-  ],
-  "reference_registry": "references/registry.json",
-  "reference_selection": {
-    "strategy": "MINIMUM_SUFFICIENT_SET",
-    "coverage": [
-      "person/style drawing language via LEGACY_REF_V2_D",
-      "indoor scene/background abstraction via LEGACY_REF_V2_E",
-      "episode-local GF/BF identities authored distinctly inside the bound PRIMARY_STYLE language"
-    ],
-    "note": "STALE after protocol-v2 migration. Rebuild and set status LOCKED only after PREPRODUCTION_REVIEW approval and sequential source/story/storyboard locks."
-  },
-  "status": "STALE_PENDING_EDITORIAL_APPROVAL",
   "style_match_dimensions": [
     "LINE_GRAMMAR",
     "EYE_FACE_GRAMMAR",
@@ -100,6 +86,39 @@
   "background_policy": {
     "strategy": "LOWEST_SUFFICIENT",
     "decorative_assets_default": "OMIT",
-    "note": "This packet is stale until editorial approval; when rebuilt, bind only background cues needed by the approved storyboard."
+    "note": "Follow each approved storyboard background_level and essential_background list. Do not carry reference-room furniture or decorative inventory into the episode."
+  },
+  "user_visual_direction": {
+    "scope": "SESSION_FEEDBACK_ONLY_NOT_REFERENCE_AUTHORITY",
+    "observed_preview_gen_id": "b049ef95-5dbe-4cf3-9ef8-89afac36bd93",
+    "observed_preview_sha256": "536d8a75f7d549faab5d0627d94a7862f3fa17c3a4784c94f5666e38b95cebbb",
+    "observed_preview_dimensions": [
+      1122,
+      1402
+    ],
+    "user_response": "APPROVED_PROVISIONALLY",
+    "allowed_use": "textual cast/outfit/acting preference only",
+    "forbidden_use": "persistent style authority, replacement for repository reference bytes, proof of canonical master-board production"
+  },
+  "reject_traits": [
+    "generic glossy anime or webtoon beautification",
+    "detailed irises and shiny hair",
+    "cinematic depth of field or lighting",
+    "global beige wash",
+    "uniform lead-like extras",
+    "reference-character identity copied into an episode-local character",
+    "unnecessary decorative room completion",
+    "generated letters numerals logos watermarks or readable UI",
+    "reuse of rejected/quarantined art"
+  ],
+  "reference_registry": "references/registry.json",
+  "reference_selection": {
+    "strategy": "MINIMUM_SUFFICIENT_SET",
+    "coverage": [
+      "person drawing language via LEGACY_REF_V2_D",
+      "scene/background abstraction via LEGACY_REF_V2_E",
+      "episode-local GF/BF appearance text derived from user-approved session feedback without creating a new reference authority"
+    ],
+    "note": "D/E are the minimum sufficient persistent production references. No re-upload or dedicated identity sheet is required."
   }
 }
