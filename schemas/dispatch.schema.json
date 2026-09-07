@@ -81,7 +81,8 @@
         "IMPORTED",
         "REJECTED",
         "APPROVED",
-        "WAITING_RETRY"
+        "WAITING_RETRY",
+        "SUPERSEDED"
       ]
     },
     "runtime_attachment": {
@@ -135,6 +136,9 @@
           "const": false
         }
       }
+    },
+    "eligible_for_execution": {
+      "type": "boolean"
     }
   }
 }
