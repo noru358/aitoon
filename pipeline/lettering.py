@@ -140,6 +140,50 @@ def _draw_bubble(draw: ImageDraw.ImageDraw, box: tuple[int, int, int, int], bubb
     )
 
 
+def _canonical_role(role: str) -> str:
+    aliases = {
+        "SPEECH": "DIALOGUE",
+        "CAPTION": "NARRATION",
+    }
+    return aliases.get(role, role)
+
+
+def _validate_v2_style(plan: dict[str, Any], root: Path) -> dict[str, Any] | None:
+    if int(plan.get("protocol_revision", 1)) < 2:
+        return None
+    style_path = root / "config" / "lettering_style.json"
+    try:
+        style = json.loads(style_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise LetteringError(f"cannot load v2 lettering style config: {exc}") from exc
+    if style.get("status") != "LOCKED":
+        raise LetteringError("v2 lettering style is not LOCKED; run one-time typography calibration before final lettering")
+    if plan.get("style_profile_id") != style.get("style_id"):
+        raise LetteringError("lettering plan style profile does not match the locked project profile")
+    roles = style.get("roles", {})
+    defaults = style.get("defaults", {})
+    for element in plan.get("elements", []):
+        role = _canonical_role(str(element.get("role", "")))
+        spec = roles.get(role)
+        if not isinstance(spec, dict):
+            raise LetteringError(f"unsupported v2 lettering role: {role}")
+        size = int(element["font_size"])
+        bounds = spec.get("font_size_range")
+        if not isinstance(bounds, list) or len(bounds) != 2 or not int(bounds[0]) <= size <= int(bounds[1]):
+            raise LetteringError(f"{role} font size is outside the locked style range")
+        bubble = element.get("bubble")
+        if bubble:
+            outline_bounds = defaults.get("bubble_outline_width_range", [0, 99])
+            padding_bounds = defaults.get("bubble_padding_range", [0, 999])
+            outline = int(bubble["outline_width"])
+            padding = int(bubble["padding"])
+            if not int(outline_bounds[0]) <= outline <= int(outline_bounds[1]):
+                raise LetteringError(f"{role} bubble outline width is outside the locked style range")
+            if not int(padding_bounds[0]) <= padding <= int(padding_bounds[1]):
+                raise LetteringError(f"{role} bubble padding is outside the locked style range")
+    return style
+
+
 def render_lettering(plan_path: Path, output_path: Path, root: Path = ROOT) -> dict[str, Any]:
     try:
         plan = json.loads(plan_path.read_text(encoding="utf-8"))
@@ -147,9 +191,19 @@ def render_lettering(plan_path: Path, output_path: Path, root: Path = ROOT) -> d
         raise LetteringError(f"cannot load lettering plan: {exc}") from exc
     if plan.get("schema_version") != "1.0":
         raise LetteringError("unsupported lettering plan version")
+    style = _validate_v2_style(plan, root)
 
     base = _resolve_inside(root, plan["base_art"]["path"])
     font_source = _resolve_inside(root, plan["font"]["path"])
+    if style is not None:
+        locked_font = style.get("font")
+        if not isinstance(locked_font, dict):
+            raise LetteringError("locked v2 lettering style must bind a font")
+        if plan["font"]["path"] != locked_font.get("path"):
+            raise LetteringError("lettering plan font does not match the locked project font")
+        locked_sha = locked_font.get("sha256")
+        if locked_sha and plan["font"]["sha256"] != locked_sha:
+            raise LetteringError("lettering plan font hash does not match the locked project font")
     if sha256_file(base) != plan["base_art"]["sha256"]:
         raise LetteringError("base art hash mismatch")
     if sha256_file(font_source) != plan["font"]["sha256"]:
@@ -185,7 +239,8 @@ def render_lettering(plan_path: Path, output_path: Path, root: Path = ROOT) -> d
         text_height = text_box[3] - text_box[1]
         font = ImageFont.truetype(str(font_path), int(element["font_size"]))
         lines = _wrap(draw, element["text"], font, text_width)
-        line_gap = max(2, round(int(element["font_size"]) * 0.18))
+        line_gap_ratio = float(style.get("defaults", {}).get("line_gap_ratio", 0.18)) if style else 0.18
+        line_gap = max(2, round(int(element["font_size"]) * line_gap_ratio))
         boxes = [draw.textbbox((0, 0), line or " ", font=font) for line in lines]
         heights = [value[3] - value[1] for value in boxes]
         total_height = sum(heights) + line_gap * max(0, len(lines) - 1)
