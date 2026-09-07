@@ -4,9 +4,14 @@
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
   "stage": "MASTER_BOARD_QC",
-  "run_status": "ACTIVE",
-  "blocked": null,
-  "exact_next_action": "Execute only episodes/E002/boards/B01D1.dispatch.json after runtime preflight. D1 contains S01-S02 only; the bottom two cells must stay empty. Inspect actual pixels for zero text/symbol contamination, low-bun GF appearance, BF continuity, S02 phone-back geometry, exactly two BF hand roles, same stained dry jeans, sparse background, and PRIMARY_STYLE drawing grammar. Do not proceed to D2 unless D1 passes.",
+  "run_status": "BLOCKED_RETRYABLE",
+  "blocked": {
+    "code": "WAITING_TOOL_RECOVERY",
+    "detail": "After the parent B01 A1/A2 board-wide failures, protocol-sanctioned decomposition was attempted with B01D1(S01-S02 only). The current image runtime again ignored the dispatch: it generated all four story beats, Korean text bubbles/heart, the wrong GF appearance, and an extra S02 self-touch hand. Because D1 target semantics were not executed, this is a runtime semantic misdispatch rather than a normal D1 failure.",
+    "resume_action": "Retry the unchanged decomposed dispatch episodes/E002/boards/B01D1.dispatch.json only after image-runtime tool recovery or on a clean built-in image surface that demonstrably honors the current target semantics. Canonical-boot latest main, rerun D/E runtime-attachment preflight, keep B01 parent retry budget exhausted, and do not use any rejected A1/A2/D1 outputs. The valid D1 result must illustrate only S01-S02 in the top row, leave both bottom cells EMPTY, contain zero text/symbol bubbles, preserve low-bun GF and BF appearances, obey S02 phone-back geometry/two-hand ownership, and match PRIMARY_STYLE. If D1 passes actual-pixel QC, proceed to B01D2; otherwise remain fail-closed at MASTER_BOARD_QC.",
+    "recorded_at": "2026-09-07T18:32:00Z"
+  },
+  "exact_next_action": "Retry the unchanged decomposed dispatch episodes/E002/boards/B01D1.dispatch.json only after image-runtime tool recovery or on a clean built-in image surface that demonstrably honors the current target semantics. Canonical-boot latest main, rerun D/E runtime-attachment preflight, keep B01 parent retry budget exhausted, and do not use any rejected A1/A2/D1 outputs. The valid D1 result must illustrate only S01-S02 in the top row, leave both bottom cells EMPTY, contain zero text/symbol bubbles, preserve low-bun GF and BF appearances, obey S02 phone-back geometry/two-hand ownership, and match PRIMARY_STYLE. If D1 passes actual-pixel QC, proceed to B01D2; otherwise remain fail-closed at MASTER_BOARD_QC.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -145,6 +150,12 @@
       "from": "MASTER_BOARD_QC",
       "to": "MASTER_BOARD_QC",
       "evidence": "Final V2 whole-board retry A2 actual-pixel FAIL recorded at episodes/E002/qc/B01.v2.A2.json: baked Korean bubbles, GF cast drift, and board-wide style drift persist. S02 phone/anatomy improved, but no A3 is allowed. The protocol's repeated-structural-failure clause is now using bounded decomposition into B01D1(S01-S02) and B01D2(S03-S04), preserving all approved editorial hashes and the LOCKED visual packet."
+    },
+    {
+      "at": "2026-09-07T18:32:00Z",
+      "from": "MASTER_BOARD_QC",
+      "to": "MASTER_BOARD_QC",
+      "evidence": "B01D1 decomposed target execution fault: actual pixels image_gen:8df5e643-7a44-4f35-a672-3b6e2e84a50d, SHA-256 ae203c506ea214c836239d7a98519453c1488f336dba9f172b7b180f9109509b, 1224x1285 generated all four beats instead of only S01-S02 + two EMPTY cells and baked Korean bubbles/heart. Receipt episodes/E002/quarantine/B01D1.runtime-misdispatch.receipt.json; QC episodes/E002/qc/B01D1.runtime-misdispatch.json. Episode is blocked retryably at WAITING_TOOL_RECOVERY."
     }
   ],
   "artifacts": [
