@@ -1,45 +1,73 @@
 # Current state
 
-Updated: 2026-09-07  
+Updated: 2026-09-07 18:36 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
-## Completed
+## Production default
 
-- canonical GPT-app-only production protocol;
-- zero-paid-fallback machine policy;
-- fail-closed episode state machine with retryable resource states;
-- hash-bound reference/dispatch compiler;
-- clean 2x2 board to separate 1080x1350 slide extractor;
-- hash-bound editable Korean lettering renderer;
-- repository/calibration validator and regression tests;
-- read-only benchmark and calibration references copied into this repository;
-- live calibration dispatch compiled and both bounded attempts executed.
+`GPT_APP_BOARD_FIRST_V1` is locked as the production default after the accepted
+board-first calibration.
 
-## Calibration result
+- internal coherence unit: text-free 2x2 master board, up to four occupied 4:5 cells;
+- delivery unit: one separate 1080x1350 PNG per slide;
+- approved board cells are split/expanded rather than independently reinterpreted;
+- isolated failures are repaired at the smallest failed unit;
+- lettering and meaning-bearing UI are added only after art lock;
+- paid API/SaaS fallback remains disabled.
 
-`BOARD_FIRST_V1 / B01` attempt 2 received explicit user visual approval and is
-the accepted master board.
+Calibration attempt 1 remains rejected and quarantined. Calibration attempt 2
+remains the accepted calibration board only; its convenience-store story is a
+fixture and is not E001 content.
 
-- both actual 1122x1402 PNGs were inspected and hash-bound;
-- the board-first unit produced strong identity, outfit, palette, camera and
-  story-state continuity;
-- attempt 2 fixed the text-like packaging mark and ambiguous wallet;
-- attempt 1 remains rejected and quarantined;
-- attempt 2 is accepted because explicit user approval is authoritative for the
-  subjective style gate;
-- paid API and paid fallback remain disabled.
+## Active production
 
-The accepted board has now been packaged into four separately inspected
-1080x1350 PNG slides. All four passed crop, continuity, anatomy/contact,
-no-generated-text and story-order checks. A hash-bound Korean lettering smoke
-test also passed after correcting a one-line wrapping defect.
+Active episode: `E001`  
+Title: `그냥 세탁기에 돌려도 되는데`  
+Stage: `STORYBOARD_LOCK`  
+Run status: `BLOCKED_RETRYABLE`  
+Block code: `WAITING_REQUIRED_BYTES`
 
-See `calibration/FINDINGS.md` and the two structured QC reports. This calibration
-does not consume publishable episode `E001`.
+Completed for E001:
+
+- `SOURCE_LOCK`: direct Korean TeamBlind human story seed dated 2025-02-24;
+- `STORY_LOCK`: four-beat sweet-romance adaptation preserving the stained denim,
+  casual laundry request, online research, hand-wash and cute discovery;
+- `STORYBOARD_LOCK`: four slide contracts with state deltas, beat-serving cameras,
+  anatomy/contact intent, phone front/back geometry, continuity and text-safe regions;
+- future copy is recorded in storyboard metadata but no lettering is permitted in art.
+
+## Fail-closed reference gate
+
+Image generation is forbidden at the current state.
+
+The repository has actual hash-bound calibration reference files, but
+`calibration/references/registry.json` explicitly records that human-authorship
+provenance is **not asserted** for them. Therefore they cannot satisfy the
+production requirement for an actual provenance-verified human-drawn reference.
+
+No rejected or quarantined generated artifact is eligible to repair this gap.
+
+For this two-person home story, the production visual packet must bind actual
+human-drawn evidence covering:
+
+1. person/style drawing language;
+2. interaction/full-body drawing language;
+3. home/interior scene drawing language.
+
+Each accepted reference must have actual inspectable bytes plus `path`,
+`sha256`, `role`, `allowed_influence`, and `forbidden_inference`. The media
+must also be available as actual image input to the ChatGPT image runtime; a
+repository path or prose description alone is not conditioning.
 
 ## Exact next action
 
-Lock `GPT_APP_BOARD_FIRST_V1` as the production default and initialize a fresh
-publishable `E001` from a traceable Korean human story seed. The calibration
-story remains fixture-only and must not be promoted as episode content.
+Acquire and inspect provenance-verified actual human-drawn person/style,
+interaction/full-body, and home/interior reference media as actual files usable by
+the ChatGPT image runtime; copy only permitted bytes into `noru358/aitoon`,
+record path/SHA-256/role/allowed_influence/forbidden_inference in
+`episodes/E001/visual_packet.json`, exclude all rejected/quarantined/generated
+artifacts from reference authority, then resume E001 and advance exactly to
+`VISUAL_PACKET_LOCK` before compiling `B01`.
+
+See `episodes/E001/state.json` for the machine resume record.
