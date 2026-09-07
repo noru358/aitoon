@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-08 02:07 KST  
+Updated: 2026-09-08 02:14 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
@@ -72,8 +72,10 @@ Completed for E002:
 - `E002-B01-MASTER-A1` produced an actual image, which was imported, inspected, hard-failed board-wide, and quarantined because it copied the three reference characters/living-room activity instead of the locked two-character denim/laundry story, omitted the jeans state sequence, repeated the same group staging, and contained baked Latin `Z` marks;
 - the rejected A1 canonical board path was removed after preserving the immutable quarantine copy;
 - one whole-board retry dispatch `E002-B01-MASTER-A2` was compiled without changing story, storyboard, visual packet or reference authority;
-- the current image execution surface did not honor that compiled A2 target either and returned another reference-trio living-room scene. The pixels were inspected and quarantined as a rejected tool-mismatch output. It is not eligible as style, continuity, repair or board evidence;
-- `episodes/E002/boards/B01.qc.json` and `episodes/E002/state.json` now record the retryable tool block at `MASTER_BOARD_QC`.
+- prior A2 executions on earlier surfaces were rejected as tool misdispatches and remain quarantined/receipt-recorded;
+- the fresh 2026-09-08 Chat retry re-read the registry and locked D/E repository bytes, verified the current-session carrier copies by exact SHA-256, attempted repository-direct transport first, then used the matching files only as `SESSION_ONLY` fallback carriers;
+- the current image execution surface still did not honor the compiled A2 target and returned the three reference characters socializing in the reference living room, with no denim/laundry sequence and baked glyphs. The actual pixels were inspected and rejected; receipt: `episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-06397a4f.receipt.json`;
+- `episodes/E002/boards/B01.qc.json` and `episodes/E002/state.json` record the retryable tool block at `MASTER_BOARD_QC`; the whole-board retry budget remains unconsumed because the compiled target semantics were not executed.
 
 The episode is not `DONE`. No rejected image may be reused.
 
@@ -93,7 +95,7 @@ registered as user-designated `PRIMARY_STYLE` references. Independent authorship
 verification remains explicitly unasserted; it is not fabricated or treated as a
 routine production gate. E002 is therefore active rather than waiting for bytes.
 
-E002 has retrieved and inspected those actual repository bytes and bound D/E as the minimum sufficient set by path, SHA-256, role, `allowed_influence` and `forbidden_inference`. Session attachments are transport-only fallbacks for those locked roles and do not alter authority; reference transport is not the active blocker. The active blocker is the current image execution surface returning task-mismatched images instead of the compiled B01 target. In the latest session, A2 again misdispatched as an unrelated AITOON kanban/completion infographic; actual pixels were rejected and a hash/dimension/runtime receipt was persisted at `episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-923936bc.receipt.json`. No rejected output can be reused.
+E002 has retrieved and inspected those actual repository bytes and bound D/E as the minimum sufficient set by path, SHA-256, role, `allowed_influence` and `forbidden_inference`. Session attachments are transport-only fallbacks for those locked roles and do not alter authority; reference transport is not the active blocker. On the fresh 2026-09-08 Chat retry, the two current-session carrier files were byte-identical to the locked registry references: D `dbddf458...` at 1448x1086 and E `b496832...` at 1536x864. Repository-direct image-runtime transport was unavailable, so the matching files were used only as `SESSION_ONLY` carriers. The image runtime still ignored `E002-B01-MASTER-A2` and returned the three reference characters socializing in the reference living room instead of the locked two-character denim/laundry board. Actual pixels were rejected; hash/dimension/runtime evidence was persisted at `episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-06397a4f.receipt.json`. No rejected output can be reused.
 
 
 ## Runtime attachment guard
