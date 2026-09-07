@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "target_id": "B01",
+  "dispatch_id": "E002-B01-V2-MASTER-A1",
+  "status": "FAIL",
+  "inspected": [
+    {
+      "stable_app_handle": "image_gen:07fae61a-a528-4668-b54b-a927c41ec682",
+      "sha256": "e154f809eedb4d52501b898427b0a3b1949a1be792f651818ef2c5e3a74a4503",
+      "width": 1230,
+      "height": 1278,
+      "actual_pixels": true
+    }
+  ],
+  "failures": [
+    {
+      "code": "BAKED_TEXT",
+      "scope": "BOARD_WIDE",
+      "detail": "Large Korean speech/thought bubbles appear in three of four cells."
+    },
+    {
+      "code": "STYLE_DRIFT",
+      "scope": "BOARD_WIDE",
+      "detail": "Generic polished anime/webtoon face/eye and embellishment treatment materially diverges from PRIMARY_STYLE."
+    },
+    {
+      "code": "CAST_APPEARANCE_DRIFT",
+      "scope": "S01_S04",
+      "detail": "GF episode-local appearance changed from locked low-bun silhouette to bob hair with shoulder bag."
+    },
+    {
+      "code": "SCREEN_GEOMETRY",
+      "scope": "S02",
+      "detail": "Viewer sees phone screen/front instead of back edge/oblique non-readable glow."
+    },
+    {
+      "code": "ANATOMY_CONTACT",
+      "scope": "S02",
+      "detail": "Extra self-touch hand is added beyond jeans-hand and phone-hand roles."
+    }
+  ],
+  "routing": {
+    "action": "WHOLE_BOARD_RETRY_A2",
+    "reason": "Board-wide text/style/cast failures plus isolated S02 objective failures make A1 unsuitable for slide derivation.",
+    "whole_board_retry_remaining_after_route": 0
+  }
+}
