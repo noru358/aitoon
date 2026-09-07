@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-08 03:46 KST  
+Updated: 2026-09-08 03:58 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V2`
 
@@ -64,18 +64,25 @@ The migration deliberately avoids several failure modes:
 
 ## Validation status
 
-- Connector-side static V2 consistency check: PASS for the machine policy, schemas,
-  E002 review/state/storyboard/visual-packet migration, and superseded A2 dispatch.
-- A fresh local checkout was attempted for the canonical regression commands, but
-  the execution sandbox could not resolve `github.com`; therefore
+- Connector-side static consistency check: **PASS** for the focused runtime-control
+  revision across policy, E002 state, scoped approved-anchor manifest, clean D1
+  dispatch, superseded legacy D1 dispatch, canonical plan, dispatch/packing code,
+  validator hooks, runtime policy, reference policy, and regression-test sources.
+- Regression coverage was updated for:
+  - operational approved-anchor SHA carriers;
+  - natural-occupancy runtime sheets;
+  - absence of generator-owned EMPTY cells;
+  - deterministic 1x2 -> canonical 2x2 packing;
+  - clean-session policy invariants;
+  - approved visual-anchor manifest validation.
+- A fresh local checkout was attempted again after these changes, but the execution
+  sandbox still could not resolve `github.com`. Therefore the canonical commands
   `python -m unittest discover -s tests -p 'test_*.py'` and
   `python -m pipeline.cli validate` were **not executed locally** and are not
   claimed PASS.
-- The latest GitHub commit exposed no combined status checks at the time inspected.
-  This absence is recorded as unknown validation state, not success.
-- Additional static hardening was added so a V2 master-board dispatch cannot compile
-  before `VISUAL_PACKET_LOCK` (except bounded retry compilation at
-  `MASTER_BOARD_QC`).
+- GitHub exposed no combined status checks or PR-triggered workflow runs for the
+  queried latest indexed commit. Their absence is recorded as unknown validation
+  state, not success.
 
 ## Typography state
 
