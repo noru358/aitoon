@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E001",
+  "title": "그냥 세탁기에 돌려도 되는데",
+  "slide_count": 4,
+  "stage": "STORYBOARD_LOCK",
+  "run_status": "BLOCKED_RETRYABLE",
+  "blocked": {
+    "code": "WAITING_REQUIRED_BYTES",
+    "detail": "SOURCE_LOCK, STORY_LOCK and STORYBOARD_LOCK are complete. Image work is fail-closed because no provenance-verified actual human-drawn reference bytes are currently available to E001. The existing calibration D/E files are hash-bound but calibration/references/registry.json explicitly states that human-authorship provenance is not asserted; rejected/quarantined artifacts are excluded.",
+    "resume_action": "Acquire and inspect provenance-verified actual human-drawn person/style, interaction/full-body, and home/interior reference media as actual files usable by the ChatGPT image runtime; copy only permitted bytes into noru358/aitoon, record path/SHA-256/role/allowed_influence/forbidden_inference in episodes/E001/visual_packet.json, exclude all rejected/quarantined/generated artifacts from reference authority, then resume E001 and advance exactly to VISUAL_PACKET_LOCK before compiling B01.",
+    "recorded_at": "2026-09-07T09:36:09Z"
+  },
+  "exact_next_action": "Acquire and inspect provenance-verified actual human-drawn person/style, interaction/full-body, and home/interior reference media as actual files usable by the ChatGPT image runtime; copy only permitted bytes into noru358/aitoon, record path/SHA-256/role/allowed_influence/forbidden_inference in episodes/E001/visual_packet.json, exclude all rejected/quarantined/generated artifacts from reference authority, then resume E001 and advance exactly to VISUAL_PACKET_LOCK before compiling B01.",
+  "stage_history": [
+    {
+      "at": "2026-09-07T09:36:09Z",
+      "from": null,
+      "to": "BOOTSTRAP",
+      "evidence": "Fresh publishable E001 initialized from CURRENT_STATE exact next action with GPT_APP_BOARD_FIRST_V1 locked as production default."
+    },
+    {
+      "at": "2026-09-07T09:36:09Z",
+      "from": "BOOTSTRAP",
+      "to": "SOURCE_LOCK",
+      "evidence": "Locked a direct Korean TeamBlind human-authored romance post dated 2025-02-24; URL, observed facts, uncertainty, short wording fragment and adaptation scope recorded in source.md."
+    },
+    {
+      "at": "2026-09-07T09:36:09Z",
+      "from": "SOURCE_LOCK",
+      "to": "STORY_LOCK",
+      "evidence": "Locked a four-beat copyright-safe adaptation preserving the stained-denim, casual laundry request, online research, hand-wash and cute-discovery state changes without inventing an exact washing recipe."
+    },
+    {
+      "at": "2026-09-07T09:36:09Z",
+      "from": "STORY_LOCK",
+      "to": "STORYBOARD_LOCK",
+      "evidence": "Locked four slide contracts with state deltas, distinct beat-serving camera choices, physical actions, expressions, continuity, phone geometry, text-safe regions and post-art copy."
+    }
+  ],
+  "artifacts": []
+}
