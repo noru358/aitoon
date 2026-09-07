@@ -97,14 +97,18 @@
         "fallback_only_after_direct_runtime_bridge_unavailable",
         "revalidate_after_session_or_surface_change",
         "attachment_does_not_reset_episode_or_stage",
-        "opaque_runtime_handle_is_reference_authority"
+        "opaque_runtime_handle_is_reference_authority",
+        "required_sha_carriers"
       ],
       "properties": {
         "preflight_required_before_execute": {
           "const": true
         },
         "source_authority": {
-          "const": "REPOSITORY_REGISTRY_SHA256"
+          "enum": [
+            "REPOSITORY_REGISTRY_SHA256",
+            "REPOSITORY_MANIFEST_AND_SHA256"
+          ]
         },
         "carrier_scope": {
           "const": "SESSION_ONLY"
@@ -134,6 +138,44 @@
         },
         "opaque_runtime_handle_is_reference_authority": {
           "const": false
+        },
+        "required_sha_carriers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "anchor_id",
+              "sha256",
+              "role",
+              "allowed_influence",
+              "forbidden_inference"
+            ],
+            "properties": {
+              "anchor_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "role": {
+                "type": "string",
+                "minLength": 1
+              },
+              "allowed_influence": {
+                "type": "string",
+                "minLength": 1
+              },
+              "forbidden_inference": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
         }
       }
     },
@@ -142,6 +184,159 @@
     },
     "superseded_reason": {
       "type": "string"
+    },
+    "runtime_sheet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "strategy",
+        "rows",
+        "columns",
+        "cell_count",
+        "cells",
+        "generator_empty_cells_forbidden",
+        "pack_to_canonical_2x2"
+      ],
+      "properties": {
+        "strategy": {
+          "const": "NATURAL_OCCUPANCY"
+        },
+        "rows": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2
+        },
+        "columns": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "cell_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "cells": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "slide_id",
+              "runtime_row",
+              "runtime_column",
+              "canonical_row",
+              "canonical_column"
+            ],
+            "properties": {
+              "slide_id": {
+                "type": "string",
+                "pattern": "^S[0-9]{2,}$"
+              },
+              "runtime_row": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "runtime_column": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2
+              },
+              "canonical_row": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "canonical_column": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        },
+        "generator_empty_cells_forbidden": {
+          "const": true
+        },
+        "pack_to_canonical_2x2": {
+          "const": true
+        }
+      }
+    },
+    "context_isolation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "art_only",
+        "allowed",
+        "forbidden"
+      ],
+      "properties": {
+        "art_only": {
+          "const": true
+        },
+        "allowed": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbidden": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "approved_visual_anchor": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "anchor_id",
+            "sha256",
+            "allowed_influence",
+            "forbidden_inference",
+            "transport"
+          ],
+          "properties": {
+            "anchor_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "allowed_influence": {
+              "type": "string",
+              "minLength": 1
+            },
+            "forbidden_inference": {
+              "type": "string",
+              "minLength": 1
+            },
+            "transport": {
+              "enum": [
+                "REPOSITORY",
+                "SESSION_CARRIER_REQUIRED"
+              ]
+            }
+          }
+        }
+      ]
     }
   }
 }
