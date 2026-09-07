@@ -30,7 +30,7 @@
     "isolated_repair_required": false,
     "retry_budget_remaining": 1,
     "block_code": "WAITING_TOOL_RECOVERY",
-    "resume_condition": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC."
+    "resume_condition": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only after image-runtime tool recovery or on a built-in execution surface that can demonstrably honor the compiled target semantics. Canonical-boot latest main, re-read the locked D/E references plus B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use any rejected/misdispatched output, and do not import the prior independently generated standalone slides or their lettering because they violate board-first. If a returned 2x2 board actually matches the locked two-character denim/laundry dispatch and is text-free, import it as episodes/E002/boards/B01.master.png, inspect actual pixels, and advance exactly according to board QC."
   },
   "root_cause": "Board-wide semantic/cast failure. The visual references dominated the image call while the locked target dispatch was not sufficiently surfaced to the current image runtime. Retry must preserve the same locked story and reference authority while making target-only cell semantics explicit.",
   "runtime_execution_faults": [
@@ -85,6 +85,23 @@
       "actual_pixels": true,
       "finding": "Fresh canonical-boot Chat retry with exact matching SESSION_ONLY D/E carrier bytes again returned the three reference characters socializing in the living-room reference scene instead of the compiled two-character denim/laundry board. The jeans state sequence and laundry actions are absent and baked symbols remain. Rejected and ineligible for reuse.",
       "retry_budget_effect": "DOES_NOT_CONSUM_WHOLE_BOARD_RETRY_BUDGET"
+    },
+    {
+      "intended_dispatch": "E002-B01-MASTER-A2",
+      "status": "REJECTED_TOOL_MISDISPATCH",
+      "receipt_path": "episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-e011bf27.receipt.json",
+      "sha256": "e011bf272b980b585b10b1a25c83ae2d578130a8ebb57ab1f98d2f2880783792",
+      "dimensions": [
+        1448,
+        1086
+      ],
+      "actual_pixels": true,
+      "finding": "Current Chat image runtime again returned the three reference characters in the reference living room, with extensive baked Korean speech bubbles, instead of the locked two-character denim/laundry master board. No jeans state sequence or required actions are present. Rejected and ineligible for reuse.",
+      "retry_budget_effect": "DOES_NOT_CONSUM_WHOLE_BOARD_RETRY_BUDGET"
     }
-  ]
+  ],
+  "protocol_guard": {
+    "prior_standalone_art_from_chat": "NOT_IMPORTED",
+    "reason": "Independently generated slides/lettering are not board-derived and therefore cannot be accepted as canonical episode art under GPT_APP_BOARD_FIRST_V1."
+  }
 }
