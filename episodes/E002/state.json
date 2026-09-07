@@ -66,6 +66,12 @@
       "from": "MASTER_BOARD_IMPORTED",
       "to": "MASTER_BOARD_QC",
       "evidence": "Actual-pixel QC failed board-wide: A1 copied the three reference characters and living-room activity instead of the locked denim-laundry story, omitted the jeans state sequence, repeated frontal group staging, and baked Latin Z marks. A1 was quarantined; one allowed whole-board retry A2 was compiled without changing upstream locks."
+    },
+    {
+      "at": "2026-09-07T15:52:00Z",
+      "from": "MASTER_BOARD_QC",
+      "to": "MASTER_BOARD_QC",
+      "evidence": "A2 tool mismatch: generated pixels did not match the compiled denim-laundry board specification. The image was rejected and quarantined; the episode remains retryable at the same stage."
     }
   ],
   "artifacts": [
@@ -80,6 +86,18 @@
       "producing_dispatch": "E002-B01-MASTER-A1",
       "status": "REJECTED_QUARANTINED",
       "registered_at": "2026-09-07T15:48:00Z"
+    },
+    {
+      "artifact_id": "A0002",
+      "role": "REJECTED_TOOL_OUTPUT",
+      "path": "episodes/E002/quarantine/B01.master.A2-misdispatch.png",
+      "sha256": "e7d75f3f106494025434126de77d44afd2d5b03f3b419ed86307c154e6941e5a",
+      "size_bytes": 2137833,
+      "width": 1104,
+      "height": 1425,
+      "producing_dispatch": "E002-B01-MASTER-A2",
+      "status": "REJECTED_QUARANTINED",
+      "registered_at": "2026-09-07T15:52:00Z"
     }
   ]
 }
