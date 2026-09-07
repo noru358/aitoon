@@ -1,5 +1,7 @@
 # AIToon operating contract
 
+Architecture: `GPT_APP_BOARD_FIRST_V2`
+
 ## Canonical boot order
 
 Use exactly one boot order for every fresh or resumed production run:
@@ -9,94 +11,96 @@ Use exactly one boot order for every fresh or resumed production run:
 3. `docs/GPT_APP_PROTOCOL.md`
 4. `config/policy.json`
 5. the active episode's `state.json`, when an active episode exists
-6. only then the companion material required by that active next action, including
-   `docs/REFERENCE_POLICY.md`, `docs/ANATOMY_CONTACT_POLICY.md`,
-   `references/registry.json`, and the actual reference/calibration bytes to be used
+6. only then the companion material required by that active exact next action,
+   including editorial, reference, anatomy/contact, visual-minimalism, lettering,
+   registry, and actual reference/calibration files
 
-`README.md` is descriptive documentation, not boot authority. `CURRENT_STATE.md`
-identifies repository-level production context. Once an active episode is identified,
+`README.md` is descriptive only. Once an active episode exists,
 `state.json.exact_next_action` is the execution pointer. Do not substitute
-conversational memory, an older README instruction, or a guessed next step.
+conversation memory or a guessed stage.
 
 ## Non-negotiable runtime
 
-- This repository is the only writable authority for AIToon production.
-- `instatoon`, `AutoPipeline`, and `jipbap` may be inspected or copied from, but
-  must never be edited by this project.
-- Use ChatGPT/Work built-in capabilities only. Do not call a paid API, paid SaaS,
-  or external image model. Additional paid budget is KRW 0.
-- Do not ask the user for routine approval, taste decisions, asset approval, or
-  permission to continue. Apply the committed defaults and continue.
-- A quota or transient tool failure is retryable state, not a request for user
-  input. Checkpoint it, continue every independent text/code/QC task, and resume
-  the blocked image step when the built-in capability is available.
-- Never claim a visual PASS without inspecting the actual image.
-- Never use a rejected image as a style, identity, continuity, or repair input.
-- A user-designated project reference is sufficient production provenance unless conflicting evidence exists; record independent authorship verification separately and never invent it.
-- If eligible reference bytes already exist in `aitoon`, retrieve and inspect them yourself. Absence from the current chat attachment list is not a user-blocking condition; use `WAITING_REQUIRED_BYTES` only after repository retrieval actually fails.
-- Reference authority and runtime transport are separate. Registry path/SHA/authority remain persistent source of truth; a Chat/Work attachment or runtime file is only a session-scoped carrier and never becomes style authority merely because it is attachable.
-- Before every built-in image generation/edit that requires visual references, run a runtime-attachment preflight on the current surface. A repository path, base64 payload, connector file URI, or prior-session handle is not sufficient evidence; the current image runtime must actually be able to bind the visual media.
-- Prefer direct repository-to-runtime attachment. If that bridge is unavailable, a user-supplied copy of an already locked registered reference may be used as a session-only transport fallback. This is not a request for new reference evidence, does not rewrite `visual_packet.json`, and does not reset the active episode or stage.
-- Startup or mid-run image attachments never override `state.json.exact_next_action`. Boot first, keep the active episode pointer, then map eligible attachments only to the already locked reference roles they transport.
-- Session/runtime bindings are ephemeral. Re-run attachment preflight after any chat, Work run, or execution-surface change; never persist an opaque runtime handle as reference authority.
-- When registered production references already provide sufficient drawing-language coverage, do not ask the user to upload a new reference merely to invent an episode-local one-off character identity. A dedicated identity sheet is required only when exact recurring identity continuity actually needs one.
-- Approved generated episode art is episode-local by default. Promote only nonredundant, explicitly user-approved, objective-QC-passing continuity anchors; generated anchors never override primary style references.
-- One published slide is one 4:5 image. A temporary multi-panel master board is
-  allowed only as an internal coherence device and must be expanded into separate
-  slide images before export.
+- `noru358/aitoon` is the only writable repository authority.
+- `instatoon`, `AutoPipeline`, and `jipbap` are read/copy only.
+- Additional paid budget is KRW 0. Do not use paid APIs, paid SaaS, or external
+  paid image models as fallback.
+- Routine technical approval is not required. Editorial approval is different:
+  protocol revision 2 requires one `PREPRODUCTION_REVIEW` before source/story/
+  storyboard locks become authoritative.
+- Never fabricate editorial approval. The approved source/story/storyboard hashes
+  must be recorded in `editorial_review.json`.
+- Never claim visual PASS without actual-pixel inspection.
+- Never reuse rejected/quarantined art as style, identity, continuity, or repair
+  evidence.
+- Registered reference authority and runtime transport are separate. Prefer
+  repository-direct image binding; if unavailable, a matching current-session
+  copy may carry the already locked reference as `SESSION_ONLY` transport.
+- Runtime attachments never reset an episode, stage, review, or reference role.
+- A style reference controls only its declared drawing-language influence.
+  Reference-character identity, clothes, room, props, pose, or story must not be
+  copied unless separately and explicitly bound.
+- One published narrative slide is one 1080x1350 4:5 file. The cover is a separate
+  packaging artifact and is not included in `slide_count`.
 
-## Default production behavior
+## V2 production behavior
 
-1. Start with a traceable human-produced story seed.
-2. Lock story, dialogue, panel intent, and text-safe regions before image work.
-3. Bind the minimum sufficient production-eligible reference set from `references/registry.json` by actual file bytes and SHA-256. One file may cover multiple visual roles when its pixels genuinely contain that evidence.
-4. Compile the board dispatch, then immediately before execution run runtime-attachment preflight on the current Chat/Work surface. Prefer direct repository transport; use an already supplied session attachment only as transport fallback when the direct bridge is unavailable.
-5. Generate one text-free fixed 2x2 internal master board for each sequential batch of one to four slides. Episode slide count remains variable; unused board cells stay empty and stories are never padded to fill the grid.
-6. Expand each cell into its own 4:5 image using the master board as the visual
-   source of truth; do not reinterpret the shot.
-7. Repair the minimum failed unit. Whole-board regeneration is reserved for a
-   board-wide style/identity failure.
-8. Add editable lettering/UI after art approval and run final sequence QC.
-9. Persist state and evidence at every stage so another chat can resume from
-   files rather than conversational memory.
+1. Start from a traceable human-produced source.
+2. Draft source, premise, slide count, beats, dialogue/thought/narration, cover
+   concept, and storyboard before locking them.
+3. For every slide choose the **lowest sufficient background**:
+   `NONE`, `SYMBOLIC`, `LOCATION_ANCHOR`, or `FULL_SCENE`.
+   Omit decorative assets by default.
+4. Reach `PREPRODUCTION_REVIEW` and show the user one compact review containing
+   source/topic, premise, all beats/copy, slide count, and cover concept.
+5. After explicit approval, hash-bind `source.md`, `story.md`, and
+   `storyboard.json`; then move exactly through
+   `SOURCE_LOCK -> STORY_LOCK -> STORYBOARD_LOCK`.
+6. Retrieve and inspect the minimum sufficient production-eligible reference bytes,
+   then create a `LOCKED` visual packet. Episode-local one-off identities do not
+   require dedicated identity sheets when drawing-language coverage is sufficient.
+7. Compile a target-only master-board dispatch and rerun runtime-attachment
+   preflight immediately before image execution.
+8. Generate one text-free fixed 2x2 internal master board for each sequential
+   group of one to four slides. Unused cells stay empty. Never pad a story.
+9. Expand approved board cells into separate 4:5 slides; do not independently
+   reinterpret a slide after a board exists.
+10. Repair the smallest failed unit. Whole-board retry is reserved for board-wide
+    style/identity/palette/semantic failure.
+11. Run art-sequence QC. Style PASS requires agreement in line grammar, eye/face
+    grammar, head/body proportion, hair massing, shading density, texture, and
+    detail budget; palette similarity alone is insufficient. If the story declares
+    an emotion delta, near-identical facial acting is a FAIL.
+12. Add semantic text layers only after art lock:
+    `DIALOGUE`, `THOUGHT`, `NARRATION`, `SFX`, `UI`, `TITLE`.
+    Silence is valid. Final v2 lettering requires a project typography profile
+    whose status is `LOCKED`.
+13. Produce a separate cover, defaulting to `DERIVED_FROM_APPROVED_ART`. Generate
+    dedicated cover art only when approved episode art cannot carry the hook.
+14. Run final QC, one-file-per-slide export, cover evidence, and repository
+    validation before `DONE`.
 
-## Chat and Work execution modes
+## Chat and Work execution
 
-The production state machine, evidence requirements, reference policy and visual QC
-are identical on Chat and Work. Only execution scheduling differs.
+Both surfaces use the same lifecycle and evidence.
 
-- **Chat** uses bounded autonomous multi-turn execution. A normal publishable run
-  stops at the first reached durable turn boundary after substantive work:
-  `BOARD_DISPATCH_READY`, then `ART_SEQUENCE_QC`, then `DONE`.
-  Before ending that response, persist the current stage/evidence and a complete
-  `state.json.exact_next_action`. The user's next `계속` message is only a new
-  execution-turn trigger; it is not approval, does not reopen any lock, and does
-  not change the state machine. Do not manufacture extra user decisions between
-  these boundaries.
-- **Work** prefers one-shot autonomous execution from canonical boot to `DONE`.
-  It still checkpoints the same repository evidence at every stage and stops only
-  for a real retryable infrastructure/resource block or a terminal state.
-- A turn boundary is not a production stage, retryable block, or terminal state.
-  Never add a fake block merely because a Chat response is ending.
-- Never skip source, reference, pixel QC, anatomy/contact, quarantine, lettering,
-  export or validation work to fit a Chat turn. Reduce context and redundant reads
-  instead: after canonical boot, load only the companion material required by the
-  active `exact_next_action`.
-- Every new Chat turn or Work execution begins from latest `main` using the
-  canonical boot order. Conversational summaries are not handoff authority.
-- Session-only image carriers may persist within a conversation but must still be
-  re-preflighted when the execution surface changes. Their convenience never
-  changes repository reference authority.
+- **Chat** is bounded autonomous execution with durable response boundaries:
+  `PREPRODUCTION_REVIEW -> BOARD_DISPATCH_READY -> ART_SEQUENCE_QC -> DONE`.
+  At `PREPRODUCTION_REVIEW`, the user may approve or edit the creative package.
+  A plain continuation token is not approval unless the review content was actually
+  approved.
+- **Work** also stops at an unapproved `PREPRODUCTION_REVIEW` by default. After
+  editorial approval it prefers one-shot execution to `DONE` or a real retryable
+  infrastructure/resource block.
+- A response boundary is not a fake production stage or retryable block.
+- Do not skip reference checks, pixel QC, anatomy/contact, quarantine, cover,
+  lettering, export, or validation to fit a turn.
 
 ## Stop semantics
 
-`DONE` and `ABANDONED_BY_USER` are the only terminal states. Safety, permissions,
-missing source bytes, quota exhaustion, and tool faults are nonterminal blocked
-states. A missing repository-to-image-runtime transport bridge is
-`WAITING_TOOL_RECOVERY`, not `WAITING_REQUIRED_BYTES`. If an eligible session
-attachment is already available it may satisfy transport without changing the stage.
-Record an exact resume action; never manufacture evidence or bypass a platform
-restriction.
+`DONE` and `ABANDONED_BY_USER` are the only terminal states. Quota, permission,
+missing bytes, or tool faults are retryable infrastructure states. Editorial review
+is an ACTIVE creative gate, not a retryable error.
 
 ## Verification
 
@@ -106,4 +110,3 @@ Run:
 python -m unittest discover -s tests -p 'test_*.py'
 python -m pipeline.cli validate
 ```
-
