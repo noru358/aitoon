@@ -130,6 +130,32 @@ For each slide declare:
 Vary the sequence by story function. Never satisfy diversity with a fixed quota
 of left-, right- and front-facing heads.
 
+#### Conditional anatomy/contact preflight
+
+Do not globally force every character to show two arms/two hands, and do not cap
+every performance to a fixed number of actions. Those rules create false failures
+under valid occlusion and flatten natural acting.
+
+Instead, require an `anatomy_contract` only when a shot has elevated manual-action
+risk, such as a prop plus a device, a prop handoff plus an expressive self-touch,
+multiple people contacting one story-bearing object, crossed/occluded arms, or
+another staging choice where limb ownership could become ambiguous.
+
+A triggered contract declares:
+
+- semantic limb roles by character (for example "device hand" or "prop hand");
+  do not hard-code left/right handedness unless continuity actually requires it;
+- required hand-object/body contacts;
+- forbidden duplicate limbs, disconnected hands, or unrequested extra gestures;
+- the least destructive simplification fallback if all requested manual actions
+  cannot coexist cleanly.
+
+Story-bearing contact outranks decorative acting. If an expressive gesture
+competes with a required prop/device contact, preserve the required contact and
+simplify the gesture. When a beat reads equally well immediately before or after
+a complicated handoff, prefer the lower-contact staging rather than forcing many
+hands onto one small object at once.
+
 ### VISUAL_PACKET_LOCK
 
 Bind actual files, not textual claims that a reference exists. Minimum packet:
@@ -180,7 +206,10 @@ Inspect in this order:
 
 1. output contract: correct grid, occupied cells, no text/collage leakage;
 2. board-wide style and identity;
-3. cell-level anatomy/contact/device/reflection geometry;
+3. cell-level anatomy/contact/device/reflection geometry, including whether each
+   visible hand/arm has one plausible anatomical origin, declared contacts map to
+   unique limbs, and no duplicate/unrooted limb is present; valid occlusion is not
+   itself a failure;
 4. shot meaning and continuity;
 5. sequence-level default-camera bias and repeated acting.
 
