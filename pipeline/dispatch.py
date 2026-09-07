@@ -114,6 +114,11 @@ def compile_master_board_dispatch(
         raise DispatchError("board plan episode mismatch")
     revision = int(state.get("protocol_revision", 1))
     if revision >= 2:
+        if state.get("stage") not in {"VISUAL_PACKET_LOCK", "MASTER_BOARD_QC"}:
+            raise DispatchError(
+                "v2 master-board dispatch may compile only from VISUAL_PACKET_LOCK "
+                "or as a bounded retry from MASTER_BOARD_QC"
+            )
         review = read_json(episode / "editorial_review.json")
         if review.get("status") != "APPROVED":
             raise DispatchError("cannot compile v2 image dispatch before editorial approval")
