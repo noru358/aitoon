@@ -1,20 +1,35 @@
 {
   "schema_version": "1.0",
+  "protocol_revision": 2,
+  "style_profile_id": "AIT_V2_EDITORIAL_COMIC",
   "slide_id": "S01",
-  "canvas": {"width": 1080, "height": 1350},
-  "font_path": "assets/fonts/NotoSansKR-Regular.woff2",
+  "canvas": {
+    "width": 1080,
+    "height": 1350
+  },
+  "font": {
+    "path": "assets/fonts/REPLACE_WITH_LOCKED_FONT.woff2",
+    "sha256": "REPLACE_WITH_LOCKED_SHA256"
+  },
+  "base_art": {
+    "path": "episodes/E001/art/S01.png",
+    "sha256": "REPLACE_WITH_ART_SHA256"
+  },
   "elements": [
     {
-      "id": "caption_1",
-      "role": "CAPTION",
+      "id": "thought_1",
+      "role": "THOUGHT",
       "text": "교체할 문장",
-      "box": {"x": 70, "y": 60, "width": 940, "height": 160},
+      "box": {
+        "x": 90,
+        "y": 70,
+        "width": 600,
+        "height": 150
+      },
       "align": "left",
-      "font_size": 48,
-      "font_weight": 500,
+      "font_size": 36,
       "fill": "#111111",
       "bubble": null
     }
   ]
 }
-
