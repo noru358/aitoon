@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "board_id": "B01",
+  "dispatch_id": "E002-B01-V2-MASTER-A1",
+  "status": "REJECTED_QUARANTINED_RECEIPT_ONLY",
+  "recorded_at": "2026-09-07T18:24:00Z",
+  "inspected_output": {
+    "stable_app_handle": "image_gen:07fae61a-a528-4668-b54b-a927c41ec682",
+    "local_runtime_path": "/mnt/data/a_clean_minimal_pastel_toned_comic_webtoon_sty.png",
+    "sha256": "e154f809eedb4d52501b898427b0a3b1949a1be792f651818ef2c5e3a74a4503",
+    "size_bytes": 1633961,
+    "width": 1230,
+    "height": 1278,
+    "actual_pixels": true
+  },
+  "findings": [
+    "TEXT_CONTAMINATION: S01, S02 and S04 contain large Korean speech/thought bubbles; V2 master art must be text-free.",
+    "PHONE_GEOMETRY_FAIL: S02 shows the readable/front screen surface to the viewer instead of only back edge/oblique non-readable glow.",
+    "ANATOMY_CONTACT_FAIL: S02 adds a third expressive/self-touch hand at the mouth/chin while the other two hands already own jeans and phone.",
+    "STYLE_FAIL: faces/eyes, polished anime/webtoon finish, blush/heart embellishment and detail treatment drift materially from the PRIMARY_STYLE drawing grammar.",
+    "CAST_APPEARANCE_DRIFT: GF is a brown bob with shoulder bag rather than the locked low-bun episode-local appearance.",
+    "BACKGROUND_MINIMALISM: generally improved, but text bubbles and decorative emotion marks dominate the empty-space budget.",
+    "SEMANTIC_SEQUENCE: denim story sequence is broadly recognizable and S03 hand-wash beat is present.",
+    "FACIAL_ACTING: S01 and S04 are not exact duplicates, but acting cannot be accepted because the board fails objective gates above."
+  ],
+  "reuse_eligibility": "REJECTED_DO_NOT_REUSE_AS_REFERENCE_OR_REPAIR_ANCHOR",
+  "retry_budget_effect": "CONSUMES_THE_SINGLE_V2_WHOLE_BOARD_RETRY_SLOT_FOR_A2",
+  "binary_persistence_note": "The current execution surface exposes the generated PNG in the session runtime but not a direct binary-to-GitHub bridge. The rejected pixels are hash/handle evidenced here; no PASS depends on missing repository bytes."
+}
