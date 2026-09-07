@@ -5,7 +5,7 @@
     "CONTINUITY_ANCHOR",
     "EPISODE_LOCAL"
   ],
-  "note": "Curated production reference authority. User designation is sufficient provenance unless conflicting evidence exists; independent authorship verification is recorded separately and is not a production gate.",
+  "note": "Curated production reference authority. PRIMARY_STYLE controls drawing grammar, not incidental reference identities or scene content. Exact identity influence must be separately explicit. User designation is sufficient provenance unless conflicting evidence exists.",
   "assets": [
     {
       "id": "LEGACY_REF_V2_D",
@@ -16,9 +16,9 @@
       "independent_authorship_verification": false,
       "production_eligible": true,
       "source_kind": "USER_DESIGNATED_PROJECT_REFERENCE",
-      "role": "Harin identity and person drawing language",
-      "allowed_influence": "identity proportions, eye grammar, line and flat-color behavior",
-      "forbidden_inference": "current pose, camera, action, story or location",
+      "role": "person drawing-language reference; reference-character identity is not implied",
+      "allowed_influence": "head/body proportion range, eye/face grammar, line behavior, flat-color behavior, hair massing abstraction",
+      "forbidden_inference": "exact reference-character identity, hairstyle, clothing, current pose, camera, action, story or location unless a separate explicit identity role is bound",
       "status": "ACTIVE"
     },
     {
@@ -30,9 +30,9 @@
       "independent_authorship_verification": false,
       "production_eligible": true,
       "source_kind": "USER_DESIGNATED_PROJECT_REFERENCE",
-      "role": "scene and background drawing language",
-      "allowed_influence": "shared character/background abstraction, line and restrained shading",
-      "forbidden_inference": "room layout, current pose, story, clothing or cast requirement",
+      "role": "scene/background drawing-language reference only",
+      "allowed_influence": "background abstraction, line economy, restrained shading and local-color relationship",
+      "forbidden_inference": "room layout, decorative asset inventory, current pose, story, clothing or cast requirement",
       "status": "ACTIVE"
     }
   ]
