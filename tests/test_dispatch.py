@@ -136,7 +136,7 @@ class DispatchTests(unittest.TestCase):
         self.assertIn("Palette match alone is not a style PASS", dispatch["prompt"])
         runtime = dispatch["runtime_attachment"]
         self.assertTrue(runtime["preflight_required_before_execute"])
-        self.assertEqual(runtime["source_authority"], "REPOSITORY_MANIFEST_AND_SHA256")
+        self.assertEqual(runtime["source_authority"], "REPOSITORY_REGISTRY_SHA256")
         self.assertEqual(runtime["carrier_scope"], "SESSION_ONLY")
         self.assertEqual(runtime["preferred_carrier"], "REPOSITORY_DIRECT")
         self.assertIn("CURRENT_SESSION_ATTACHMENT", runtime["fallback_carriers"])
@@ -189,6 +189,7 @@ class DispatchTests(unittest.TestCase):
         carriers = dispatch["runtime_attachment"]["required_sha_carriers"]
         self.assertEqual(len(carriers), 1)
         self.assertEqual(carriers[0]["sha256"], "a" * 64)
+        self.assertEqual(dispatch["runtime_attachment"]["source_authority"], "REPOSITORY_MANIFEST_AND_SHA256")
         self.assertIn("user-approved episode visual anchor", dispatch["prompt"])
 
     def test_v2_dispatch_cannot_compile_before_visual_packet_lock(self) -> None:
