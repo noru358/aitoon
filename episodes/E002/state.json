@@ -3,15 +3,10 @@
   "episode_id": "E002",
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
-  "stage": "MASTER_BOARD_QC",
-  "run_status": "BLOCKED_RETRYABLE",
-  "blocked": {
-    "code": "WAITING_TOOL_RECOVERY",
-    "detail": "The 2026-09-08 02:31 KST Chat retry again failed to execute E002-B01-MASTER-A2 semantics. Actual pixels reproduce the three reference characters in the reference living room and include extensive baked Korean speech bubbles; the locked denim/laundry sequence is absent. The output was rejected and receipt-recorded. Prior standalone denim/laundry slide/lettering outputs from this chat remain noncanonical and were not imported because they were independently generated rather than expanded from an approved master board.",
-    "resume_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only after image-runtime tool recovery or on a built-in execution surface that can demonstrably honor the compiled target semantics. Canonical-boot latest main, re-read the locked D/E references plus B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use any rejected/misdispatched output, and do not import the prior independently generated standalone slides or their lettering because they violate board-first. If a returned 2x2 board actually matches the locked two-character denim/laundry dispatch and is text-free, import it as episodes/E002/boards/B01.master.png, inspect actual pixels, and advance exactly according to board QC.",
-    "recorded_at": "2026-09-07T17:31:00Z"
-  },
-  "exact_next_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only after image-runtime tool recovery or on a built-in execution surface that can demonstrably honor the compiled target semantics. Canonical-boot latest main, re-read the locked D/E references plus B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use any rejected/misdispatched output, and do not import the prior independently generated standalone slides or their lettering because they violate board-first. If a returned 2x2 board actually matches the locked two-character denim/laundry dispatch and is text-free, import it as episodes/E002/boards/B01.master.png, inspect actual pixels, and advance exactly according to board QC.",
+  "stage": "PREPRODUCTION_REVIEW",
+  "run_status": "ACTIVE",
+  "blocked": null,
+  "exact_next_action": "Present the E002 PREPRODUCTION_REVIEW payload to the user: source/topic, premise, 4 beats, all dialogue/thought copy, lowest-sufficient background plan, and cover concept. Accept edits or explicit approval. Do not execute any image dispatch. After approval, hash-lock source.md, story.md and storyboard.json in editorial_review.json and advance exactly to SOURCE_LOCK.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -96,6 +91,12 @@
       "from": "MASTER_BOARD_QC",
       "to": "MASTER_BOARD_QC",
       "evidence": "Canonical-boot A2 retry revalidated exact matching D/E SESSION_ONLY carriers after repository-direct image binding was unavailable. The built-in image runtime again ignored the two-character denim/laundry dispatch and returned the reference trio/living-room scene with baked Korean dialogue. Actual pixels were rejected; receipt persisted at episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-e011bf27.receipt.json. Independently generated standalone slides/lettering from the prior Chat turn were explicitly not imported because board-first evidence is absent. Retry budget remains unconsumed because target semantics were not executed."
+    },
+    {
+      "at": "2026-09-07T18:04:30Z",
+      "from": "MASTER_BOARD_QC",
+      "to": "PREPRODUCTION_REVIEW",
+      "evidence": "Protocol-v2 structural migration requested by the user. The prior E002 creative locks were created without a user preproduction review, so downstream visual packet/dispatch authority was invalidated. Rejected image evidence remains quarantine-only. E002 was reopened as a reviewable draft with lowest-sufficient backgrounds, semantic thought/dialogue roles, a cover concept, and explicit face-acting deltas."
     }
   ],
   "artifacts": [
@@ -123,5 +124,6 @@
       "status": "REJECTED_QUARANTINED",
       "registered_at": "2026-09-07T15:52:00Z"
     }
-  ]
+  ],
+  "protocol_revision": 2
 }
