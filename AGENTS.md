@@ -60,6 +60,34 @@ conversational memory, an older README instruction, or a guessed next step.
 9. Persist state and evidence at every stage so another chat can resume from
    files rather than conversational memory.
 
+## Chat and Work execution modes
+
+The production state machine, evidence requirements, reference policy and visual QC
+are identical on Chat and Work. Only execution scheduling differs.
+
+- **Chat** uses bounded autonomous multi-turn execution. A normal publishable run
+  stops at the first reached durable turn boundary after substantive work:
+  `BOARD_DISPATCH_READY`, then `ART_SEQUENCE_QC`, then `DONE`.
+  Before ending that response, persist the current stage/evidence and a complete
+  `state.json.exact_next_action`. The user's next `계속` message is only a new
+  execution-turn trigger; it is not approval, does not reopen any lock, and does
+  not change the state machine. Do not manufacture extra user decisions between
+  these boundaries.
+- **Work** prefers one-shot autonomous execution from canonical boot to `DONE`.
+  It still checkpoints the same repository evidence at every stage and stops only
+  for a real retryable infrastructure/resource block or a terminal state.
+- A turn boundary is not a production stage, retryable block, or terminal state.
+  Never add a fake block merely because a Chat response is ending.
+- Never skip source, reference, pixel QC, anatomy/contact, quarantine, lettering,
+  export or validation work to fit a Chat turn. Reduce context and redundant reads
+  instead: after canonical boot, load only the companion material required by the
+  active `exact_next_action`.
+- Every new Chat turn or Work execution begins from latest `main` using the
+  canonical boot order. Conversational summaries are not handoff authority.
+- Session-only image carriers may persist within a conversation but must still be
+  re-preflighted when the execution surface changes. Their convenience never
+  changes repository reference authority.
+
 ## Stop semantics
 
 `DONE` and `ABANDONED_BY_USER` are the only terminal states. Safety, permissions,
