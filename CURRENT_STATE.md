@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-08 03:58 KST  
+Updated: 2026-09-08 04:04 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V2`
 
@@ -75,6 +75,7 @@ The migration deliberately avoids several failure modes:
   - deterministic 1x2 -> canonical 2x2 packing;
   - clean-session policy invariants;
   - approved visual-anchor manifest validation.
+  - native-pixel packing and explicit non-4:5 routing to board-bound expansion.
 - A fresh local checkout was attempted again after these changes, but the execution
   sandbox still could not resolve `github.com`. Therefore the canonical commands
   `python -m unittest discover -s tests -p 'test_*.py'` and
@@ -133,6 +134,9 @@ The following changes are now authoritative:
 - the image generator no longer owns empty canonical cells. Runtime batches use
   natural occupancy (1x1, 1x2, 1x3, or 2x2), then code deterministically packs a
   passing sheet into the canonical internal 2x2 board;
+- deterministic packing preserves the runtime cells' native pixels/aspect ratio;
+  it never stretches non-4:5 art to fit. Non-4:5 cells route to the existing
+  board-bound expansion step for final 4:5 conversion;
 - the old `B01D1.dispatch.json` is `SUPERSEDED`;
 - the next executable target is
   `episodes/E002/boards/B01D1.clean.dispatch.json`, a two-cell 1x2 art-only sheet
