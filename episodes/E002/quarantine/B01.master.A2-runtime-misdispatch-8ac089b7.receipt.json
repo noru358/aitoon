@@ -53,5 +53,17 @@
   "finding": "The returned 2x2 image again reproduces the three PRIMARY_STYLE reference characters socializing in the reference living room. It contains no episode-local two-character couple, no story-bearing jeans, no phone-search/hand-wash/folded-jeans sequence, and it includes baked calendar/gesture symbols. The compiled denim/laundry target semantics were not executed.",
   "reuse_eligibility": "REJECTED_QUARANTINED_RECEIPT_ONLY_DO_NOT_REUSE",
   "retry_budget_effect": "DOES_NOT_CONSUM_WHOLE_BOARD_RETRY_BUDGET",
-  "exact_resume_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC."
+  "exact_resume_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC.",
+  "validation": {
+    "attempted_commands": [
+      "git clone --depth 1 https://github.com/noru358/aitoon.git /mnt/data/aitoon-validation",
+      "python -m unittest discover -s tests -p 'test_*.py'",
+      "python -m pipeline.cli validate"
+    ],
+    "result": "NOT_RUN",
+    "reason": "The sandbox could not resolve github.com, so a fresh local checkout could not be materialized. The two Python validation commands therefore were not executed and are not assumed PASS.",
+    "github_head_verified": "d3998796632fb9f1880c6cbc87cb316235591c50",
+    "github_combined_status_count": 0,
+    "github_pull_request_workflow_run_count": 0
+  }
 }
