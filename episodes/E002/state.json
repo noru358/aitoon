@@ -7,11 +7,11 @@
   "run_status": "BLOCKED_RETRYABLE",
   "blocked": {
     "code": "WAITING_TOOL_RECOVERY",
-    "detail": "The current built-in image execution surface again failed to honor compiled E002-B01-MASTER-A2, returning an unrelated AITOON kanban/completion infographic instead of the locked two-character denim/laundry board. The output was actual-pixel inspected, rejected, and receipt-recorded; it is ineligible for reuse.",
-    "resume_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, and use any matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC.",
-    "recorded_at": "2026-09-07T16:45:00Z"
+    "detail": "A fresh canonical-boot retry of E002-B01-MASTER-A2 on the current built-in Chat image surface again failed to honor the compiled target semantics. Actual pixels show the three reference characters socializing in the reference living room rather than the locked two-character denim/laundry story; the output was rejected and receipt-recorded, and it is ineligible for reuse.",
+    "resume_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use any matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC.",
+    "recorded_at": "2026-09-07T17:14:00Z"
   },
-  "exact_next_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, and use any matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC.",
+  "exact_next_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use any matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -78,6 +78,12 @@
       "from": "MASTER_BOARD_QC",
       "to": "MASTER_BOARD_QC",
       "evidence": "Repeated A2 runtime misdispatch on a fresh session: actual pixels were an unrelated AITOON kanban/completion infographic rather than the locked two-character denim/laundry 2x2 board. Rejected; receipt persisted at episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-923936bc.receipt.json. Retry budget remains unconsumed because target semantics were not executed."
+    },
+    {
+      "at": "2026-09-07T17:14:00Z",
+      "from": "MASTER_BOARD_QC",
+      "to": "MASTER_BOARD_QC",
+      "evidence": "Fresh canonical-boot A2 retry used exact current-session D/E carrier copies whose SHA-256 values match the locked registry references after repository-direct image-runtime transport was unavailable. The image runtime still returned the reference trio in the living-room reference scene instead of the two-character denim/laundry board. Actual pixels were rejected; receipt persisted at episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-06397a4f.receipt.json. Retry budget remains unconsumed because target semantics were not executed."
     }
   ],
   "artifacts": [
