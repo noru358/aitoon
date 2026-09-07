@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "pilot_id": "BOARD_FIRST_V1",
+  "board_id": "B01",
+  "slide_id": "S04",
+  "status": "PASS",
+  "purpose": "deterministic Korean lettering smoke test",
+  "inspected_actual_pixels": true,
+  "plan_sha256": "34f1eed08f016c101285049bd56b860d22ee80f08cdc933449fc063df04f2cd7",
+  "base_art_sha256": "3184cc70ef88b35066ce2036ef1da36737ce9109792c34bd96ed4aebeef4d5e6",
+  "font_sha256": "d1bf8649914a4fe9477a8735bf056383e44e466141fb3d61897252e06d900c1a",
+  "output_sha256": "d749716cf237659bfd2de0691151ceff73e66df4886bfe6b8dead0204fd66f8f",
+  "expected_text": "물만 사려고 했는데…",
+  "observed_text": "물만 사려고 했는데…",
+  "checks": [
+    "Korean glyphs render correctly",
+    "wording matches character-for-character",
+    "caption remains on one line",
+    "bubble is inside the 1080x1350 canvas",
+    "caption does not obscure the character or shopping bags"
+  ]
+}

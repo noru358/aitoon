@@ -27,6 +27,14 @@ def _resolve_inside(root: Path, relative: str) -> Path:
     return path
 
 
+def _portable_path(path: Path, root: Path) -> str:
+    """Prefer repository-relative evidence paths over machine-local absolutes."""
+    try:
+        return path.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
 def _ctypes_brotli_module() -> types.ModuleType:
     """Minimal decoder shim used only when the Python brotli wheel is absent."""
     library = ctypes.CDLL("libbrotlidec.so.1")
@@ -201,13 +209,12 @@ def render_lettering(plan_path: Path, output_path: Path, root: Path = ROOT) -> d
     receipt = {
         "schema_version": "1.0",
         "slide_id": plan["slide_id"],
-        "plan_path": plan_path.as_posix(),
+        "plan_path": _portable_path(plan_path, root),
         "plan_sha256": sha256_file(plan_path),
         "base_art_sha256": sha256_file(base),
         "font_sha256": sha256_file(font_source),
-        "output_path": output_path.as_posix(),
+        "output_path": _portable_path(output_path, root),
         "output_sha256": sha256_file(output_path),
         "text": [element["text"] for element in plan.get("elements", [])],
     }
     return receipt
-

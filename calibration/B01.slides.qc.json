@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "pilot_id": "BOARD_FIRST_V1",
+  "board_id": "B01",
+  "status": "PASS",
+  "inspected_actual_pixels": true,
+  "master_sha256": "c984a5840d73f2448172f25f78b62e6ad4fb0513eeb442a1302c0fe4c6789aeb",
+  "checks": [
+    "each output is a separate 1080x1350 PNG",
+    "no neighboring panel content or gutter leakage",
+    "no destructive subject cropping",
+    "Harin identity, outfit and palette remain continuous",
+    "wallet, water bottle, full basket and two bags preserve story order",
+    "hands and object contacts remain plausible after expansion",
+    "no readable generated product text"
+  ],
+  "slides": [
+    {
+      "slide_id": "S01",
+      "sha256": "d175c99dea52ea7a2f56bdab0af99d02620c63dfd097a05006132aff72c147ab",
+      "dimensions": [1080, 1350],
+      "source_box": [10, 10, 555, 695],
+      "status": "PASS"
+    },
+    {
+      "slide_id": "S02",
+      "sha256": "a6a855166462417f3e1d5a6cc12c0e740b1d84e186cf6c7ca6e0035081a2a056",
+      "dimensions": [1080, 1350],
+      "source_box": [567, 10, 1112, 695],
+      "status": "PASS"
+    },
+    {
+      "slide_id": "S03",
+      "sha256": "b1f657d8e24c30d18c38938040a3a83cb022712e3346b17e52ce70c98b10a266",
+      "dimensions": [1080, 1350],
+      "source_box": [10, 707, 555, 1392],
+      "status": "PASS"
+    },
+    {
+      "slide_id": "S04",
+      "sha256": "3184cc70ef88b35066ce2036ef1da36737ce9109792c34bd96ed4aebeef4d5e6",
+      "dimensions": [1080, 1350],
+      "source_box": [567, 707, 1112, 1392],
+      "status": "PASS"
+    }
+  ]
+}

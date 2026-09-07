@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "slide_id": "S04",
+  "purpose": "deterministic Korean lettering smoke test; not publishable episode copy",
+  "base_art": {
+    "path": "calibration/slides/S04.png",
+    "sha256": "3184cc70ef88b35066ce2036ef1da36737ce9109792c34bd96ed4aebeef4d5e6"
+  },
+  "canvas": {
+    "width": 1080,
+    "height": 1350
+  },
+  "font": {
+    "path": "assets/fonts/NotoSansKR-Regular.woff2",
+    "sha256": "d1bf8649914a4fe9477a8735bf056383e44e466141fb3d61897252e06d900c1a"
+  },
+  "elements": [
+    {
+      "id": "caption_1",
+      "role": "CAPTION",
+      "text": "물만 사려고 했는데…",
+      "box": {
+        "x": 45,
+        "y": 55,
+        "width": 650,
+        "height": 130
+      },
+      "align": "center",
+      "font_size": 48,
+      "fill": "#111111",
+      "bubble": {
+        "fill": "#ffffff",
+        "outline": "#111111",
+        "outline_width": 4,
+        "radius": 34,
+        "padding": 24
+      }
+    }
+  ]
+}

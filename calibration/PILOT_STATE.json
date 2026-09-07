@@ -4,18 +4,23 @@
   "run_status": "DONE",
   "stage": "CALIBRATION_COMPLETE",
   "blocked": null,
-  "result": "FAIL_HUMAN_DRAWN_STYLE",
+  "result": "PASS_USER_APPROVED_STYLE",
   "completed": [
     "pilot story and cell contracts fixed",
     "two reference binaries copied and hash-bound",
     "attempt-1 built-in dispatch compiled and executed",
     "attempt-1 actual pixels inspected and quarantined after board-wide style failure",
     "attempt-2 style-corrected dispatch compiled without using the rejected artifact as input",
-    "attempt-2 actual pixels inspected and quarantined after repeated board-wide style failure",
-    "board-first continuity benefit and visual-packet limitation recorded",
+    "attempt-2 actual pixels inspected and explicitly approved by the user",
+    "earlier automated style rejection superseded by authoritative user visual approval",
+    "board-first continuity benefit recorded",
+    "accepted master deterministically split into four separate 1080x1350 slides",
+    "all four separate slide pixels inspected and passed",
+    "hash-bound Korean lettering smoke test rendered and passed",
+    "lettering evidence paths made repository-portable",
     "automated state, split, dispatch and Korean lettering tests passed"
   ],
-  "exact_next_action": "Assemble a provenance-verified multi-image human-authored visual packet, assign a new calibration board ID, and rerun one board-first pilot; do not retry B01 or use either rejected board as an input.",
+  "exact_next_action": "Lock GPT_APP_BOARD_FIRST_V1 as the production default and initialize a fresh publishable E001 from a traceable Korean human story seed.",
   "paid_fallback_allowed": false,
   "user_input_required": false
 }

@@ -56,6 +56,8 @@ class LetteringTests(unittest.TestCase):
             receipt = render_lettering(plan_path, output, root)
             self.assertTrue(output.is_file())
             self.assertEqual(len(receipt["output_sha256"]), 64)
+            self.assertEqual(receipt["plan_path"], "plan.json")
+            self.assertEqual(receipt["output_path"], "final.png")
             with Image.open(output) as image:
                 self.assertEqual(image.size, (1080, 1350))
 
@@ -82,4 +84,3 @@ class LetteringTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
