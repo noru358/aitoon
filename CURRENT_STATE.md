@@ -62,6 +62,21 @@ The migration deliberately avoids several failure modes:
   PRIMARY_STYLE influence to drawing grammar; exact reference identity and room
   content are forbidden unless explicitly bound.
 
+## Validation status
+
+- Connector-side static V2 consistency check: PASS for the machine policy, schemas,
+  E002 review/state/storyboard/visual-packet migration, and superseded A2 dispatch.
+- A fresh local checkout was attempted for the canonical regression commands, but
+  the execution sandbox could not resolve `github.com`; therefore
+  `python -m unittest discover -s tests -p 'test_*.py'` and
+  `python -m pipeline.cli validate` were **not executed locally** and are not
+  claimed PASS.
+- The latest GitHub commit exposed no combined status checks at the time inspected.
+  This absence is recorded as unknown validation state, not success.
+- Additional static hardening was added so a V2 master-board dispatch cannot compile
+  before `VISUAL_PACKET_LOCK` (except bounded retry compilation at
+  `MASTER_BOARD_QC`).
+
 ## Typography state
 
 `config/lettering_style.json` exists with status `CALIBRATION_PENDING`.
