@@ -7,11 +7,11 @@
   "run_status": "BLOCKED_RETRYABLE",
   "blocked": {
     "code": "WAITING_TOOL_RECOVERY",
-    "detail": "The image tool returned an output that did not match the compiled E002-B01-MASTER-A2 board specification. The output was rejected and quarantined.",
-    "resume_action": "Retry E002-B01-MASTER-A2 later from MASTER_BOARD_QC after re-reading the locked references and dispatch. Do not use the rejected quarantine images. If the returned board matches the dispatch, inspect it and continue to the next stage.",
-    "recorded_at": "2026-09-07T15:52:00Z"
+    "detail": "The current built-in image execution surface again failed to honor compiled E002-B01-MASTER-A2, returning an unrelated AITOON kanban/completion infographic instead of the locked two-character denim/laundry board. The output was actual-pixel inspected, rejected, and receipt-recorded; it is ineligible for reuse.",
+    "resume_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, and use any matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC.",
+    "recorded_at": "2026-09-07T16:45:00Z"
   },
-  "exact_next_action": "Retry E002-B01-MASTER-A2 later from MASTER_BOARD_QC after re-reading the locked references and dispatch. Do not use the rejected quarantine images. If the returned board matches the dispatch, inspect it and continue to the next stage.",
+  "exact_next_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, and use any matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -72,6 +72,12 @@
       "from": "MASTER_BOARD_QC",
       "to": "MASTER_BOARD_QC",
       "evidence": "A2 tool mismatch: generated pixels did not match the compiled denim-laundry board specification. The image was rejected and quarantined; the episode remains retryable at the same stage."
+    },
+    {
+      "at": "2026-09-07T16:45:00Z",
+      "from": "MASTER_BOARD_QC",
+      "to": "MASTER_BOARD_QC",
+      "evidence": "Repeated A2 runtime misdispatch on a fresh session: actual pixels were an unrelated AITOON kanban/completion infographic rather than the locked two-character denim/laundry 2x2 board. Rejected; receipt persisted at episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-923936bc.receipt.json. Retry budget remains unconsumed because target semantics were not executed."
     }
   ],
   "artifacts": [
