@@ -3,10 +3,10 @@
   "episode_id": "E002",
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
-  "stage": "BOARD_DISPATCH_READY",
+  "stage": "MASTER_BOARD_IMPORTED",
   "run_status": "ACTIVE",
   "blocked": null,
-  "exact_next_action": "Execute only episodes/E002/boards/B01.v2.A1.dispatch.json after runtime-attachment preflight on the current surface. Prefer repository-direct D/E binding; if unavailable, use matching current-session D/E carriers only as SESSION_ONLY transport. The user-approved session preview is aesthetic feedback only and is not canonical board evidence. Import the returned 2x2 board, inspect actual pixels against V2 objective QC, and continue exactly to MASTER_BOARD_IMPORTED then MASTER_BOARD_QC.",
+  "exact_next_action": "Inspect the imported E002-B01-V2-MASTER-A1 pixels and route failures without deriving slides.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -127,6 +127,12 @@
       "from": "VISUAL_PACKET_LOCK",
       "to": "BOARD_DISPATCH_READY",
       "evidence": "Compiled fresh V2 B01 plan and E002-B01-V2-MASTER-A1 dispatch from the user-approved/hash-locked storyboard and verified LOCKED visual packet. Dispatch uses narrowed D/E PRIMARY_STYLE roles, explicit episode-local GF/BF appearance text, lowest-sufficient backgrounds, state/continuity contracts, face-acting deltas, screen/anatomy guards, text-free art, and unique V2 dispatch namespacing. All V1/A2 paths remain superseded."
+    },
+    {
+      "at": "2026-09-07T18:24:00Z",
+      "from": "BOARD_DISPATCH_READY",
+      "to": "MASTER_BOARD_IMPORTED",
+      "evidence": "E002-B01-V2-MASTER-A1 returned one 2x2 image on the built-in image surface. Actual runtime pixels were captured as image_gen:07fae61a-a528-4668-b54b-a927c41ec682, SHA-256 e154f809eedb4d52501b898427b0a3b1949a1be792f651818ef2c5e3a74a4503, 1230x1278."
     }
   ],
   "artifacts": [
