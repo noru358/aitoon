@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "board_id": "B01D1",
+  "intended_dispatch": "E002-B01D1-V2-MASTER-A1",
+  "status": "REJECTED_TOOL_MISDISPATCH",
+  "recorded_at": "2026-09-07T18:32:00Z",
+  "inspected_output": {
+    "stable_app_handle": "image_gen:8df5e643-7a44-4f35-a672-3b6e2e84a50d",
+    "local_runtime_path": "/mnt/data/a_clean_comic_manga_style_2x2_panel_illustration.png",
+    "sha256": "ae203c506ea214c836239d7a98519453c1488f336dba9f172b7b180f9109509b",
+    "size_bytes": 1719611,
+    "width": 1224,
+    "height": 1285,
+    "actual_pixels": true
+  },
+  "finding": "The runtime ignored the decomposed D1 contract. It illustrated all four story beats instead of only top-row S01-S02 with two EMPTY bottom cells, baked Korean speech/thought bubbles and a heart, retained the bob-haired/shoulder-bag GF, and reintroduced an S02 self-touch hand. This is a target-semantic execution fault, not a valid D1 attempt.",
+  "retry_budget_effect": "DOES_NOT_CONSUM_D1_ATTEMPT_BUDGET_BECAUSE_D1_TARGET_SEMANTICS_WERE_NOT_EXECUTED",
+  "parent_board_retry_budget": "EXHAUSTED_NO_A3",
+  "reuse_eligibility": "REJECTED_DO_NOT_REUSE",
+  "exact_resume_action": "Retry the unchanged decomposed dispatch episodes/E002/boards/B01D1.dispatch.json only after image-runtime tool recovery or on a clean built-in image surface that demonstrably honors the current target semantics. Canonical-boot latest main, rerun D/E runtime-attachment preflight, keep B01 parent retry budget exhausted, and do not use any rejected A1/A2/D1 outputs. The valid D1 result must illustrate only S01-S02 in the top row, leave both bottom cells EMPTY, contain zero text/symbol bubbles, preserve low-bun GF and BF appearances, obey S02 phone-back geometry/two-hand ownership, and match PRIMARY_STYLE. If D1 passes actual-pixel QC, proceed to B01D2; otherwise remain fail-closed at MASTER_BOARD_QC."
+}
