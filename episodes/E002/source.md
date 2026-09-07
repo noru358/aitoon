@@ -1,4 +1,4 @@
-# Source lock
+# Source draft / lock
 
 - Source URL: https://www.teamblind.com/kr/post/%EB%82%A8%EC%B9%9C-%EC%A5%B0%EB%82%98-%EA%B7%80%EC%97%BD%EB%8B%A4-badjGZMQ
 - Accessed at: 2026-09-07T18:36:09+09:00
@@ -17,7 +17,7 @@
   - "그냥 세탁기 돌돌 돌려도 되는건디"
 - Copyright-safe transformation note:
   - Preserve only the factual behavioral sequence and the small emotional contrast: casual laundry request versus unnecessarily careful hand-washing.
-  - Do not reproduce the post's prose rhythm, emoji strings, laughter strings, or long wording. Dialogue is compressed and newly written for the comic.
+  - Do not reproduce the post's prose rhythm, emoji strings, laughter strings, or long wording. Dialogue/interiority is compressed and newly written for the comic.
 - Selection score:
   - sceneability: 5/5
   - specificity: 5/5
