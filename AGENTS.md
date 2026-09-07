@@ -1,7 +1,8 @@
 # AIToon operating contract
 
 Read this file first, then `README.md`, `docs/GPT_APP_PROTOCOL.md`,
-`config/policy.json`, and the active episode's `state.json` if one exists.
+`docs/ANATOMY_CONTACT_POLICY.md`, `config/policy.json`, and the active episode's
+`state.json` if one exists.
 
 ## Non-negotiable runtime
 
