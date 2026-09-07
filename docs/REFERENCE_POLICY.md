@@ -43,6 +43,27 @@ Promotion does not mean style authority. Use the anchor only for its declared
 Master boards, extracted slides and repair inputs are local continuity evidence by
 default. They are not carried into later episodes unless promoted.
 
+A user-approved generated image may also become a **scoped operational episode
+visual anchor** without being promoted to CONTINUITY_ANCHOR or PRIMARY_STYLE when:
+
+- the user explicitly approved the visible pixels;
+- the actual pixels were inspected;
+- the approved influence scope is objectively safe;
+- any known objective failure is explicitly excluded from that scope.
+
+For example, an image with a wrong phone-facing direction may still anchor a clean
+face identity, hair silhouette, outfit palette, and user-approved rendering
+treatment, while the phone geometry remains forbidden inference. Aesthetic approval
+does not waive anatomy/contact/screen/text defects.
+
+Once such an episode anchor applies, its declared identity/rendering attributes must
+not be silently replaced by fresh resampling. Prefer derivation/editing from the
+approved pixels, then explicit anchor binding. If the anchor cannot be transported
+to the image runtime, fail closed rather than redesigning the character.
+
+This scoped episode anchor is not automatically reusable in later episodes and
+never becomes PRIMARY_STYLE without a separate explicit promotion action.
+
 ## 3. Curation rule
 
 Do not automatically accumulate every approved image.
