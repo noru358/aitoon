@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-07 23:50 KST  
+Updated: 2026-09-07 23:53 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
@@ -39,7 +39,7 @@ Run status: `DONE`
 
 Active episode: `E002 / 그냥 세탁기에 돌려도 되는데`
 
-Stage: `VISUAL_PACKET_LOCK`
+Stage: `BOARD_DISPATCH_READY`
 
 Run status: `ACTIVE`
 
@@ -53,6 +53,7 @@ Completed for E002:
 - `VISUAL_PACKET_LOCK`: actual D/E repository JPEG bytes retrieved, registry SHA-256 values
   verified exactly, JPEG structure/dimensions inspected, and the minimum sufficient
   production-eligible PRIMARY_STYLE set bound with explicit allowed/forbidden influence;
+- `BOARD_DISPATCH_READY`: a single four-cell B01 plan and hash-bound A1 dispatch are compiled from the locks; D/E are the only bound media, S02 phone geometry and scoped anatomy contracts are carried into the prompt, and the board is required to remain text-free;
 - future copy is recorded in storyboard metadata but no lettering is permitted in art.
 
 ## Boot/reference guard maintenance
@@ -120,8 +121,10 @@ were not edited.
 
 ## Exact next action
 
-For E002, compile the single 2x2 B01 board plan from the four locked storyboard
-slides, compile the hash-bound master-board dispatch from the locked visual packet,
-and advance exactly to `BOARD_DISPATCH_READY`. Generate one TEXT-FREE master
-board only after that dispatch exists. Keep `GPT_APP_BOARD_FIRST_V1` as the
-production default.
+Dispatch `episodes/E002/boards/B01.dispatch.json` through ChatGPT built-in image
+generation with both bound D/E repository references supplied as actual media.
+Generate exactly one TEXT-FREE 2x2 master board, persist/import the exact returned
+bytes with SHA-256 and dimensions as `episodes/E002/boards/B01.master.png`, then
+advance exactly to `MASTER_BOARD_IMPORTED`. If the built-in image runtime cannot
+receive the bound repository media, record a retryable `WAITING_TOOL_RECOVERY`
+block rather than generating unreferenced art.

@@ -3,10 +3,10 @@
   "episode_id": "E002",
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
-  "stage": "VISUAL_PACKET_LOCK",
+  "stage": "BOARD_DISPATCH_READY",
   "run_status": "ACTIVE",
   "blocked": null,
-  "exact_next_action": "Compile the first and only B01 2x2 board plan from the locked four-slide storyboard, then compile the hash-bound master-board dispatch using the bound D/E repository references. Advance exactly to BOARD_DISPATCH_READY only after the plan and dispatch exist; do not generate lettering or independent slide art.",
+  "exact_next_action": "Dispatch episodes/E002/boards/B01.dispatch.json through ChatGPT built-in image generation with both bound D/E repository reference images supplied as actual media. Generate exactly one TEXT-FREE B01 master board; then persist/import the exact returned bytes as episodes/E002/boards/B01.master.png with SHA-256 and dimensions and advance exactly to MASTER_BOARD_IMPORTED. If the built-in image runtime cannot receive the bound repository media, record a retryable WAITING_TOOL_RECOVERY block rather than generating unreferenced art.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -43,6 +43,12 @@
       "from": "STORYBOARD_LOCK",
       "to": "VISUAL_PACKET_LOCK",
       "evidence": "Retrieved the actual production-eligible D/E JPEG bytes from main, verified registry SHA-256 exactly (D dbddf458..., E b496832...), confirmed valid JPEG structure/dimensions (1448x1086 and 1536x864), and bound the minimum sufficient set with role/allowed_influence/forbidden_inference in episodes/E002/visual_packet.json. No quarantined or rejected artifact is bound."
+    },
+    {
+      "at": "2026-09-07T14:53:00Z",
+      "from": "VISUAL_PACKET_LOCK",
+      "to": "BOARD_DISPATCH_READY",
+      "evidence": "Compiled one four-cell 2x2 B01 plan and hash-bound A1 master-board dispatch from the locked storyboard and visual packet. Dispatch binds only verified D/E PRIMARY_STYLE repository bytes, carries S02 phone geometry plus S02/S04 anatomy contracts, requires text-free art, and creates no independent slide art or lettering."
     }
   ],
   "artifacts": []
