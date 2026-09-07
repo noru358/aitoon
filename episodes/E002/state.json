@@ -3,10 +3,10 @@
   "episode_id": "E002",
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
-  "stage": "STORYBOARD_LOCK",
+  "stage": "VISUAL_PACKET_LOCK",
   "run_status": "ACTIVE",
   "blocked": null,
-  "exact_next_action": "Retrieve and SHA-256 verify the minimum sufficient registered reference bytes, rebuild visual_packet.json as LOCKED with V2 influence bounds, then advance exactly to VISUAL_PACKET_LOCK.",
+  "exact_next_action": "Compile a fresh V2 B01 2x2 master-board plan and hash-bound E002-B01-V2-MASTER-A1 dispatch from the approved storyboard and LOCKED visual packet. The prior V1/A2 dispatches remain SUPERSEDED. Do not execute the image call until the new dispatch is persisted and runtime-attachment preflight is ready.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -115,6 +115,12 @@
       "from": "STORY_LOCK",
       "to": "STORYBOARD_LOCK",
       "evidence": "Approved storyboard.json remained byte-identical to the editorial hash lock; four beats, semantic copy, background levels, face-acting deltas and cover concept are now authoritative."
+    },
+    {
+      "at": "2026-09-07T18:20:00Z",
+      "from": "STORYBOARD_LOCK",
+      "to": "VISUAL_PACKET_LOCK",
+      "evidence": "Re-read both production PRIMARY_STYLE JPEG bytes from latest main and verified exact registry SHA-256 plus dimensions: D dbddf458... 1448x1086, E b496832... 1536x864. Locked the minimum sufficient V2 visual packet with narrowed style influence, lowest-sufficient background policy, distinct episode-local GF/BF appearance notes, and no rejected/quarantined reference inputs."
     }
   ],
   "artifacts": [
