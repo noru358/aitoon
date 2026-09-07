@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E001",
+  "references": [],
+  "characters": [
+    {
+      "id": "GF_E001",
+      "scope": "EPISODE_LOCAL",
+      "role": "girlfriend",
+      "note": "anonymous adult Korean woman; identity must be authored from future verified human-drawn visual evidence, not copied from calibration cast"
+    },
+    {
+      "id": "BF_E001",
+      "scope": "EPISODE_LOCAL",
+      "role": "boyfriend",
+      "note": "anonymous adult Korean man; identity must be authored from future verified human-drawn visual evidence, not copied from calibration cast"
+    }
+  ],
+  "palette": [
+    "reference-led muted everyday local colors",
+    "denim blue reserved for the story-bearing jeans",
+    "no global beige wash"
+  ],
+  "line_grammar": [
+    "simple hand-drawn black outline",
+    "flat local color",
+    "restrained or near-zero modeled shading",
+    "small consistent human irregularity"
+  ],
+  "shape_grammar": [
+    "simple readable silhouettes",
+    "faces remain minimally detailed at distance",
+    "hands and cloth contact prioritized over decorative detail",
+    "backgrounds functional and sparse"
+  ],
+  "reject_traits": [
+    "generic glossy anime or webtoon beautification",
+    "detailed irises and shiny hair",
+    "cinematic depth of field or lighting",
+    "global beige wash",
+    "uniform lead-like extras",
+    "generated letters numerals logos watermarks or readable UI",
+    "use of calibration quarantine or other rejected generated artifacts as reference"
+  ]
+}
