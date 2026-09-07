@@ -18,8 +18,8 @@
     }
   ],
   "attempt": 2,
-  "status": "READY",
-  "eligible_for_execution": true,
+  "status": "REJECTED",
+  "eligible_for_execution": false,
   "runtime_attachment": {
     "preflight_required_before_execute": true,
     "source_authority": "REPOSITORY_REGISTRY_SHA256",
@@ -35,5 +35,13 @@
     "opaque_runtime_handle_is_reference_authority": false
   },
   "retry_of": "E002-B01-V2-MASTER-A1",
-  "retry_reason": "A1 failed board-wide text/style/cast QC and S02 screen/anatomy QC."
+  "retry_reason": "A1 failed board-wide text/style/cast QC and S02 screen/anatomy QC.",
+  "result_evidence": {
+    "stable_app_handle": "image_gen:ec864b38-81af-41ab-a780-f468172c45ef",
+    "sha256": "29b1e728913d4cc362fba15009b85df28ed2b44879d30f5ebc5e7394b61c9882",
+    "width": 1448,
+    "height": 1086,
+    "qc_path": "episodes/E002/qc/B01.v2.A2.json",
+    "receipt_path": "episodes/E002/quarantine/B01.v2.A2.receipt.json"
+  }
 }
