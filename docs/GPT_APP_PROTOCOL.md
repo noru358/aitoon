@@ -130,6 +130,10 @@ For each slide declare:
 Vary the sequence by story function. Never satisfy diversity with a fixed quota
 of left-, right- and front-facing heads.
 
+For shots with elevated manual-action ambiguity, apply the conditional
+`docs/ANATOMY_CONTACT_POLICY.md` guard. Do not turn that guard into a universal
+visible-limb count or fixed action-count quota.
+
 #### Conditional anatomy/contact preflight
 
 Do not globally force every character to show two arms/two hands, and do not cap
