@@ -3,10 +3,10 @@
   "episode_id": "E002",
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
-  "stage": "MASTER_BOARD_IMPORTED",
+  "stage": "MASTER_BOARD_QC",
   "run_status": "ACTIVE",
   "blocked": null,
-  "exact_next_action": "Inspect the imported E002-B01-V2-MASTER-A1 pixels and route failures without deriving slides.",
+  "exact_next_action": "Compile and execute the single allowed whole-board retry E002-B01-V2-MASTER-A2 without changing approved source/story/storyboard or LOCKED visual packet. A2 must be strictly text-free, preserve the locked low-bun GF and BF appearances, obey S02 phone/back geometry and two-hand ownership, keep lowest-sufficient backgrounds, and match PRIMARY_STYLE drawing grammar. No further whole-board retry is available after A2.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -133,6 +133,12 @@
       "from": "BOARD_DISPATCH_READY",
       "to": "MASTER_BOARD_IMPORTED",
       "evidence": "E002-B01-V2-MASTER-A1 returned one 2x2 image on the built-in image surface. Actual runtime pixels were captured as image_gen:07fae61a-a528-4668-b54b-a927c41ec682, SHA-256 e154f809eedb4d52501b898427b0a3b1949a1be792f651818ef2c5e3a74a4503, 1230x1278."
+    },
+    {
+      "at": "2026-09-07T18:24:00Z",
+      "from": "MASTER_BOARD_IMPORTED",
+      "to": "MASTER_BOARD_QC",
+      "evidence": "Actual-pixel QC FAIL recorded at episodes/E002/qc/B01.v2.A1.json: baked Korean bubbles, board-wide style drift, GF appearance drift, S02 phone-front geometry, and an extra self-touch hand. A1 is rejected/quarantined by receipt episodes/E002/quarantine/B01.v2.A1.receipt.json. The single V2 whole-board retry is routed to A2."
     }
   ],
   "artifacts": [
