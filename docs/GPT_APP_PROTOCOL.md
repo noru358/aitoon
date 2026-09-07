@@ -101,6 +101,11 @@ informational and is not part of the authority chain. Verify that only `aitoon` 
 writable. Do not continue from remembered older repository rules or skip ahead from
 the active episode state.
 
+Images attached at Chat/Work startup or later in the same conversation do not start a
+new episode, reset a stage, or supersede repository authority. Boot and recover the
+active pointer first. Only then may an attachment be mapped as a session-scoped carrier
+for an already locked reference role.
+
 ### SOURCE_LOCK
 
 Search Korean community/SNS/public posts for traceable human seeds. Prefer direct
@@ -222,7 +227,39 @@ known repository file actually fails.
 Fail closed only when required coverage or actual bytes remain unavailable after
 that retrieval attempt. Do not replace missing visual evidence with prose.
 
+Reference authority and runtime transport are deliberately separate. The persistent
+authority is the registry entry plus repository path/SHA and declared influence bounds.
+A Chat attachment, Work runtime file, connector file reference, or image-generation
+handle is only a carrier. A carrier never becomes `PRIMARY_STYLE` or
+`CONTINUITY_ANCHOR` merely because the current image runtime can consume it.
+
 ### BOARD_DISPATCH_READY
+
+Create one target-only dispatch per board. The compiled dispatch being `READY` does
+not prove that a session-scoped image carrier is still usable. Immediately before
+every generation/edit execution that consumes visual references, run this preflight:
+
+1. re-resolve every bound reference to its locked repository SHA-256;
+2. prefer a direct repository-to-current-image-runtime attachment path;
+3. prove that the current image runtime can bind the actual visual media -- a path,
+   base64 string, connector file URI, or prior-session handle alone is not proof;
+4. if the direct bridge is unavailable, use a user-supplied/current-session copy of
+   the already locked registered reference as a transport fallback when present;
+5. map fallback carriers to the locked registry roles without changing
+   `visual_packet.json`, authority, story, episode, or stage;
+6. treat all runtime bindings as session-only and repeat this preflight after any
+   Chat, Work run, or execution-surface change.
+
+Do not persist an opaque runtime handle as reference authority. A non-secret receipt
+may record carrier kind and the source registry SHA it transported, but it must never
+claim byte equality when the platform may have re-encoded the attachment.
+
+If repository bytes/hash verification fails, use `WAITING_REQUIRED_BYTES`. If the
+bytes are valid but the current surface cannot deliver any valid carrier to the image
+runtime, use `WAITING_TOOL_RECOVERY`. If image generation itself is unavailable
+after attachment succeeds, use `WAITING_INCLUDED_IMAGE_CAPACITY`. A user attachment
+used only as transport is not new reference evidence and does not trigger a new
+approval or identity-sheet stage.
 
 Create one target-only dispatch per board. Supply the actual reference media,
 the board plan, and no future-board instructions except continuity facts needed
@@ -324,7 +361,11 @@ When image generation/editing is temporarily unavailable:
 2. finish any independent source, script, layout, prompt, or QC work;
 3. preserve the dispatch without changing it merely because time passed;
 4. retry from the saved stage when the built-in capability returns;
-5. never ask the user to pay, choose a fallback renderer, or re-approve unchanged
+5. when the blocker is specifically a missing repository-to-runtime transport bridge,
+   first retry the direct bridge; if it is still unavailable, an already supplied
+   current-session copy of the locked reference may be used as the permitted transport
+   fallback without changing reference authority or stage;
+6. never ask the user to pay, choose a fallback renderer, or re-approve unchanged
    work.
 
 If a scheduled Work task is available and the project files are accessible, it
