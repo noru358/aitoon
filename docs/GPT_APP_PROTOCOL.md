@@ -168,16 +168,24 @@ Independent full-frame generation re-samples identity/style/anatomy/camera at ev
 call. Sticker composition often looks assembled. The default remains one internal
 text-free master board for up to four sequential slides.
 
-The fixed 2x2 topology is only an internal coherence batch:
+The **canonical repository board** remains fixed 2x2, but the image generator uses
+natural occupancy:
 
-- one to four cells may be occupied;
-- unused cells remain EMPTY;
-- story length is never padded or trimmed to fit;
-- more than four slides use another sequential board.
+- 1 slide -> 1x1 runtime sheet;
+- 2 slides -> 1x2 runtime sheet;
+- 3 slides -> 1x3 runtime sheet;
+- 4 slides -> 2x2 runtime sheet.
 
-Master-board prompts must:
+The passed runtime sheet is deterministically packed into the canonical 2x2 board.
+Unused canonical cells are created by code, not by the image generator. Story length
+is never padded or trimmed to fit. More than four slides use another sequential
+batch.
 
-- describe exactly the occupied beat in each cell;
+See `docs/IMAGE_RUNTIME_POLICY.md`.
+
+Master-board/runtime-sheet prompts must:
+
+- contain only art semantics for exactly the occupied beats in the current runtime sheet;
 - specify the lowest-sufficient background and essential assets;
 - forbid decorative background invention;
 - keep reference cast identity separate from target cast identity;
@@ -187,6 +195,31 @@ Master-board prompts must:
 
 After an approved board exists, a narrative slide cannot be regenerated from scratch.
 It is cropped/expanded from the board or minimally repaired with the board/cell bound.
+
+### Approved visual anchors
+
+Explicit user approval of visible pixels is not a comment-only signal. If the
+approved image is objectively safe for a declared scope, preserve it as an
+`EPISODE_LOCAL` visual anchor. The scope may include face identity, hair, outfit,
+palette, or approved rendering treatment while excluding known objective defects
+such as a bad phone angle.
+
+When an applicable anchor exists, fresh resampling of its anchored attributes is
+forbidden. Prefer derivation, edit, or reference binding. If the anchor cannot be
+transported into the current runtime, fail closed instead of redesigning the cast.
+
+### Clean image execution
+
+Once a dispatch is compiled, image execution must not reopen source prose,
+dialogue/thought/narration copy, lettering plans, cover copy, or future beats outside
+the current runtime sheet. The dispatch, anchor manifest, required registry entries,
+and actual visual media are the execution context.
+
+If the renderer generates forbidden text, ignores requested runtime topology,
+generates future beats, or ignores an applicable approved anchor, treat this as
+`RUNTIME_SEMANTIC_NONCOMPLIANCE`. Do not escalate prompts repeatedly in the same
+conversation. Checkpoint `WAITING_CLEAN_IMAGE_SESSION` and resume on a clean image
+surface with unchanged upstream locks.
 
 ## 8. Style and facial-acting QC
 
