@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "dispatch_id": "CAL-BOARD-FIRST-B01-A2",
+  "episode_id": "E000",
+  "target_id": "B01",
+  "operation": "GENERATE_MASTER_BOARD",
+  "prompt": "Use case: illustration-story\nAsset type: internal 2x2 master board for a Korean Instagram comic; each cell is portrait 4:5.\nInput images: Image 1 is the binding Harin identity and person drawing-language reference only; Image 2 is the binding background/scene drawing-language reference only. Do not copy their poses, camera, clothing changes, or room. No prior generated board is a reference.\nPrimary request: Draw one clean TEXT-FREE 2x2 board showing the same Harin in a convenience-store micro-story. TOP LEFT: eye-level medium-wide, Harin enters a contemporary Korean convenience store holding only a clearly recognizable small folded wallet, visibly determined to buy one thing. TOP RIGHT: close detail, her anatomically correct hand reaches for exactly one plain cold water bottle in the refrigerator. BOTTOM LEFT: overhead view of a shopping basket now unexpectedly filled with simple blank-packaged convenience-store snacks and the same water bottle, with Harin's hands correctly holding both basket handles. BOTTOM RIGHT: exterior medium-wide at night, Harin stands just outside the store carrying two unexpectedly heavy shopping bags, looking down at them with flat embarrassed resignation.\nStyle/medium: reproduce the references' modest hand-drawn 2D grammar without beautifying or upgrading it: naturally uneven black outlines, simplified shapes, flat local colors, almost no modeled shading, minimal highlights, restrained facial detail, and sparse functional backgrounds. Preserve small human irregularities.\nComposition/framing: straight clean gutters; one coherent episode; meaningfully varied camera and body action; leave some clean space in each cell for later lettering.\nConstraints: same Harin identity, hair silhouette, outfit, palette, and store facts across all cells; believable anatomy, grip, bottle, basket and bag contact; no extra lead-like characters; all packages and signs must remain blank abstract shapes.\nAvoid: every letter, numeral, title, dialogue, caption, speech bubble, logo, watermark, panel label, price, barcode, symbol-like glyph, readable product packaging or UI; no glossy hair, detailed irises, smooth airbrushing, gradients, cinematic lighting, depth of field, beige wash, 3D volume, busy shelving, generic anime beautification, or polished stock-webtoon finish. Do not add detail beyond the references. Return exactly one board image.",
+  "bound_media": [
+    {
+      "path_or_handle": "calibration/references/REF_V2_D_MAIN_CAST_GAEUN_HARIN_TAEMIN.jpeg",
+      "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
+      "role": "Harin identity and person drawing language"
+    },
+    {
+      "path_or_handle": "calibration/references/REF_V2_E_3PERSON_INDOOR_SCENE.jpeg",
+      "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
+      "role": "scene and background drawing language"
+    }
+  ],
+  "attempt": 2,
+  "status": "EXECUTED_FAIL"
+}

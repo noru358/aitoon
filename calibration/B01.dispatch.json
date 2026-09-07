@@ -18,6 +18,5 @@
     }
   ],
   "attempt": 1,
-  "status": "WAITING_RETRY"
+  "status": "EXECUTED_FAIL"
 }
-

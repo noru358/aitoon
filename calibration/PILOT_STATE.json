@@ -1,22 +1,21 @@
 {
   "schema_version": "1.0",
   "pilot_id": "BOARD_FIRST_V1",
-  "run_status": "BLOCKED_RETRYABLE",
-  "stage": "BOARD_DISPATCH_READY",
-  "blocked": {
-    "code": "WAITING_INCLUDED_IMAGE_CAPACITY",
-    "detail": "Built-in image generation returned usage_limit_reached; paid API fallback remains disabled.",
-    "observed_at": "2026-09-07",
-    "provider_reset_at_utc": "2026-09-07T08:23:37Z"
-  },
+  "run_status": "DONE",
+  "stage": "CALIBRATION_COMPLETE",
+  "blocked": null,
+  "result": "FAIL_HUMAN_DRAWN_STYLE",
   "completed": [
     "pilot story and cell contracts fixed",
     "two reference binaries copied and hash-bound",
-    "attempt-1 built-in dispatch compiled",
+    "attempt-1 built-in dispatch compiled and executed",
+    "attempt-1 actual pixels inspected and quarantined after board-wide style failure",
+    "attempt-2 style-corrected dispatch compiled without using the rejected artifact as input",
+    "attempt-2 actual pixels inspected and quarantined after repeated board-wide style failure",
+    "board-first continuity benefit and visual-packet limitation recorded",
     "automated state, split, dispatch and Korean lettering tests passed"
   ],
-  "exact_next_action": "After the included image capacity reset, call built-in image generation once using calibration/B01.dispatch.json and its two bound reference files; inspect the actual board before PASS.",
+  "exact_next_action": "Assemble a provenance-verified multi-image human-authored visual packet, assign a new calibration board ID, and rerun one board-first pilot; do not retry B01 or use either rejected board as an input.",
   "paid_fallback_allowed": false,
   "user_input_required": false
 }
-

@@ -14,29 +14,30 @@ Architecture: `GPT_APP_BOARD_FIRST_V1`
 - hash-bound editable Korean lettering renderer;
 - repository/calibration validator and regression tests;
 - read-only benchmark and calibration references copied into this repository;
-- live calibration dispatch compiled.
+- live calibration dispatch compiled and both bounded attempts executed.
 
-## Live calibration
+## Calibration result
 
-The first built-in image generation call returned `usage_limit_reached`.
+`BOARD_FIRST_V1 / B01` completed with `FAIL_HUMAN_DRAWN_STYLE` after the initial
+generation and the single permitted whole-board retry.
 
-- state: `BLOCKED_RETRYABLE`
-- code: `WAITING_INCLUDED_IMAGE_CAPACITY`
-- paid fallback: disabled
-- provider reset time returned by the app: `2026-09-07T08:23:37Z`
-- exact resume action: run `calibration/B01.dispatch.json` with its two bound
-  images through built-in image generation, then inspect the actual board.
-- autonomous continuation: one-time ChatGPT Work task scheduled for
-  `2026-09-07T09:12:05Z`, after the returned capacity reset time.
+- both actual 1122x1402 PNGs were inspected, hash-bound and quarantined;
+- the board-first unit produced strong identity, outfit, palette, camera and
+  story-state continuity;
+- attempt 2 fixed the text-like packaging mark and ambiguous wallet;
+- both attempts retained smooth, modeled, polished AI/webtoon finish beyond the
+  references and therefore failed the human-drawn gate;
+- neither rejected board was split, repaired, lettered, published, or reused as
+  an input;
+- paid API and paid fallback remain disabled.
 
-This is not a user approval gate and does not consume publishable episode `E001`.
+See `calibration/FINDINGS.md` and the two structured QC reports. This calibration
+does not consume publishable episode `E001`.
 
-## Decision after calibration
+## Exact next action
 
-- PASS: lock board-first as production default and initialize fresh `E001`.
-- board-wide identity/style FAIL after one retry: revise visual packet/reference
-  roles, not the story prompt.
-- isolated cell geometry FAIL: expand good cells and repair only the failed slide.
-- repeated structural FAIL: retain GPT-app-only/cost policy, revise the render unit
-  based on observed evidence; do not resurrect paid APIs or paper-doll composition
-  by default.
+Retain board-first as the coherence unit, but do not run a third `B01` prompt.
+Assemble a provenance-verified multi-image human-authored visual packet with
+separate line, flat-color, simplification, sparse-background and full-body
+interaction anchors. Bind their hashes, assign a new calibration board ID, and
+rerun the pilot using built-in ChatGPT image generation only.

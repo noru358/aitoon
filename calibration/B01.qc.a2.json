@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "pilot_id": "BOARD_FIRST_V1",
+  "board_id": "B01",
+  "dispatch_id": "CAL-BOARD-FIRST-B01-A2",
+  "attempt": 2,
+  "artifact": {
+    "path": "calibration/quarantine/B01.master.a2.rejected.png",
+    "sha256": "c984a5840d73f2448172f25f78b62e6ad4fb0513eeb442a1302c0fe4c6789aeb",
+    "width_px": 1122,
+    "height_px": 1402,
+    "inspected_actual_pixels": true
+  },
+  "verdict": "FAIL",
+  "passed_checks": [
+    "clean 2x2 board structure",
+    "stable Harin identity, outfit and palette across cells",
+    "story-serving framing and readable four-beat progression",
+    "wallet is recognizable and product packages contain no readable text",
+    "plausible hand/bottle, hand/basket and hand/bag contact"
+  ],
+  "failed_checks": [
+    {
+      "scope": "board",
+      "code": "GENERIC_GLOSSY_AI_WEBTOON_DRIFT",
+      "evidence": "Despite stronger style constraints, the board retains highly smooth outlines, modeled folds and hair, bottle reflections, polished perspective and dense store detail beyond the hash-bound references."
+    },
+    {
+      "scope": "board",
+      "code": "REFERENCE_LANGUAGE_NOT_DOMINANT",
+      "evidence": "The result is internally coherent but reads as a default polished AI/webtoon render rather than the references' flatter, less finished drawing language."
+    }
+  ],
+  "routing": {
+    "action": "STOP_PROMPT_LOOP_AND_REVISE_VISUAL_PACKET",
+    "reason": "The only allowed whole-board retry also failed the board-wide human-drawn style criterion.",
+    "split_or_letter_rejected_board": false,
+    "rejected_artifact_may_be_reference": false,
+    "next_requirement": "Create a provenance-verified, multi-image human-authored style packet with stronger line/flat-color authority, then run a new calibration board ID rather than a third B01 retry."
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "pilot_id": "BOARD_FIRST_V1",
+  "board_id": "B01",
+  "dispatch_id": "CAL-BOARD-FIRST-B01-A1",
+  "attempt": 1,
+  "artifact": {
+    "path": "calibration/quarantine/B01.master.a1.rejected.png",
+    "sha256": "b436cc81a9f226f0cad87ee96ea9cfec2d0812c543c074f752fa05c578a277a7",
+    "width_px": 1122,
+    "height_px": 1402,
+    "inspected_actual_pixels": true
+  },
+  "verdict": "FAIL",
+  "passed_checks": [
+    "clean 2x2 board structure",
+    "recognizable Harin continuity across cells",
+    "story-serving medium-wide, close detail, overhead and exterior framing",
+    "readable four-beat story progression",
+    "generally plausible hand/object contact"
+  ],
+  "failed_checks": [
+    {
+      "scope": "board",
+      "code": "GENERIC_GLOSSY_AI_WEBTOON_DRIFT",
+      "evidence": "Line, color modeling, reflections and environmental detail are smoother, more volumetric and more polished than the two hash-bound references."
+    },
+    {
+      "scope": "cell:S03",
+      "code": "TEXT_LIKE_PACKAGING_MARK",
+      "evidence": "A package in the lower-left cell contains a digit-like 02/gibberish mark despite the text-free constraint."
+    },
+    {
+      "scope": "cell:S01",
+      "code": "PROP_AMBIGUITY",
+      "evidence": "The small held object reads ambiguously as a phone rather than clearly as a wallet."
+    }
+  ],
+  "routing": {
+    "action": "RETRY_WHOLE_BOARD_ONCE",
+    "reason": "The dominant defect is board-wide style drift; per protocol, do not split or selectively repair cells.",
+    "rejected_artifact_may_be_reference": false,
+    "next_dispatch": "calibration/B01.dispatch.a2.json"
+  }
+}
