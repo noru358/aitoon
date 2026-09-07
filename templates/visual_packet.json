@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "REPLACE_ME",
+  "references": [],
+  "characters": [],
+  "palette": [],
+  "line_grammar": [],
+  "shape_grammar": [],
+  "reject_traits": [
+    "generic glossy anime or webtoon beautification",
+    "detailed irises and shiny hair",
+    "cinematic depth of field or lighting",
+    "global beige wash",
+    "uniform lead-like extras"
+  ]
+}
+

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "slide_id": "S01",
+  "canvas": {"width": 1080, "height": 1350},
+  "font_path": "assets/fonts/NotoSansKR-Regular.woff2",
+  "elements": [
+    {
+      "id": "caption_1",
+      "role": "CAPTION",
+      "text": "교체할 문장",
+      "box": {"x": 70, "y": 60, "width": 940, "height": 160},
+      "align": "left",
+      "font_size": 48,
+      "font_weight": 500,
+      "fill": "#111111",
+      "bubble": null
+    }
+  ]
+}
+

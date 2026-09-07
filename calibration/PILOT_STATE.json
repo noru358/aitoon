@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "pilot_id": "BOARD_FIRST_V1",
+  "run_status": "BLOCKED_RETRYABLE",
+  "stage": "BOARD_DISPATCH_READY",
+  "blocked": {
+    "code": "WAITING_INCLUDED_IMAGE_CAPACITY",
+    "detail": "Built-in image generation returned usage_limit_reached; paid API fallback remains disabled.",
+    "observed_at": "2026-09-07",
+    "provider_reset_at_utc": "2026-09-07T08:23:37Z"
+  },
+  "completed": [
+    "pilot story and cell contracts fixed",
+    "two reference binaries copied and hash-bound",
+    "attempt-1 built-in dispatch compiled",
+    "automated state, split, dispatch and Korean lettering tests passed"
+  ],
+  "exact_next_action": "After the included image capacity reset, call built-in image generation once using calibration/B01.dispatch.json and its two bound reference files; inspect the actual board before PASS.",
+  "paid_fallback_allowed": false,
+  "user_input_required": false
+}
+

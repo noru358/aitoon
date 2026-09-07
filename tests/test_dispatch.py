@@ -1,0 +1,109 @@
+from __future__ import annotations
+
+import json
+import shutil
+import tempfile
+import unittest
+from pathlib import Path
+
+from pipeline.dispatch import DispatchError, compile_master_board_dispatch
+from pipeline.state import init_episode, sha256_file
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+class DispatchTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        shutil.copytree(PROJECT_ROOT / "config", self.root / "config")
+        shutil.copytree(PROJECT_ROOT / "templates", self.root / "templates")
+        init_episode("E001", "test", 1, self.root)
+        reference = self.root / "assets" / "refs" / "human.png"
+        reference.parent.mkdir(parents=True)
+        reference.write_bytes(b"reference-bytes")
+        visual = {
+            "schema_version": "1.0",
+            "episode_id": "E001",
+            "references": [
+                {
+                    "path": reference.relative_to(self.root).as_posix(),
+                    "sha256": sha256_file(reference),
+                    "role": "HUMAN_STYLE",
+                    "allowed_influence": "line and flat color language",
+                    "forbidden_inference": "identity, pose, story, clothing"
+                }
+            ],
+            "characters": [],
+            "palette": ["muted flat color"],
+            "line_grammar": ["simple black hand line"],
+            "shape_grammar": [],
+            "reject_traits": ["glossy generic anime"]
+        }
+        (self.root / "episodes" / "E001" / "visual_packet.json").write_text(
+            json.dumps(visual), encoding="utf-8"
+        )
+        storyboard = {
+            "schema_version": "1.0",
+            "episode_id": "E001",
+            "slides": [
+                {
+                    "slide_id": "S01",
+                    "beat": "친구가 이상한 봉투를 내민다",
+                    "state_delta": "모름에서 의심으로",
+                    "visual_owner": "ACTION",
+                    "shot": "medium two-shot, eye level",
+                    "action": "친구가 봉투를 내민다",
+                    "expression": "받는 사람은 살짝 의심",
+                    "screen_geometry": None,
+                    "continuity_in": [],
+                    "continuity_out": ["봉투가 주인공 손에 있음"],
+                    "text_safe_region": "upper left",
+                    "copy": []
+                }
+            ]
+        }
+        (self.root / "episodes" / "E001" / "storyboard.json").write_text(
+            json.dumps(storyboard, ensure_ascii=False), encoding="utf-8"
+        )
+        self.plan = self.root / "episodes" / "E001" / "boards" / "B01.plan.json"
+        self.plan.write_text(
+            json.dumps(
+                {
+                    "schema_version": "1.0",
+                    "episode_id": "E001",
+                    "board_id": "B01",
+                    "rows": 2,
+                    "columns": 2,
+                    "outer_margin_px": 0,
+                    "gutter_px": 20,
+                    "cells": [{"slide_id": "S01", "row": 0, "column": 0, "intent": "hook"}]
+                }
+            ),
+            encoding="utf-8"
+        )
+
+    def tearDown(self) -> None:
+        self.temp.cleanup()
+
+    def test_compile_hash_bound_prompt(self) -> None:
+        output = self.plan.with_name("B01.dispatch.json")
+        dispatch = compile_master_board_dispatch("E001", self.plan, output, self.root)
+        self.assertEqual(dispatch["operation"], "GENERATE_MASTER_BOARD")
+        self.assertEqual(len(dispatch["bound_media"]), 1)
+        self.assertIn("TOP_LEFT S01", dispatch["prompt"])
+        self.assertIn("TEXT-FREE", dispatch["prompt"])
+        self.assertTrue(output.is_file())
+
+    def test_reference_hash_mismatch_fails_closed(self) -> None:
+        visual_path = self.root / "episodes" / "E001" / "visual_packet.json"
+        visual = json.loads(visual_path.read_text())
+        visual["references"][0]["sha256"] = "0" * 64
+        visual_path.write_text(json.dumps(visual), encoding="utf-8")
+        with self.assertRaises(DispatchError):
+            compile_master_board_dispatch("E001", self.plan, self.plan.with_name("out.json"), self.root)
+
+
+if __name__ == "__main__":
+    unittest.main()
+

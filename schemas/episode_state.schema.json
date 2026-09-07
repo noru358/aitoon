@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIToon episode state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "episode_id", "title", "slide_count", "stage",
+    "run_status", "blocked", "exact_next_action", "stage_history", "artifacts"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "episode_id": {"type": "string", "pattern": "^E[0-9]{3,}$"},
+    "title": {"type": "string"},
+    "slide_count": {"type": "integer", "minimum": 1, "maximum": 20},
+    "stage": {"type": "string"},
+    "run_status": {"enum": ["ACTIVE", "BLOCKED_RETRYABLE", "DONE", "ABANDONED_BY_USER"]},
+    "blocked": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code", "detail", "resume_action", "recorded_at"],
+          "properties": {
+            "code": {"type": "string"},
+            "detail": {"type": "string"},
+            "resume_action": {"type": "string"},
+            "recorded_at": {"type": "string"}
+          }
+        }
+      ]
+    },
+    "exact_next_action": {"type": "string", "minLength": 1},
+    "stage_history": {"type": "array", "items": {"type": "object"}},
+    "artifacts": {"type": "array", "items": {"type": "object"}}
+  }
+}
+

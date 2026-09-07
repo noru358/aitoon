@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "architecture": "GPT_APP_BOARD_FIRST_V1",
+  "execution": {
+    "surface": "CHATGPT_WORK_OR_CHAT",
+    "additional_paid_budget_krw": 0,
+    "paid_api_allowed": false,
+    "paid_saas_allowed": false,
+    "ask_user_for_routine_approval": false,
+    "terminal_states": ["DONE", "ABANDONED_BY_USER"],
+    "retryable_states": [
+      "WAITING_INCLUDED_IMAGE_CAPACITY",
+      "WAITING_TOOL_RECOVERY",
+      "WAITING_REQUIRED_BYTES",
+      "WAITING_PERMISSION_RECOVERY"
+    ]
+  },
+  "product": {
+    "aspect_ratio": "4:5",
+    "width": 1080,
+    "height": 1350,
+    "delivery": "ONE_FILE_PER_SLIDE",
+    "text_free_art_master": true
+  },
+  "render": {
+    "default_lane": "MASTER_BOARD",
+    "board_rows": 2,
+    "board_columns": 2,
+    "maximum_slides_per_board": 4,
+    "board_is_internal_only": true,
+    "actual_reference_media_required": true,
+    "text_in_master_board_forbidden": true,
+    "full_slide_generation_from_scratch_forbidden_when_board_exists": true,
+    "whole_board_retry_limit": 1,
+    "single_slide_repair_limit": 2
+  },
+  "source": {
+    "human_seed_required": true,
+    "traceable_url_required": true,
+    "verbatim_quote_limit_words": 20,
+    "fictionalization_must_be_labeled": true
+  },
+  "visual_qc": {
+    "actual_pixels_required": true,
+    "fixed_camera_direction_quota_forbidden": true,
+    "reject_generic_ai_polish": true,
+    "reject_identity_drift": true,
+    "reject_anatomy_or_contact_failure": true,
+    "reject_impossible_screen_geometry": true,
+    "reject_baked_dialogue_in_art": true,
+    "sequence_redundancy_review_required": true,
+    "meaning_fidelity_review_required": true,
+    "rejected_inputs_quarantined": true
+  },
+  "stages": [
+    "BOOTSTRAP",
+    "SOURCE_LOCK",
+    "STORY_LOCK",
+    "STORYBOARD_LOCK",
+    "VISUAL_PACKET_LOCK",
+    "BOARD_DISPATCH_READY",
+    "MASTER_BOARD_IMPORTED",
+    "MASTER_BOARD_QC",
+    "SLIDES_EXPANDED",
+    "ART_SEQUENCE_QC",
+    "LETTERING_COMPLETE",
+    "FINAL_QC",
+    "EXPORT_READY",
+    "DONE"
+  ]
+}
+

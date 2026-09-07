@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIToon storyboard",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "episode_id", "slides"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "episode_id": {"type": "string", "pattern": "^E[0-9]{3,}$"},
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slide_id", "beat", "state_delta", "visual_owner", "shot",
+          "action", "expression", "continuity_in", "continuity_out",
+          "text_safe_region", "copy"
+        ],
+        "properties": {
+          "slide_id": {"type": "string", "pattern": "^S[0-9]{2,}$"},
+          "beat": {"type": "string"},
+          "state_delta": {"type": "string"},
+          "visual_owner": {
+            "enum": ["ACTION", "REACTION", "OBJECT", "SCREEN", "RELATIONSHIP", "ENVIRONMENT"]
+          },
+          "shot": {"type": "string"},
+          "action": {"type": "string"},
+          "expression": {"type": "string"},
+          "screen_geometry": {"type": ["object", "null"]},
+          "continuity_in": {"type": "array", "items": {"type": "string"}},
+          "continuity_out": {"type": "array", "items": {"type": "string"}},
+          "text_safe_region": {"type": "string"},
+          "copy": {"type": "array", "items": {"type": "object"}}
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E000",
+  "board_id": "B01",
+  "rows": 2,
+  "columns": 2,
+  "outer_margin_px": 0,
+  "gutter_px": 20,
+  "cells": [
+    {"slide_id": "S01", "row": 0, "column": 0, "intent": "enters to buy only water"},
+    {"slide_id": "S02", "row": 0, "column": 1, "intent": "reaches for one water bottle"},
+    {"slide_id": "S03", "row": 1, "column": 0, "intent": "basket is unexpectedly full"},
+    {"slide_id": "S04", "row": 1, "column": 1, "intent": "exits with two heavy bags"}
+  ]
+}
+
