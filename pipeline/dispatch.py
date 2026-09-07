@@ -69,6 +69,33 @@ def _cell_label(row: int, column: int) -> str:
     }[(row, column)]
 
 
+def _anatomy_contract_text(slide: dict[str, Any]) -> str:
+    contract = slide.get("anatomy_contract")
+    if contract is None:
+        return ""
+    if not isinstance(contract, dict):
+        raise DispatchError("anatomy_contract must be an object when present")
+    required = (
+        "risk_reason",
+        "limb_roles",
+        "required_contacts",
+        "forbidden_outcomes",
+        "simplification_fallback",
+    )
+    missing = [key for key in required if key not in contract]
+    if missing:
+        raise DispatchError(f"anatomy_contract missing fields: {', '.join(missing)}")
+    for key in ("limb_roles", "required_contacts", "forbidden_outcomes"):
+        value = contract[key]
+        if not isinstance(value, list) or not all(isinstance(item, str) and item.strip() for item in value):
+            raise DispatchError(f"anatomy_contract {key} must contain non-empty strings")
+    if not isinstance(contract["risk_reason"], str) or not contract["risk_reason"].strip():
+        raise DispatchError("anatomy_contract risk_reason must be non-empty")
+    if not isinstance(contract["simplification_fallback"], str) or not contract["simplification_fallback"].strip():
+        raise DispatchError("anatomy_contract simplification_fallback must be non-empty")
+    return f"; anatomy_contract={json.dumps(contract, ensure_ascii=False, separators=(',', ':'))}"
+
+
 def compile_master_board_dispatch(
     episode_id: str,
     board_plan_path: Path,
@@ -104,11 +131,12 @@ def compile_master_board_dispatch(
         slide = slides[slide_id]
         geometry = slide.get("screen_geometry")
         geometry_text = f"; screen_geometry={json.dumps(geometry, ensure_ascii=False)}" if geometry else ""
+        anatomy_text = _anatomy_contract_text(slide)
         cell_lines.append(
             f"- {_cell_label(*position)} {slide_id}: shot={slide['shot']}; "
             f"action={slide['action']}; expression={slide['expression']}; "
             f"visual_owner={slide['visual_owner']}; beat={slide['beat']}; "
-            f"leave_text_space={slide['text_safe_region']}{geometry_text}"
+            f"leave_text_space={slide['text_safe_region']}{geometry_text}{anatomy_text}"
         )
     for position in ((0, 0), (0, 1), (1, 0), (1, 1)):
         if position not in occupied:
