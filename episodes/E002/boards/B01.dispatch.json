@@ -18,5 +18,19 @@
     }
   ],
   "attempt": 1,
-  "status": "READY"
+  "status": "READY",
+  "runtime_attachment": {
+    "preflight_required_before_execute": true,
+    "source_authority": "REPOSITORY_REGISTRY_SHA256",
+    "carrier_scope": "SESSION_ONLY",
+    "preferred_carrier": "REPOSITORY_DIRECT",
+    "fallback_carriers": [
+      "CURRENT_SESSION_ATTACHMENT",
+      "WORK_RUNTIME_FILE"
+    ],
+    "fallback_only_after_direct_runtime_bridge_unavailable": true,
+    "revalidate_after_session_or_surface_change": true,
+    "attachment_does_not_reset_episode_or_stage": true,
+    "opaque_runtime_handle_is_reference_authority": false
+  }
 }
