@@ -6,12 +6,12 @@
   "stage": "MASTER_BOARD_QC",
   "run_status": "BLOCKED_RETRYABLE",
   "blocked": {
-    "code": "WAITING_TOOL_RECOVERY",
-    "detail": "After the parent B01 A1/A2 board-wide failures, protocol-sanctioned decomposition was attempted with B01D1(S01-S02 only). The current image runtime again ignored the dispatch: it generated all four story beats, Korean text bubbles/heart, the wrong GF appearance, and an extra S02 self-touch hand. Because D1 target semantics were not executed, this is a runtime semantic misdispatch rather than a normal D1 failure.",
-    "resume_action": "Retry the unchanged decomposed dispatch episodes/E002/boards/B01D1.dispatch.json only after image-runtime tool recovery or on a clean built-in image surface that demonstrably honors the current target semantics. Canonical-boot latest main, rerun D/E runtime-attachment preflight, keep B01 parent retry budget exhausted, and do not use any rejected A1/A2/D1 outputs. The valid D1 result must illustrate only S01-S02 in the top row, leave both bottom cells EMPTY, contain zero text/symbol bubbles, preserve low-bun GF and BF appearances, obey S02 phone-back geometry/two-hand ownership, and match PRIMARY_STYLE. If D1 passes actual-pixel QC, proceed to B01D2; otherwise remain fail-closed at MASTER_BOARD_QC.",
-    "recorded_at": "2026-09-07T18:32:00Z"
+    "code": "WAITING_CLEAN_IMAGE_SESSION",
+    "detail": "Repeated image outputs in the current long conversation ignored explicit art-only semantics (forbidden Korean copy, wrong topology, future beats, and cast-anchor drift). This is now classified as RUNTIME_SEMANTIC_NONCOMPLIANCE rather than a generic tool outage. Same-session prompt escalation is forbidden. A clean image execution session is required, using the new 1x2 D1 dispatch and the user-approved visual anchor as a SHA-matched SESSION_ONLY carrier.",
+    "resume_action": "Start a clean Chat/Work image execution session. Canonical-boot latest main, then load only docs/IMAGE_RUNTIME_POLICY.md, episodes/E002/boards/B01D1.clean.dispatch.json, episodes/E002/approved_visual_anchor.json, the exact D/E registry entries, and the actual D/E plus approved-anchor carrier media. Do not open or restate source.md, story.md, storyboard copy, dialogue/thought text, lettering plans, cover copy, S03/S04, or rejected images. Revalidate all carrier SHA-256 values. Execute exactly the 1x2 D1 runtime sheet. If it passes actual-pixel QC, deterministically pack it into the canonical 2x2 board, then proceed to D2. If it semantically misdispatches again on a clean session, do not same-session retry; checkpoint the failure for renderer-strategy review.",
+    "recorded_at": "2026-09-07T18:46:00Z"
   },
-  "exact_next_action": "Retry the unchanged decomposed dispatch episodes/E002/boards/B01D1.dispatch.json only after image-runtime tool recovery or on a clean built-in image surface that demonstrably honors the current target semantics. Canonical-boot latest main, rerun D/E runtime-attachment preflight, keep B01 parent retry budget exhausted, and do not use any rejected A1/A2/D1 outputs. The valid D1 result must illustrate only S01-S02 in the top row, leave both bottom cells EMPTY, contain zero text/symbol bubbles, preserve low-bun GF and BF appearances, obey S02 phone-back geometry/two-hand ownership, and match PRIMARY_STYLE. If D1 passes actual-pixel QC, proceed to B01D2; otherwise remain fail-closed at MASTER_BOARD_QC.",
+  "exact_next_action": "Start a clean Chat/Work image execution session. Canonical-boot latest main, then load only docs/IMAGE_RUNTIME_POLICY.md, episodes/E002/boards/B01D1.clean.dispatch.json, episodes/E002/approved_visual_anchor.json, the exact D/E registry entries, and the actual D/E plus approved-anchor carrier media. Do not open or restate source.md, story.md, storyboard copy, dialogue/thought text, lettering plans, cover copy, S03/S04, or rejected images. Revalidate all carrier SHA-256 values. Execute exactly the 1x2 D1 runtime sheet. If it passes actual-pixel QC, deterministically pack it into the canonical 2x2 board, then proceed to D2. If it semantically misdispatches again on a clean session, do not same-session retry; checkpoint the failure for renderer-strategy review.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -156,6 +156,12 @@
       "from": "MASTER_BOARD_QC",
       "to": "MASTER_BOARD_QC",
       "evidence": "B01D1 decomposed target execution fault: actual pixels image_gen:8df5e643-7a44-4f35-a672-3b6e2e84a50d, SHA-256 ae203c506ea214c836239d7a98519453c1488f336dba9f172b7b180f9109509b, 1224x1285 generated all four beats instead of only S01-S02 + two EMPTY cells and baked Korean bubbles/heart. Receipt episodes/E002/quarantine/B01D1.runtime-misdispatch.receipt.json; QC episodes/E002/qc/B01D1.runtime-misdispatch.json. Episode is blocked retryably at WAITING_TOOL_RECOVERY."
+    },
+    {
+      "at": "2026-09-07T18:46:00Z",
+      "from": "MASTER_BOARD_QC",
+      "to": "MASTER_BOARD_QC",
+      "evidence": "Structural runtime-control revision after user review. The prior D1 2x2/EMPTY-cell dispatch is SUPERSEDED. User-approved preview pixels are now an operational EPISODE_LOCAL anchor manifest (SHA 536d8a75...), the active D1 dispatch is a copy-free 1x2 natural-occupancy sheet, and repeated target/topology/copy violations are reclassified as RUNTIME_SEMANTIC_NONCOMPLIANCE requiring WAITING_CLEAN_IMAGE_SESSION. Upstream editorial hashes and visual packet remain locked."
     }
   ],
   "artifacts": [
