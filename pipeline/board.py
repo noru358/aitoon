@@ -49,32 +49,27 @@ def _load_plan(path: Path) -> dict[str, Any]:
     return value
 
 
-def _sheet_geometry(
+def _equal_cell_geometry(
     width: int,
     height: int,
     rows: int,
     columns: int,
     margin: int,
     gutter: int,
-    target_width: int,
-    target_height: int,
 ) -> tuple[int, int]:
     usable_width = width - 2 * margin - max(0, columns - 1) * gutter
     usable_height = height - 2 * margin - max(0, rows - 1) * gutter
     if usable_width <= 0 or usable_height <= 0:
-        raise BoardError("margin/gutter consume the runtime sheet")
+        raise BoardError("margin/gutter consume the sheet")
     if usable_width % columns or usable_height % rows:
-        raise BoardError("runtime sheet geometry does not divide into equal integer cells")
-    cell_width = usable_width // columns
-    cell_height = usable_height // rows
+        raise BoardError("sheet geometry does not divide into equal integer cells")
+    return usable_width // columns, usable_height // rows
+
+
+def _is_4x5(cell_width: int, cell_height: int, target_width: int, target_height: int) -> bool:
     expected_ratio = target_width / target_height
     actual_ratio = cell_width / cell_height
-    if abs(expected_ratio - actual_ratio) > 0.01:
-        raise BoardError(
-            f"runtime cells are not 4:5: {cell_width}x{cell_height}; "
-            "use built-in image expansion/repair rather than destructive crop"
-        )
-    return cell_width, cell_height
+    return abs(expected_ratio - actual_ratio) <= 0.01
 
 
 def pack_runtime_sheet(
@@ -120,19 +115,19 @@ def pack_runtime_sheet(
 
     margin = int(plan["outer_margin_px"])
     gutter = int(plan["gutter_px"])
-    cell_width, cell_height = _sheet_geometry(
+    cell_width, cell_height = _equal_cell_geometry(
         source.width,
         source.height,
         rows,
         columns,
         margin,
         gutter,
-        target_width,
-        target_height,
     )
 
-    canonical_width = 2 * target_width + gutter
-    canonical_height = 2 * target_height + gutter
+    # Preserve the exact runtime pixels. Do not stretch a non-4:5 generated cell
+    # merely to satisfy the final slide ratio; downstream expansion owns that case.
+    canonical_width = 2 * cell_width + gutter
+    canonical_height = 2 * cell_height + gutter
     board = Image.new("RGB", (canonical_width, canonical_height), "white")
     packed: list[dict[str, Any]] = []
 
@@ -145,11 +140,9 @@ def pack_runtime_sheet(
         left = margin + rc * (cell_width + gutter)
         top = margin + rr * (cell_height + gutter)
         crop = source.crop((left, top, left + cell_width, top + cell_height))
-        if crop.size != (target_width, target_height):
-            crop = crop.resize((target_width, target_height), Image.Resampling.LANCZOS)
         cr, cc = canonical[slide_id]
-        out_left = cc * (target_width + gutter)
-        out_top = cr * (target_height + gutter)
+        out_left = cc * (cell_width + gutter)
+        out_top = cr * (cell_height + gutter)
         board.paste(crop, (out_left, out_top))
         packed.append(
             {
@@ -172,6 +165,9 @@ def pack_runtime_sheet(
         "canonical_board_sha256": sha256_file(output_path),
         "width": canonical_width,
         "height": canonical_height,
+        "cell_width": cell_width,
+        "cell_height": cell_height,
+        "direct_split_4x5_eligible": _is_4x5(cell_width, cell_height, target_width, target_height),
         "packed": packed,
     }
 
@@ -193,16 +189,19 @@ def split_master_board(
         source = source_image.convert("RGB")
     margin = int(plan["outer_margin_px"])
     gutter = int(plan["gutter_px"])
-    cell_width, cell_height = _sheet_geometry(
+    cell_width, cell_height = _equal_cell_geometry(
         source.width,
         source.height,
         2,
         2,
         margin,
         gutter,
-        target_width,
-        target_height,
     )
+    if not _is_4x5(cell_width, cell_height, target_width, target_height):
+        raise BoardError(
+            f"master cells are not 4:5: {cell_width}x{cell_height}; "
+            "use built-in image expansion instead of destructive stretch/crop"
+        )
 
     output_dir.mkdir(parents=True, exist_ok=True)
     outputs: list[dict[str, Any]] = []
