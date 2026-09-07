@@ -3,15 +3,10 @@
   "episode_id": "E002",
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
-  "stage": "BOARD_DISPATCH_READY",
-  "run_status": "BLOCKED_RETRYABLE",
-  "blocked": {
-    "code": "WAITING_TOOL_RECOVERY",
-    "detail": "The required D/E PRIMARY_STYLE JPEG bytes are present in main, were retrieved from the GitHub repository connector, decoded and structurally inspected, and match the production registry SHA-256 exactly. E002-B01-MASTER-A1 is compiled. The current ChatGPT session exposes no verified repository-binary-to-built-in-image attachment bridge, so the episode remains retryably blocked instead of generating unreferenced art. The runtime-attachment policy now separates persistent repository authority from session-scoped transport: direct repository transport is preferred, and a matching user-supplied/current-session copy of the already locked D/E references is permitted only as a transport fallback after direct bridge failure. Such an attachment does not create a new reference, change visual_packet.json, reset the episode/stage, or become persistent authority.",
-    "resume_action": "Resume E002 at BOARD_DISPATCH_READY from latest main. Re-read the locked D/E registry entries and verify repository SHA-256 values, then run runtime-attachment preflight on the current Chat/Work surface immediately before dispatch. Prefer direct repository-to-image-runtime binding. If that bridge is unavailable and matching D/E images are already attached in the current session/Work runtime, map them only as SESSION_ONLY carriers for the locked registry roles, without changing reference authority, visual_packet.json, episode, stage, or story. Re-run preflight after any session/surface change. Once the image runtime actually accepts both carriers, resume the retryable block with that evidence and dispatch E002-B01-MASTER-A1 exactly once; persist/import the returned board as episodes/E002/boards/B01.master.png with SHA-256 and dimensions, then advance exactly to MASTER_BOARD_IMPORTED. If neither direct transport nor an eligible current-session carrier is available, remain WAITING_TOOL_RECOVERY. Do not generate unreferenced art or use paid API/SaaS fallback.",
-    "recorded_at": "2026-09-07T15:12:00Z"
-  },
-  "exact_next_action": "Resume E002 at BOARD_DISPATCH_READY from latest main. Re-read the locked D/E registry entries and verify repository SHA-256 values, then run runtime-attachment preflight on the current Chat/Work surface immediately before dispatch. Prefer direct repository-to-image-runtime binding. If that bridge is unavailable and matching D/E images are already attached in the current session/Work runtime, map them only as SESSION_ONLY carriers for the locked registry roles, without changing reference authority, visual_packet.json, episode, stage, or story. Re-run preflight after any session/surface change. Once the image runtime actually accepts both carriers, resume the retryable block with that evidence and dispatch E002-B01-MASTER-A1 exactly once; persist/import the returned board as episodes/E002/boards/B01.master.png with SHA-256 and dimensions, then advance exactly to MASTER_BOARD_IMPORTED. If neither direct transport nor an eligible current-session carrier is available, remain WAITING_TOOL_RECOVERY. Do not generate unreferenced art or use paid API/SaaS fallback.",
+  "stage": "MASTER_BOARD_QC",
+  "run_status": "RUNNING",
+  "blocked": null,
+  "exact_next_action": "Execute E002-B01-MASTER-A2 exactly once with the same locked D/E PRIMARY_STYLE references through the verified current-session carriers. Keep all upstream locks unchanged. Import and inspect the retry board. If PASS, preserve rejected A1 only in quarantine and advance exactly to SLIDES_EXPANDED. If A2 has another board-wide failure, the whole-board retry budget is exhausted and repair must route to the minimum owning failure.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -54,7 +49,32 @@
       "from": "VISUAL_PACKET_LOCK",
       "to": "BOARD_DISPATCH_READY",
       "evidence": "Compiled one four-cell 2x2 B01 plan and hash-bound A1 master-board dispatch from the locked storyboard and visual packet. Dispatch binds only verified D/E PRIMARY_STYLE repository bytes, carries S02 phone geometry plus S02/S04 anatomy contracts, requires text-free art, and creates no independent slide art or lettering."
+    },
+    {
+      "at": "2026-09-07T15:47:00Z",
+      "from": "BOARD_DISPATCH_READY",
+      "to": "MASTER_BOARD_IMPORTED",
+      "evidence": "E002-B01-MASTER-A1 executed once with current-session carriers matching locked D/E; board imported and SHA-256 registered as 125b76fc2cdb9d65b5f0337e7f32ef37a6554edb508682b13b74ad8e994a91ad at 1144x1375."
+    },
+    {
+      "at": "2026-09-07T15:48:00Z",
+      "from": "MASTER_BOARD_IMPORTED",
+      "to": "MASTER_BOARD_QC",
+      "evidence": "Actual-pixel QC failed board-wide: A1 copied the three reference characters and living-room activity instead of the locked denim-laundry story, omitted the jeans state sequence, repeated frontal group staging, and baked Latin Z marks. A1 was quarantined; one allowed whole-board retry A2 was compiled without changing upstream locks."
     }
   ],
-  "artifacts": []
+  "artifacts": [
+    {
+      "artifact_id": "A0001",
+      "role": "MASTER_BOARD_REJECTED",
+      "path": "episodes/E002/quarantine/B01.master.A1.png",
+      "sha256": "125b76fc2cdb9d65b5f0337e7f32ef37a6554edb508682b13b74ad8e994a91ad",
+      "size_bytes": 2142082,
+      "width": 1144,
+      "height": 1375,
+      "producing_dispatch": "E002-B01-MASTER-A1",
+      "status": "REJECTED_QUARANTINED",
+      "registered_at": "2026-09-07T15:48:00Z"
+    }
+  ]
 }
