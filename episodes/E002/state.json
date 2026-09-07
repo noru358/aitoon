@@ -7,11 +7,11 @@
   "run_status": "BLOCKED_RETRYABLE",
   "blocked": {
     "code": "WAITING_TOOL_RECOVERY",
-    "detail": "A fresh canonical-boot retry of E002-B01-MASTER-A2 at 2026-09-08 02:19 KST again failed to honor the compiled target semantics. Actual pixels reproduce the three reference characters in the reference living room rather than the locked two-character denim/laundry story; no jeans sequence is present and baked symbols remain. The output was rejected and receipt-recorded, and is ineligible for reuse.",
-    "resume_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC.",
-    "recorded_at": "2026-09-07T17:19:00Z"
+    "detail": "The 2026-09-08 02:31 KST Chat retry again failed to execute E002-B01-MASTER-A2 semantics. Actual pixels reproduce the three reference characters in the reference living room and include extensive baked Korean speech bubbles; the locked denim/laundry sequence is absent. The output was rejected and receipt-recorded. Prior standalone denim/laundry slide/lettering outputs from this chat remain noncanonical and were not imported because they were independently generated rather than expanded from an approved master board.",
+    "resume_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only after image-runtime tool recovery or on a built-in execution surface that can demonstrably honor the compiled target semantics. Canonical-boot latest main, re-read the locked D/E references plus B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use any rejected/misdispatched output, and do not import the prior independently generated standalone slides or their lettering because they violate board-first. If a returned 2x2 board actually matches the locked two-character denim/laundry dispatch and is text-free, import it as episodes/E002/boards/B01.master.png, inspect actual pixels, and advance exactly according to board QC.",
+    "recorded_at": "2026-09-07T17:31:00Z"
   },
-  "exact_next_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only on a built-in image execution surface that can accept the compiled target semantics. Re-read the locked D/E references, B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use rejected outputs. If a returned board matches the dispatch, inspect actual pixels and continue according to board QC.",
+  "exact_next_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only after image-runtime tool recovery or on a built-in execution surface that can demonstrably honor the compiled target semantics. Canonical-boot latest main, re-read the locked D/E references plus B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use any rejected/misdispatched output, and do not import the prior independently generated standalone slides or their lettering because they violate board-first. If a returned 2x2 board actually matches the locked two-character denim/laundry dispatch and is text-free, import it as episodes/E002/boards/B01.master.png, inspect actual pixels, and advance exactly according to board QC.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -90,6 +90,12 @@
       "from": "MASTER_BOARD_QC",
       "to": "MASTER_BOARD_QC",
       "evidence": "Fresh canonical-boot A2 retry re-verified repository D/E bytes and exact matching current-session fallback carriers after repository-direct image binding was unavailable. The built-in image runtime again returned the reference trio in the living-room reference scene instead of the two-character denim/laundry board. Actual pixels were rejected; receipt persisted at episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-8ac089b7.receipt.json. Retry budget remains unconsumed because target semantics were not executed."
+    },
+    {
+      "at": "2026-09-07T17:31:00Z",
+      "from": "MASTER_BOARD_QC",
+      "to": "MASTER_BOARD_QC",
+      "evidence": "Canonical-boot A2 retry revalidated exact matching D/E SESSION_ONLY carriers after repository-direct image binding was unavailable. The built-in image runtime again ignored the two-character denim/laundry dispatch and returned the reference trio/living-room scene with baked Korean dialogue. Actual pixels were rejected; receipt persisted at episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-e011bf27.receipt.json. Independently generated standalone slides/lettering from the prior Chat turn were explicitly not imported because board-first evidence is absent. Retry budget remains unconsumed because target semantics were not executed."
     }
   ],
   "artifacts": [
