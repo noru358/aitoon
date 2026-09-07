@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-from .board import BoardError, split_master_board
+from .board import BoardError, pack_runtime_sheet, split_master_board
 from .dispatch import DispatchError, compile_master_board_dispatch
 from .lettering import LetteringError, render_lettering
 from .state import ROOT, StateError, advance, approve_editorial_review, block, init_episode, load_state, register_file_artifact, resume
@@ -54,7 +54,16 @@ def build_parser() -> argparse.ArgumentParser:
     artifact.add_argument("--path", required=True)
     artifact.add_argument("--dispatch")
 
-    split = sub.add_parser("split-board", help="split a clean 2x2 master board into 4:5 slides")
+    pack = sub.add_parser("pack-runtime-sheet", help="pack a natural-occupancy runtime sheet into canonical 2x2")
+    pack.add_argument("--input", required=True)
+    pack.add_argument("--plan", required=True)
+    pack.add_argument("--dispatch", required=True)
+    pack.add_argument("--output", required=True)
+    pack.add_argument("--width", type=int, default=1080)
+    pack.add_argument("--height", type=int, default=1350)
+    pack.add_argument("--manifest")
+
+    split = sub.add_parser("split-board", help="split a clean canonical 2x2 master board into 4:5 slides")
     split.add_argument("--input", required=True)
     split.add_argument("--plan", required=True)
     split.add_argument("--output-dir", required=True)
@@ -97,6 +106,20 @@ def main(argv: list[str] | None = None) -> int:
             if not path.is_absolute():
                 path = ROOT / path
             _print_json(register_file_artifact(args.episode_id, args.role, path, args.dispatch))
+        elif args.command == "pack-runtime-sheet":
+            receipt = pack_runtime_sheet(
+                Path(args.input),
+                Path(args.plan),
+                Path(args.dispatch),
+                Path(args.output),
+                args.width,
+                args.height,
+            )
+            if args.manifest:
+                manifest = Path(args.manifest)
+                manifest.parent.mkdir(parents=True, exist_ok=True)
+                manifest.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            _print_json(receipt)
         elif args.command == "split-board":
             receipt = split_master_board(
                 Path(args.input),
