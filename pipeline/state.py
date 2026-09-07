@@ -97,7 +97,7 @@ def init_episode(episode_id: str, title: str, slide_count: int, root: Path = ROO
     if not 1 <= slide_count <= 20:
         raise StateError("slide_count must be between 1 and 20")
 
-    for child in ("boards", "art", "lettering", "final", "qc", "export", "quarantine"):
+    for child in ("boards", "art", "lettering", "cover", "final", "qc", "export", "quarantine"):
         (directory / child).mkdir(parents=True, exist_ok=True)
     _copy_template(root, "source.md", directory / "source.md")
     _copy_template(root, "story.md", directory / "story.md")
@@ -113,16 +113,30 @@ def init_episode(episode_id: str, title: str, slide_count: int, root: Path = ROO
         "slides": [],
     }
     atomic_write_json(directory / "storyboard.json", storyboard)
+    review = {
+        "schema_version": "1.0",
+        "episode_id": episode_id,
+        "status": "PENDING",
+        "review_scope": [
+            "SOURCE", "TOPIC", "PREMISE", "SLIDE_COUNT", "BEATS",
+            "DIALOGUE", "THOUGHT_NARRATION", "COVER_CONCEPT"
+        ],
+        "approved_hashes": None,
+        "approval_evidence": None,
+        "approved_at": None,
+    }
+    atomic_write_json(directory / "editorial_review.json", review)
     created = utc_now()
     state = {
         "schema_version": "1.0",
+        "protocol_revision": int(policy(root).get("protocol_revision", 1)),
         "episode_id": episode_id,
         "title": title,
         "slide_count": slide_count,
         "stage": "BOOTSTRAP",
         "run_status": "ACTIVE",
         "blocked": None,
-        "exact_next_action": "Lock one traceable human-produced source in source.md.",
+        "exact_next_action": "Draft source.md, story.md, storyboard.json and advance exactly to PREPRODUCTION_REVIEW for the user editorial review.",
         "stage_history": [
             {
                 "at": created,
@@ -135,6 +149,50 @@ def init_episode(episode_id: str, title: str, slide_count: int, root: Path = ROO
     }
     atomic_write_json(directory / "state.json", state)
     return state
+
+
+def approve_editorial_review(
+    episode_id: str,
+    approval_evidence: str,
+    root: Path = ROOT,
+) -> dict[str, Any]:
+    if not approval_evidence.strip():
+        raise StateError("editorial approval requires explicit evidence")
+    current = load_state(episode_id, root)
+    if current.get("stage") != "PREPRODUCTION_REVIEW":
+        raise StateError("editorial approval is only valid at PREPRODUCTION_REVIEW")
+    if current.get("run_status") != "ACTIVE":
+        raise StateError("editorial review cannot be approved from a blocked or terminal state")
+    review_path = episode_dir(episode_id, root) / "editorial_review.json"
+    review = read_json(review_path)
+    if review.get("episode_id") != episode_id:
+        raise StateError("editorial review episode mismatch")
+    approved_hashes = {
+        "source.md": sha256_file(episode_dir(episode_id, root) / "source.md"),
+        "story.md": sha256_file(episode_dir(episode_id, root) / "story.md"),
+        "storyboard.json": sha256_file(episode_dir(episode_id, root) / "storyboard.json"),
+    }
+    review["status"] = "APPROVED"
+    review["approved_hashes"] = approved_hashes
+    review["approval_evidence"] = approval_evidence.strip()
+    review["approved_at"] = utc_now()
+    atomic_write_json(review_path, review)
+    current["exact_next_action"] = "Advance exactly to SOURCE_LOCK using the approved review hashes; then continue STORY_LOCK and STORYBOARD_LOCK without another routine approval."
+    atomic_write_json(state_path(episode_id, root), current)
+    return review
+
+
+def _require_editorial_hash_lock(episode_id: str, root: Path) -> None:
+    review = read_json(episode_dir(episode_id, root) / "editorial_review.json")
+    if review.get("status") != "APPROVED":
+        raise StateError("PREPRODUCTION_REVIEW has not been explicitly approved")
+    approved = review.get("approved_hashes")
+    if not isinstance(approved, dict):
+        raise StateError("editorial review approved hashes are missing")
+    for name in ("source.md", "story.md", "storyboard.json"):
+        path = episode_dir(episode_id, root) / name
+        if approved.get(name) != sha256_file(path):
+            raise StateError(f"reviewed file changed after approval: {name}")
 
 
 def advance(
@@ -167,6 +225,13 @@ def advance(
             f"invalid transition {current['stage']} -> {target_stage}; "
             f"expected {ordered[current_index + 1] if current_index + 1 < len(ordered) else 'none'}"
         )
+
+    if (
+        int(current.get("protocol_revision", 1)) >= 2
+        and current["stage"] == "PREPRODUCTION_REVIEW"
+        and target_stage == "SOURCE_LOCK"
+    ):
+        _require_editorial_hash_lock(episode_id, root)
 
     current["stage_history"].append(
         {
