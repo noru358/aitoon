@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-08 02:19 KST  
+Updated: 2026-09-08 02:31 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
@@ -79,6 +79,9 @@ Completed for E002:
 
 - validation note for this checkpoint: the sandbox could not resolve `github.com`, so a fresh checkout and the canonical `unittest` / `pipeline.cli validate` commands could not be run; no PASS is inferred. GitHub reported no combined statuses and no PR-triggered workflow runs for the checkpoint head at the time checked;
 
+- the 2026-09-08 02:31 KST Chat retry again failed at the image-runtime layer: despite exact matching D/E SESSION_ONLY carriers, the returned 2x2 image reproduced the reference trio/living-room scene and added extensive Korean speech bubbles instead of the locked denim/laundry board; it was actual-pixel rejected and receipt-recorded at `episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-e011bf27.receipt.json`;
+- the standalone denim/laundry slides and separately lettered variants generated in the preceding Chat turn were not imported or accepted as evidence because they were independently generated rather than expanded from an approved master board; board-first remains mandatory;
+
 The episode is not `DONE`. No rejected image may be reused.
 
 ## Boot/reference guard maintenance
@@ -155,4 +158,4 @@ were not edited.
 
 ## Exact next action
 
-Resume E002 at `MASTER_BOARD_QC` from latest `main`. Re-read `references/registry.json`, the locked D/E bytes, `episodes/E002/boards/B01.qc.json`, and `episodes/E002/boards/B01.dispatch.A2.json`. Retry only on a built-in image execution surface that can accept the compiled target semantics; re-run runtime attachment and dispatch preflight first. Keep the D/E references as the same locked authority and use any matching session copies only as `SESSION_ONLY` carriers. Do not use any rejected output or receipt as image/reference evidence. When a returned A2 board actually matches the locked two-character denim/laundry specification, import it as the canonical `episodes/E002/boards/B01.master.png`, inspect actual pixels, and advance exactly according to board QC. Do not use paid API/SaaS fallback.
+Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only after image-runtime tool recovery or on a built-in execution surface that can demonstrably honor the compiled target semantics. Canonical-boot latest main, re-read the locked D/E references plus B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use any rejected/misdispatched output, and do not import the prior independently generated standalone slides or their lettering because they violate board-first. If a returned 2x2 board actually matches the locked two-character denim/laundry dispatch and is text-free, import it as episodes/E002/boards/B01.master.png, inspect actual pixels, and advance exactly according to board QC.
