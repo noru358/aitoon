@@ -53,7 +53,7 @@ Completed for E002:
 
 - `SOURCE_LOCK`, `STORY_LOCK`, `STORYBOARD_LOCK`, `VISUAL_PACKET_LOCK` and `BOARD_DISPATCH_READY` remain locked and unchanged;
 - repository D/E PRIMARY_STYLE JPEG bytes were re-read from latest main and SHA-256 verified exactly: D `dbddf458...` at 1448x1086 and E `b496832...` at 1536x864;
-- the two user attachments in this session were verified to be byte-for-byte matches of those same locked D/E files, so they were mapped only as `SESSION_ONLY` carriers after the direct repository-to-image-runtime bridge remained unavailable;
+- matching user-supplied copies of the already locked D/E references may be mapped only as `SESSION_ONLY` carriers after the direct repository-to-image-runtime bridge is unavailable; attachment transport never changes registry authority or episode state;
 - `E002-B01-MASTER-A1` produced an actual image, which was imported, inspected, hard-failed board-wide, and quarantined because it copied the three reference characters/living-room activity instead of the locked two-character denim/laundry story, omitted the jeans state sequence, repeated the same group staging, and contained baked Latin `Z` marks;
 - the rejected A1 canonical board path was removed after preserving the immutable quarantine copy;
 - one whole-board retry dispatch `E002-B01-MASTER-A2` was compiled without changing story, storyboard, visual packet or reference authority;
@@ -78,7 +78,7 @@ registered as user-designated `PRIMARY_STYLE` references. Independent authorship
 verification remains explicitly unasserted; it is not fabricated or treated as a
 routine production gate. E002 is therefore active rather than waiting for bytes.
 
-E002 has retrieved and inspected those actual repository bytes and bound D/E as the minimum sufficient set by path, SHA-256, role, `allowed_influence` and `forbidden_inference`. The current session carriers matched the repository bytes exactly, so reference transport itself is no longer the active blocker. The active blocker is the current image execution surface returning task-mismatched images instead of the compiled B01 target. In the latest session, A2 again misdispatched as an unrelated AITOON kanban/completion infographic; actual pixels were rejected and a hash/dimension/runtime receipt was persisted at `episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-923936bc.receipt.json`. No rejected output can be reused.
+E002 has retrieved and inspected those actual repository bytes and bound D/E as the minimum sufficient set by path, SHA-256, role, `allowed_influence` and `forbidden_inference`. Session attachments are transport-only fallbacks for those locked roles and do not alter authority; reference transport is not the active blocker. The active blocker is the current image execution surface returning task-mismatched images instead of the compiled B01 target. In the latest session, A2 again misdispatched as an unrelated AITOON kanban/completion infographic; actual pixels were rejected and a hash/dimension/runtime receipt was persisted at `episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-923936bc.receipt.json`. No rejected output can be reused.
 
 
 ## Runtime attachment guard
