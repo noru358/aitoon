@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "parent_board_id": "B01",
+  "reason": "A1 and final whole-board retry A2 both failed board-wide text/style/cast gates. No A3 is allowed.",
+  "strategy": "TWO_SEQUENTIAL_TWO_CELL_BOARDS",
+  "constraints": {
+    "no_story_change": true,
+    "no_editorial_hash_change": true,
+    "same_visual_packet": true,
+    "no_additional_whole_board_retry_for_parent": true,
+    "text_free": true,
+    "preserve_board_first": true
+  },
+  "boards": [
+    {
+      "board_id": "B01D1",
+      "slides": [
+        "S01",
+        "S02"
+      ],
+      "empty_cells": [
+        "BOTTOM_LEFT",
+        "BOTTOM_RIGHT"
+      ]
+    },
+    {
+      "board_id": "B01D2",
+      "slides": [
+        "S03",
+        "S04"
+      ],
+      "empty_cells": [
+        "BOTTOM_LEFT",
+        "BOTTOM_RIGHT"
+      ]
+    }
+  ],
+  "note": "This is decomposition/simplification, not A3. Each decomposed batch is independently QC'd before any slide derivation. If D1 passes, its episode-local identity continuity may guide D2 only within its passed scope."
+}
