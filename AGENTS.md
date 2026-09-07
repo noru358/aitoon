@@ -13,7 +13,8 @@ Use exactly one boot order for every fresh or resumed production run:
 5. the active episode's `state.json`, when an active episode exists
 6. only then the companion material required by that active exact next action,
    including editorial, reference, anatomy/contact, visual-minimalism, lettering,
-   registry, and actual reference/calibration files
+   image-runtime policy, approved visual-anchor manifests, registry, and actual
+   reference/calibration files
 
 `README.md` is descriptive only. Once an active episode exists,
 `state.json.exact_next_action` is the execution pointer. Do not substitute
@@ -33,6 +34,11 @@ conversation memory or a guessed stage.
 - Never claim visual PASS without actual-pixel inspection.
 - Never reuse rejected/quarantined art as style, identity, continuity, or repair
   evidence.
+- Explicit user approval of visible pixels is operational. When objectively safe in
+  a declared scope, preserve those pixels as an EPISODE_LOCAL visual anchor instead
+  of silently reducing approval to text notes.
+- If an applicable approved visual anchor exists, do not fresh-resample its anchored
+  face/hair/outfit/rendering attributes. Derive, edit, or bind the approved pixels.
 - Registered reference authority and runtime transport are separate. Prefer
   repository-direct image binding; if unavailable, a matching current-session
   copy may carry the already locked reference as `SESSION_ONLY` transport.
@@ -61,9 +67,11 @@ conversation memory or a guessed stage.
    require dedicated identity sheets when drawing-language coverage is sufficient.
 7. Compile a target-only master-board dispatch and rerun runtime-attachment
    preflight immediately before image execution.
-8. Generate one text-free fixed 2x2 internal master board for each sequential
-   group of one to four slides. Unused cells stay empty. Never pad a story.
-9. Expand approved board cells into separate 4:5 slides; do not independently
+8. Generate one text-free **natural-occupancy runtime sheet** for each sequential
+   group of one to four slides: 1x1, 1x2, 1x3, or 2x2. Never ask the image model to
+   create empty placeholder cells. Deterministically pack the passed runtime sheet
+   into the canonical internal 2x2 board; unused canonical cells are created by code.
+9. Expand approved canonical board cells into separate 4:5 slides; do not independently
    reinterpret a slide after a board exists.
 10. Repair the smallest failed unit. Whole-board retry is reserved for board-wide
     style/identity/palette/semantic failure.
@@ -93,6 +101,13 @@ Both surfaces use the same lifecycle and evidence.
   editorial approval it prefers one-shot execution to `DONE` or a real retryable
   infrastructure/resource block.
 - A response boundary is not a fake production stage or retryable block.
+- Image execution is art-only. Once a dispatch is compiled, do not load or restate
+  source prose, dialogue/thought/narration copy, lettering plans, cover copy, or
+  future beats outside the active runtime sheet.
+- If the renderer ignores target topology/semantics or generates forbidden copy,
+  classify it as RUNTIME_SEMANTIC_NONCOMPLIANCE and checkpoint
+  WAITING_CLEAN_IMAGE_SESSION. Do not keep strengthening prompts in the same long
+  conversation.
 - Do not skip reference checks, pixel QC, anatomy/contact, quarantine, cover,
   lettering, export, or validation to fit a turn.
 
