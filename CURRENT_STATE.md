@@ -60,6 +60,23 @@ Each accepted reference must have actual inspectable bytes plus `path`,
 must also be available as actual image input to the ChatGPT image runtime; a
 repository path or prose description alone is not conditioning.
 
+## Anatomy/contact guard update
+
+A conditional high-risk manual-action guard is now part of the production
+architecture via `docs/ANATOMY_CONTACT_POLICY.md`.
+
+- it activates only when limb ownership/contact is genuinely ambiguous;
+- it does not require two visible hands in every shot;
+- it does not impose a global action-count cap;
+- story-bearing prop/device contact outranks decorative gesture;
+- risky shots may declare semantic limb roles, required contacts, forbidden
+  extra/disconnected limbs, and a simplification fallback;
+- the board dispatch compiler carries a declared `anatomy_contract` into the
+  generation prompt;
+- E001 S02 and S04 now carry scoped contracts. S04 is staged immediately after
+  the handoff so the girlfriend owns the folded jeans while the boyfriend's
+  sheepish gesture no longer competes for the same prop.
+
 ## Exact next action
 
 Acquire and inspect provenance-verified actual human-drawn person/style,
