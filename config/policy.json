@@ -1,6 +1,7 @@
 {
   "schema_version": "1.0",
-  "architecture": "GPT_APP_BOARD_FIRST_V1",
+  "architecture": "GPT_APP_BOARD_FIRST_V2",
+  "protocol_revision": 2,
   "execution": {
     "surface": "CHATGPT_WORK_OR_CHAT",
     "additional_paid_budget_krw": 0,
@@ -18,12 +19,63 @@
       "WAITING_PERMISSION_RECOVERY"
     ]
   },
+  "editorial": {
+    "stage": "PREPRODUCTION_REVIEW",
+    "required_from_protocol_revision": 2,
+    "review_file": "editorial_review.json",
+    "review_scope": [
+      "SOURCE",
+      "TOPIC",
+      "PREMISE",
+      "SLIDE_COUNT",
+      "BEATS",
+      "DIALOGUE",
+      "THOUGHT_NARRATION",
+      "COVER_CONCEPT"
+    ],
+    "explicit_user_approval_required": true,
+    "approval_hash_binds": [
+      "source.md",
+      "story.md",
+      "storyboard.json"
+    ],
+    "routine_technical_steps_require_approval": false
+  },
   "product": {
     "aspect_ratio": "4:5",
     "width": 1080,
     "height": 1350,
     "delivery": "ONE_FILE_PER_SLIDE",
-    "text_free_art_master": true
+    "narrative_slide_count_excludes_cover": true,
+    "text_free_art_master": true,
+    "cover": {
+      "required_from_protocol_revision": 2,
+      "delivery_separate_from_slide_count": true,
+      "default_strategy": "DERIVED_FROM_APPROVED_ART",
+      "dedicated_cover_art_only_when_derived_art_is_insufficient": true,
+      "title_and_copy_added_after_art_lock": true
+    },
+    "text_roles": [
+      "DIALOGUE",
+      "THOUGHT",
+      "NARRATION",
+      "SFX",
+      "UI",
+      "TITLE"
+    ]
+  },
+  "visual_design": {
+    "background_default": "LOWEST_SUFFICIENT",
+    "background_levels": [
+      "NONE",
+      "SYMBOLIC",
+      "LOCATION_ANCHOR",
+      "FULL_SCENE"
+    ],
+    "decorative_assets_default": "OMIT",
+    "story_bearing_assets_only": true,
+    "full_scene_requires_reason": true,
+    "empty_space_is_valid_composition": true
   },
   "render": {
     "default_lane": "MASTER_BOARD",
@@ -43,6 +95,12 @@
     "verbatim_quote_limit_words": 20,
     "fictionalization_must_be_labeled": true
   },
+  "typography": {
+    "style_config": "config/lettering_style.json",
+    "locked_style_required_from_protocol_revision": 2,
+    "silent_font_size_shrink_forbidden": true,
+    "semantic_roles_required": true
+  },
   "visual_qc": {
     "actual_pixels_required": true,
     "fixed_camera_direction_quota_forbidden": true,
@@ -53,24 +111,19 @@
     "reject_baked_dialogue_in_art": true,
     "sequence_redundancy_review_required": true,
     "meaning_fidelity_review_required": true,
-    "rejected_inputs_quarantined": true
+    "rejected_inputs_quarantined": true,
+    "style_match_dimensions": [
+      "LINE_GRAMMAR",
+      "EYE_FACE_GRAMMAR",
+      "HEAD_BODY_PROPORTION",
+      "HAIR_MASSING",
+      "SHADING_DENSITY",
+      "TEXTURE",
+      "DETAIL_BUDGET"
+    ],
+    "emotional_delta_must_change_visible_acting": true,
+    "palette_match_alone_is_not_style_pass": true
   },
-  "stages": [
-    "BOOTSTRAP",
-    "SOURCE_LOCK",
-    "STORY_LOCK",
-    "STORYBOARD_LOCK",
-    "VISUAL_PACKET_LOCK",
-    "BOARD_DISPATCH_READY",
-    "MASTER_BOARD_IMPORTED",
-    "MASTER_BOARD_QC",
-    "SLIDES_EXPANDED",
-    "ART_SEQUENCE_QC",
-    "LETTERING_COMPLETE",
-    "FINAL_QC",
-    "EXPORT_READY",
-    "DONE"
-  ],
   "references": {
     "production_registry": "references/registry.json",
     "user_designation_is_sufficient_provenance": true,
@@ -90,7 +143,8 @@
     "registered_reference_bytes_must_be_retrieved_without_reupload": true,
     "user_attachment_transport_fallback_allowed": true,
     "user_attachment_transport_fallback_only_after_runtime_bridge_failure": true,
-    "user_attachment_transport_does_not_create_new_reference": true
+    "user_attachment_transport_does_not_create_new_reference": true,
+    "style_reference_identity_copy_forbidden_unless_identity_role_explicit": true
   },
   "runtime_attachment": {
     "preflight_required_before_image_dispatch": true,
@@ -112,9 +166,11 @@
     "chat": {
       "strategy": "BOUNDED_AUTONOMOUS_MULTI_TURN",
       "routine_approval_required": false,
+      "editorial_review_mode": "USER_REQUIRED",
       "continuation_token": "계속",
       "continuation_token_is_approval": false,
       "durable_turn_boundaries": [
+        "PREPRODUCTION_REVIEW",
         "BOARD_DISPATCH_READY",
         "ART_SEQUENCE_QC",
         "DONE"
@@ -124,9 +180,10 @@
       "quality_gates_may_be_skipped_for_turn_budget": false
     },
     "work": {
-      "strategy": "ONE_SHOT_TO_DONE_OR_RETRYABLE_BLOCK",
+      "strategy": "ONE_SHOT_AFTER_EDITORIAL_APPROVAL_TO_DONE_OR_RETRYABLE_BLOCK",
       "routine_approval_required": false,
-      "intentional_turn_boundaries": false,
+      "editorial_review_mode": "USER_REQUIRED_BY_DEFAULT",
+      "stops_for_unapproved_editorial_review": true,
       "stage_checkpoint_required": true,
       "quality_gates_may_be_skipped_for_execution_budget": false
     },
@@ -137,5 +194,22 @@
       "conversational_summary_is_handoff_authority": false,
       "load_only_exact_next_action_companions_after_boot": true
     }
-  }
+  },
+  "stages": [
+    "BOOTSTRAP",
+    "PREPRODUCTION_REVIEW",
+    "SOURCE_LOCK",
+    "STORY_LOCK",
+    "STORYBOARD_LOCK",
+    "VISUAL_PACKET_LOCK",
+    "BOARD_DISPATCH_READY",
+    "MASTER_BOARD_IMPORTED",
+    "MASTER_BOARD_QC",
+    "SLIDES_EXPANDED",
+    "ART_SEQUENCE_QC",
+    "LETTERING_COMPLETE",
+    "FINAL_QC",
+    "EXPORT_READY",
+    "DONE"
+  ]
 }
