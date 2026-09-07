@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "anchor_id": "E002_APPROVED_VISUAL_ANCHOR_01",
+  "status": "ACTIVE",
+  "source_kind": "USER_APPROVED_GENERATED_PIXELS",
+  "approval_evidence": "User explicitly said '우선 승인' after viewing the text-free E002 preview.",
+  "source_stable_app_handle": "image_gen:b049ef95-5dbe-4cf3-9ef8-89afac36bd93",
+  "sha256": "536d8a75f7d549faab5d0627d94a7862f3fa17c3a4784c94f5666e38b95cebbb",
+  "width": 1122,
+  "height": 1402,
+  "repository_path": null,
+  "transport_status": "SESSION_CARRIER_REQUIRED_ON_CLEAN_SESSION",
+  "allowed_influence": "GF/BF episode-local facial identity, GF low-bun hair silhouette, BF rounded black hair silhouette, cream/black outfit identity, pale-blue/light-gray lower clothing identity, local palette, and the user-approved restrained drawing/rendering treatment",
+  "forbidden_inference": "S02 phone orientation or screen geometry, hand/contact geometry, exact poses, panel layout, backgrounds, laundry-basket geometry, text, symbols, dialogue, or any objective defect outside the approved identity/rendering scope",
+  "objective_scope_qc": {
+    "actual_pixels_inspected": true,
+    "anchor_scope_status": "PASS",
+    "excluded_objective_failure": [
+      "S02 viewer can see phone front/screen more than allowed by storyboard geometry"
+    ],
+    "note": "The excluded phone-geometry defect prevents whole-board canonical PASS but does not invalidate the identity/rendering anchor scope."
+  },
+  "promotion_scope": "EPISODE_LOCAL_ONLY",
+  "primary_style_promotion": false
+}
