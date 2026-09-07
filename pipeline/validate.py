@@ -32,6 +32,17 @@ def validate_policy(root: Path = ROOT) -> None:
     _require(render.get("default_lane") == "MASTER_BOARD", "master-board lane must remain default")
     _require(render.get("maximum_slides_per_board") == 4, "v1 board capacity drift")
     _require(data.get("product", {}).get("delivery") == "ONE_FILE_PER_SLIDE", "delivery contract drift")
+    runtime = data.get("runtime_attachment", {})
+    _require(runtime.get("preflight_required_before_image_dispatch") is True, "runtime attachment preflight must be required")
+    _require(runtime.get("revalidate_after_session_or_surface_change") is True, "runtime attachment must be session-revalidated")
+    _require(runtime.get("persistent_authority") == "REPOSITORY_REGISTRY_SHA256", "runtime carrier cannot replace repository authority")
+    _require(runtime.get("carrier_scope") == "SESSION_ONLY", "runtime carrier must remain session-only")
+    _require(runtime.get("preferred_carrier") == "REPOSITORY_DIRECT", "repository-direct transport must remain preferred")
+    _require(runtime.get("user_attachment_transport_fallback_allowed") is True, "session attachment transport fallback must remain allowed")
+    _require(runtime.get("fallback_only_after_direct_runtime_bridge_unavailable") is True, "attachment fallback must not bypass an available direct bridge")
+    _require(runtime.get("attachment_does_not_reset_episode_or_stage") is True, "attachment must not reset episode state")
+    _require(runtime.get("opaque_runtime_handle_is_reference_authority") is False, "runtime handles must not become reference authority")
+    _require(runtime.get("file_uri_alone_proves_image_binding") is False, "file URI alone cannot prove image-runtime binding")
 
 
 
@@ -157,6 +168,18 @@ def validate_episode(episode_dir: Path, root: Path = ROOT) -> None:
         _require((episode_dir / name).is_file(), f"{episode_id}: missing {name}")
     for artifact in state.get("artifacts", []):
         _validate_artifact(root, artifact, episode_id)
+
+    if state.get("run_status") != "DONE":
+        for dispatch_path in sorted((episode_dir / "boards").glob("*.dispatch.json")):
+            dispatch = read_json(dispatch_path)
+            contract = dispatch.get("runtime_attachment")
+            _require(isinstance(contract, dict), f"{episode_id}: active dispatch lacks runtime attachment contract")
+            _require(contract.get("preflight_required_before_execute") is True, f"{dispatch_path}: runtime preflight not required")
+            _require(contract.get("source_authority") == "REPOSITORY_REGISTRY_SHA256", f"{dispatch_path}: runtime authority drift")
+            _require(contract.get("carrier_scope") == "SESSION_ONLY", f"{dispatch_path}: runtime carrier scope drift")
+            _require(contract.get("revalidate_after_session_or_surface_change") is True, f"{dispatch_path}: stale runtime binding may be reused")
+            _require(contract.get("attachment_does_not_reset_episode_or_stage") is True, f"{dispatch_path}: attachment may not reset state")
+            _require(contract.get("opaque_runtime_handle_is_reference_authority") is False, f"{dispatch_path}: runtime handle cannot become authority")
     _validate_qc_reports(root, episode_dir, episode_id)
     if state["run_status"] == "DONE":
         _require(state["stage"] == "DONE", f"{episode_id}: DONE status/stage mismatch")
