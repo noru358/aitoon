@@ -123,7 +123,7 @@ class DispatchTests(unittest.TestCase):
         self.assertEqual(dispatch["operation"], "GENERATE_MASTER_BOARD")
         self.assertEqual(dispatch["dispatch_id"], "E001-B01-V2-MASTER-A1")
         self.assertEqual(len(dispatch["bound_media"]), 1)
-        self.assertIn("TOP_LEFT S01", dispatch["prompt"])
+        self.assertIn("ONLY S01", dispatch["prompt"])
         self.assertIn("TEXT-FREE", dispatch["prompt"])
         self.assertIn("anatomy_contract=", dispatch["prompt"])
         self.assertIn("extra limb", dispatch["prompt"])
@@ -136,7 +136,7 @@ class DispatchTests(unittest.TestCase):
         self.assertIn("Palette match alone is not a style PASS", dispatch["prompt"])
         runtime = dispatch["runtime_attachment"]
         self.assertTrue(runtime["preflight_required_before_execute"])
-        self.assertEqual(runtime["source_authority"], "REPOSITORY_REGISTRY_SHA256")
+        self.assertEqual(runtime["source_authority"], "REPOSITORY_MANIFEST_AND_SHA256")
         self.assertEqual(runtime["carrier_scope"], "SESSION_ONLY")
         self.assertEqual(runtime["preferred_carrier"], "REPOSITORY_DIRECT")
         self.assertIn("CURRENT_SESSION_ATTACHMENT", runtime["fallback_carriers"])
@@ -144,7 +144,52 @@ class DispatchTests(unittest.TestCase):
         self.assertTrue(runtime["revalidate_after_session_or_surface_change"])
         self.assertTrue(runtime["attachment_does_not_reset_episode_or_stage"])
         self.assertFalse(runtime["opaque_runtime_handle_is_reference_authority"])
+        self.assertEqual(runtime["required_sha_carriers"], [])
+        self.assertEqual(dispatch["runtime_sheet"]["strategy"], "NATURAL_OCCUPANCY")
+        self.assertEqual((dispatch["runtime_sheet"]["rows"], dispatch["runtime_sheet"]["columns"]), (1, 1))
+        self.assertTrue(dispatch["runtime_sheet"]["generator_empty_cells_forbidden"])
+        self.assertTrue(dispatch["runtime_sheet"]["pack_to_canonical_2x2"])
+        self.assertTrue(dispatch["context_isolation"]["art_only"])
+        self.assertNotIn("EMPTY, plain paper cell", dispatch["prompt"])
         self.assertTrue(output.is_file())
+
+
+    def test_active_session_anchor_becomes_required_sha_carrier(self) -> None:
+        episode = self.root / "episodes" / "E001"
+        anchor = {
+            "schema_version": "1.0",
+            "episode_id": "E001",
+            "anchor_id": "E001_APPROVED_VISUAL_ANCHOR_01",
+            "status": "ACTIVE",
+            "source_kind": "USER_APPROVED_GENERATED_PIXELS",
+            "approval_evidence": "user approved visible pixels",
+            "source_stable_app_handle": "image_gen:test",
+            "sha256": "a" * 64,
+            "width": 1080,
+            "height": 1350,
+            "repository_path": None,
+            "transport_status": "SESSION_CARRIER_REQUIRED_ON_CLEAN_SESSION",
+            "allowed_influence": "face identity, hair, outfit and approved rendering treatment",
+            "forbidden_inference": "text, anatomy defects, screen geometry and exact pose",
+            "objective_scope_qc": {
+                "actual_pixels_inspected": True,
+                "anchor_scope_status": "PASS",
+                "excluded_objective_failure": [],
+                "note": "safe scoped anchor"
+            },
+            "promotion_scope": "EPISODE_LOCAL_ONLY",
+            "primary_style_promotion": False
+        }
+        (episode / "approved_visual_anchor.json").write_text(
+            json.dumps(anchor, ensure_ascii=False), encoding="utf-8"
+        )
+        output = self.plan.with_name("anchor.dispatch.json")
+        dispatch = compile_master_board_dispatch("E001", self.plan, output, self.root)
+        self.assertEqual(dispatch["approved_visual_anchor"]["transport"], "SESSION_CARRIER_REQUIRED")
+        carriers = dispatch["runtime_attachment"]["required_sha_carriers"]
+        self.assertEqual(len(carriers), 1)
+        self.assertEqual(carriers[0]["sha256"], "a" * 64)
+        self.assertIn("user-approved episode visual anchor", dispatch["prompt"])
 
     def test_v2_dispatch_cannot_compile_before_visual_packet_lock(self) -> None:
         state_path = self.root / "episodes" / "E001" / "state.json"
