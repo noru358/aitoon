@@ -59,7 +59,20 @@ def validate_policy(root: Path = ROOT) -> None:
     _require(stages[1] == "PREPRODUCTION_REVIEW", "editorial review stage drift")
     render = data.get("render", {})
     _require(render.get("default_lane") == "MASTER_BOARD", "master-board lane must remain default")
-    _require(render.get("maximum_slides_per_board") == 4, "v1 board capacity drift")
+    _require(render.get("maximum_slides_per_board") == 4, "board capacity drift")
+    _require(render.get("canonical_board_rows") == 2 and render.get("canonical_board_columns") == 2, "canonical board geometry drift")
+    _require(render.get("runtime_sheet_strategy") == "NATURAL_OCCUPANCY", "runtime sheet strategy drift")
+    _require(render.get("generator_empty_cells_forbidden") is True, "generator must not own empty canonical cells")
+    _require(render.get("deterministic_pack_to_canonical_2x2") is True, "runtime sheet must pack deterministically")
+    _require(
+        render.get("runtime_sheet_layouts") == {
+            "1": {"rows": 1, "columns": 1},
+            "2": {"rows": 1, "columns": 2},
+            "3": {"rows": 1, "columns": 3},
+            "4": {"rows": 2, "columns": 2},
+        },
+        "runtime sheet layout drift",
+    )
     product = data.get("product", {})
     _require(product.get("delivery") == "ONE_FILE_PER_SLIDE", "delivery contract drift")
     _require(product.get("narrative_slide_count_excludes_cover") is True, "cover must not change narrative slide_count")
@@ -74,6 +87,17 @@ def validate_policy(root: Path = ROOT) -> None:
     _require(editorial.get("stage") == "PREPRODUCTION_REVIEW", "editorial stage policy drift")
     _require(editorial.get("explicit_user_approval_required") is True, "editorial approval must be explicit")
     _require(editorial.get("approval_hash_binds") == ["source.md", "story.md", "storyboard.json"], "editorial hash binding drift")
+    visual_approval = data.get("visual_approval", {})
+    _require(visual_approval.get("explicit_visual_approval_is_operational") is True, "visual approval must affect production")
+    _require(visual_approval.get("fresh_resampling_when_applicable_anchor_exists_forbidden") is True, "approved anchor cannot be discarded by fresh resampling")
+    _require(visual_approval.get("objective_anatomy_contact_screen_text_failures_never_overridden") is True, "user aesthetic approval cannot waive objective defects")
+    _require(visual_approval.get("missing_required_anchor_transport_fails_closed") is True, "missing approved anchor transport must fail closed")
+    image_runtime = data.get("image_runtime", {})
+    _require(image_runtime.get("art_only_context_required") is True, "image runtime must use art-only context")
+    _require(image_runtime.get("compiled_dispatch_must_be_copy_free") is True, "image dispatch must be copy-free")
+    _require(image_runtime.get("same_session_retry_after_semantic_noncompliance_forbidden") is True, "semantic misdispatch must not same-session retry")
+    _require(image_runtime.get("recovery_after_semantic_noncompliance") == "WAITING_CLEAN_IMAGE_SESSION", "semantic misdispatch recovery drift")
+    _require(image_runtime.get("stronger_same_session_prompt_escalation_forbidden") is True, "same-session prompt escalation must be disabled")
     runtime = data.get("runtime_attachment", {})
     _require(runtime.get("preflight_required_before_image_dispatch") is True, "runtime attachment preflight must be required")
     _require(runtime.get("revalidate_after_session_or_surface_change") is True, "runtime attachment must be session-revalidated")
@@ -85,6 +109,9 @@ def validate_policy(root: Path = ROOT) -> None:
     _require(runtime.get("attachment_does_not_reset_episode_or_stage") is True, "attachment must not reset episode state")
     _require(runtime.get("opaque_runtime_handle_is_reference_authority") is False, "runtime handles must not become reference authority")
     _require(runtime.get("file_uri_alone_proves_image_binding") is False, "file URI alone cannot prove image-runtime binding")
+    _require(runtime.get("approved_visual_anchor_carrier_allowed") is True, "approved visual anchor carrier must be supported")
+    _require(runtime.get("approved_visual_anchor_manifest_is_authority") is True, "approved anchor manifest must remain repository authority")
+    _require(runtime.get("anchor_carrier_must_match_manifest_sha256") is True, "approved anchor carrier must hash-match manifest")
 
 
 
@@ -299,11 +326,23 @@ def validate_episode(episode_dir: Path, root: Path = ROOT) -> None:
             contract = dispatch.get("runtime_attachment")
             _require(isinstance(contract, dict), f"{episode_id}: active dispatch lacks runtime attachment contract")
             _require(contract.get("preflight_required_before_execute") is True, f"{dispatch_path}: runtime preflight not required")
-            _require(contract.get("source_authority") == "REPOSITORY_REGISTRY_SHA256", f"{dispatch_path}: runtime authority drift")
+            _require(
+                contract.get("source_authority") in {"REPOSITORY_REGISTRY_SHA256", "REPOSITORY_MANIFEST_AND_SHA256"},
+                f"{dispatch_path}: runtime authority drift",
+            )
             _require(contract.get("carrier_scope") == "SESSION_ONLY", f"{dispatch_path}: runtime carrier scope drift")
             _require(contract.get("revalidate_after_session_or_surface_change") is True, f"{dispatch_path}: stale runtime binding may be reused")
             _require(contract.get("attachment_does_not_reset_episode_or_stage") is True, f"{dispatch_path}: attachment may not reset state")
             _require(contract.get("opaque_runtime_handle_is_reference_authority") is False, f"{dispatch_path}: runtime handle cannot become authority")
+            if dispatch.get("status") == "READY" and dispatch.get("eligible_for_execution", True) is not False:
+                runtime_sheet = dispatch.get("runtime_sheet")
+                _require(isinstance(runtime_sheet, dict), f"{dispatch_path}: executable dispatch lacks runtime_sheet")
+                _require(runtime_sheet.get("strategy") == "NATURAL_OCCUPANCY", f"{dispatch_path}: bad runtime sheet strategy")
+                _require(runtime_sheet.get("generator_empty_cells_forbidden") is True, f"{dispatch_path}: generator owns empty cells")
+                _require(runtime_sheet.get("pack_to_canonical_2x2") is True, f"{dispatch_path}: runtime sheet is not canonical-packable")
+                context = dispatch.get("context_isolation")
+                _require(isinstance(context, dict) and context.get("art_only") is True, f"{dispatch_path}: executable dispatch lacks art-only context isolation")
+                _require(isinstance(contract.get("required_sha_carriers"), list), f"{dispatch_path}: required SHA carriers missing")
     _validate_qc_reports(root, episode_dir, episode_id)
     if state["run_status"] == "DONE":
         _require(state["stage"] == "DONE", f"{episode_id}: DONE status/stage mismatch")
