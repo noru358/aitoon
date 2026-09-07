@@ -3,10 +3,10 @@
   "episode_id": "E002",
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
-  "stage": "SOURCE_LOCK",
+  "stage": "STORY_LOCK",
   "run_status": "ACTIVE",
   "blocked": null,
-  "exact_next_action": "Advance exactly to STORY_LOCK without changing the approved story file.",
+  "exact_next_action": "Advance exactly to STORYBOARD_LOCK without changing the approved storyboard file.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -103,6 +103,12 @@
       "from": "PREPRODUCTION_REVIEW",
       "to": "SOURCE_LOCK",
       "evidence": "User-approved PREPRODUCTION_REVIEW hash-bound source.md, story.md and storyboard.json; source hash matched the approved review record."
+    },
+    {
+      "at": "2026-09-07T18:20:00Z",
+      "from": "SOURCE_LOCK",
+      "to": "STORY_LOCK",
+      "evidence": "Approved story.md remained byte-identical to the editorial hash lock and the four-beat adaptation is now authoritative."
     }
   ],
   "artifacts": [
