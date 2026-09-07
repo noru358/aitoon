@@ -195,6 +195,41 @@ def _validate_v2_cover_done(root: Path, episode_dir: Path, episode_id: str, stat
         _require(bool(manifest.get("sha256") or manifest.get("stable_app_handle")), f"{episode_id}: cover manifest lacks evidence")
 
 
+
+def _validate_approved_visual_anchor(root: Path, episode_dir: Path, episode_id: str) -> None:
+    path = episode_dir / "approved_visual_anchor.json"
+    if not path.is_file():
+        return
+    anchor = read_json(path)
+    _require(anchor.get("schema_version") == "1.0", f"{episode_id}: approved visual anchor schema drift")
+    _require(anchor.get("episode_id") == episode_id, f"{episode_id}: approved visual anchor episode mismatch")
+    _require(anchor.get("status") in {"ACTIVE", "RETIRED"}, f"{episode_id}: bad approved visual anchor status")
+    sha = anchor.get("sha256")
+    _require(isinstance(sha, str) and len(sha) == 64, f"{episode_id}: approved visual anchor lacks SHA-256")
+    _require(isinstance(anchor.get("allowed_influence"), str) and anchor["allowed_influence"].strip(), f"{episode_id}: approved anchor influence scope missing")
+    _require(isinstance(anchor.get("forbidden_inference"), str) and anchor["forbidden_inference"].strip(), f"{episode_id}: approved anchor exclusions missing")
+    _require(anchor.get("primary_style_promotion") is False, f"{episode_id}: episode anchor cannot silently promote to PRIMARY_STYLE")
+    if anchor.get("status") == "ACTIVE":
+        qc = anchor.get("objective_scope_qc")
+        _require(isinstance(qc, dict), f"{episode_id}: active approved anchor lacks objective scope QC")
+        _require(qc.get("actual_pixels_inspected") is True, f"{episode_id}: approved anchor pixels were not inspected")
+        _require(qc.get("anchor_scope_status") == "PASS", f"{episode_id}: approved anchor scope is not PASS")
+        repository_path = anchor.get("repository_path")
+        if repository_path:
+            resolved = (root / repository_path).resolve()
+            try:
+                resolved.relative_to(root.resolve())
+            except ValueError as exc:
+                raise ValidationError(f"{episode_id}: approved anchor escapes repository") from exc
+            _require(resolved.is_file(), f"{episode_id}: approved anchor repository bytes missing")
+            _require(sha256_file(resolved) == sha, f"{episode_id}: approved anchor repository hash mismatch")
+        else:
+            _require(
+                anchor.get("transport_status") == "SESSION_CARRIER_REQUIRED_ON_CLEAN_SESSION",
+                f"{episode_id}: active non-repository anchor lacks clean-session carrier requirement",
+            )
+
+
 def validate_reference_registry(root: Path = ROOT) -> None:
     registry = read_json(root / "references" / "registry.json")
     _require(registry.get("schema_version") == "1.0", "production reference registry version drift")
@@ -317,6 +352,7 @@ def validate_episode(episode_dir: Path, root: Path = ROOT) -> None:
         _require((episode_dir / name).is_file(), f"{episode_id}: missing {name}")
     _validate_editorial_review(root, episode_dir, episode_id, state)
     _validate_v2_storyboard(root, episode_dir, episode_id, state)
+    _validate_approved_visual_anchor(root, episode_dir, episode_id)
     for artifact in state.get("artifacts", []):
         _validate_artifact(root, artifact, episode_id)
 
