@@ -56,6 +56,16 @@ class DispatchTests(unittest.TestCase):
                     "action": "친구가 봉투를 내민다",
                     "expression": "받는 사람은 살짝 의심",
                     "screen_geometry": None,
+                    "anatomy_contract": {
+                        "risk_reason": "prop plus gesture can duplicate a limb",
+                        "limb_roles": [
+                            "giver prop hand: holds envelope only",
+                            "giver other hand: stays relaxed"
+                        ],
+                        "required_contacts": ["one giver hand -> envelope"],
+                        "forbidden_outcomes": ["extra limb", "disconnected hand"],
+                        "simplification_fallback": "preserve the handoff and drop the extra gesture"
+                    },
                     "continuity_in": [],
                     "continuity_out": ["봉투가 주인공 손에 있음"],
                     "text_safe_region": "upper left",
@@ -93,6 +103,8 @@ class DispatchTests(unittest.TestCase):
         self.assertEqual(len(dispatch["bound_media"]), 1)
         self.assertIn("TOP_LEFT S01", dispatch["prompt"])
         self.assertIn("TEXT-FREE", dispatch["prompt"])
+        self.assertIn("anatomy_contract=", dispatch["prompt"])
+        self.assertIn("extra limb", dispatch["prompt"])
         self.assertTrue(output.is_file())
 
     def test_reference_hash_mismatch_fails_closed(self) -> None:
@@ -102,6 +114,14 @@ class DispatchTests(unittest.TestCase):
         visual_path.write_text(json.dumps(visual), encoding="utf-8")
         with self.assertRaises(DispatchError):
             compile_master_board_dispatch("E001", self.plan, self.plan.with_name("out.json"), self.root)
+
+    def test_malformed_anatomy_contract_fails_closed(self) -> None:
+        storyboard_path = self.root / "episodes" / "E001" / "storyboard.json"
+        storyboard = json.loads(storyboard_path.read_text())
+        storyboard["slides"][0]["anatomy_contract"] = {"risk_reason": "incomplete"}
+        storyboard_path.write_text(json.dumps(storyboard, ensure_ascii=False), encoding="utf-8")
+        with self.assertRaises(DispatchError):
+            compile_master_board_dispatch("E001", self.plan, self.plan.with_name("bad.json"), self.root)
 
 
 if __name__ == "__main__":
