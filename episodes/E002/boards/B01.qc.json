@@ -30,7 +30,7 @@
     "isolated_repair_required": false,
     "retry_budget_remaining": 1,
     "block_code": "WAITING_TOOL_RECOVERY",
-    "resume_condition": "A later Chat/Work image execution surface must accept the compiled E002-B01-MASTER-A2 target semantics together with the already locked D/E SESSION_ONLY carriers. Re-run runtime-attachment/dispatch preflight before execution; do not reuse any rejected output."
+    "resume_condition": "Retry E002-B01-MASTER-A2 only on a later built-in image execution surface that actually accepts the compiled two-character denim/laundry target semantics. Re-run repository-reference retrieval plus runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY fallback carriers. Do not reuse any rejected output."
   },
   "root_cause": "Board-wide semantic/cast failure. The visual references dominated the image call while the locked target dispatch was not sufficiently surfaced to the current image runtime. Retry must preserve the same locked story and reference authority while making target-only cell semantics explicit.",
   "runtime_execution_faults": [
@@ -58,6 +58,19 @@
       ],
       "actual_pixels": true,
       "finding": "The built-in image runtime returned an AITOON kanban/completion infographic rather than the compiled E002 two-character denim/laundry 2x2 master board. No E002 story beat, jeans state sequence, or episode-local couple appears. The output is rejected and must not be reused.",
+      "retry_budget_effect": "DOES_NOT_CONSUM_WHOLE_BOARD_RETRY_BUDGET"
+    },
+    {
+      "intended_dispatch": "E002-B01-MASTER-A2",
+      "status": "REJECTED_TOOL_MISDISPATCH",
+      "receipt_path": "episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-06397a4f.receipt.json",
+      "sha256": "d7dcbe363e3356952c5c8d640f9a7345dbedd55136e1b783ad6591223d625c1a",
+      "dimensions": [
+        1402,
+        1122
+      ],
+      "actual_pixels": true,
+      "finding": "Fresh canonical-boot retry on the current Chat image surface again returned the three reference characters socializing in the living-room reference scene instead of the compiled E002 two-character denim/laundry board. The locked jeans state sequence and laundry actions are absent; baked calendar/gesture glyphs also violate the text-free art contract. Rejected and ineligible for reuse.",
       "retry_budget_effect": "DOES_NOT_CONSUM_WHOLE_BOARD_RETRY_BUDGET"
     }
   ]
