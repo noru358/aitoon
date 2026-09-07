@@ -183,6 +183,20 @@ def compile_master_board_dispatch(
         ],
         "attempt": attempt,
         "status": "READY",
+        "runtime_attachment": {
+            "preflight_required_before_execute": True,
+            "source_authority": "REPOSITORY_REGISTRY_SHA256",
+            "carrier_scope": "SESSION_ONLY",
+            "preferred_carrier": "REPOSITORY_DIRECT",
+            "fallback_carriers": [
+                "CURRENT_SESSION_ATTACHMENT",
+                "WORK_RUNTIME_FILE",
+            ],
+            "fallback_only_after_direct_runtime_bridge_unavailable": True,
+            "revalidate_after_session_or_surface_change": True,
+            "attachment_does_not_reset_episode_or_stage": True,
+            "opaque_runtime_handle_is_reference_authority": False,
+        },
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(dispatch, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
