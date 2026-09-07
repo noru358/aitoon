@@ -3,10 +3,10 @@
   "episode_id": "E002",
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
-  "stage": "VISUAL_PACKET_LOCK",
+  "stage": "BOARD_DISPATCH_READY",
   "run_status": "ACTIVE",
   "blocked": null,
-  "exact_next_action": "Compile a fresh V2 B01 2x2 master-board plan and hash-bound E002-B01-V2-MASTER-A1 dispatch from the approved storyboard and LOCKED visual packet. The prior V1/A2 dispatches remain SUPERSEDED. Do not execute the image call until the new dispatch is persisted and runtime-attachment preflight is ready.",
+  "exact_next_action": "Execute only episodes/E002/boards/B01.dispatch.v2.A1.json after runtime-attachment preflight on the current surface. Prefer repository-direct D/E binding; if unavailable, use matching current-session D/E carriers only as SESSION_ONLY transport. The user-approved session preview is aesthetic feedback only and is not canonical board evidence. Import the returned 2x2 board, inspect actual pixels against V2 objective QC, and continue exactly to MASTER_BOARD_IMPORTED then MASTER_BOARD_QC.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -121,6 +121,12 @@
       "from": "STORYBOARD_LOCK",
       "to": "VISUAL_PACKET_LOCK",
       "evidence": "Re-read both production PRIMARY_STYLE JPEG bytes from latest main and verified exact registry SHA-256 plus dimensions: D dbddf458... 1448x1086, E b496832... 1536x864. Locked the minimum sufficient V2 visual packet with narrowed style influence, lowest-sufficient background policy, distinct episode-local GF/BF appearance notes, and no rejected/quarantined reference inputs."
+    },
+    {
+      "at": "2026-09-07T18:20:00Z",
+      "from": "VISUAL_PACKET_LOCK",
+      "to": "BOARD_DISPATCH_READY",
+      "evidence": "Compiled fresh V2 B01 plan and E002-B01-V2-MASTER-A1 dispatch from the user-approved/hash-locked storyboard and verified LOCKED visual packet. Dispatch uses narrowed D/E PRIMARY_STYLE roles, explicit episode-local GF/BF appearance text, lowest-sufficient backgrounds, state/continuity contracts, face-acting deltas, screen/anatomy guards, text-free art, and unique V2 dispatch namespacing. All V1/A2 paths remain superseded."
     }
   ],
   "artifacts": [
