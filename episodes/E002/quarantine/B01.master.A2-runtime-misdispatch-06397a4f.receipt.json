@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "board_id": "B01",
+  "intended_dispatch": "E002-B01-MASTER-A2",
+  "status": "REJECTED_TOOL_MISDISPATCH",
+  "runtime_gen_id": "06397a4f-bfb0-43a9-a689-bd85114f9856",
+  "runtime_file_name": "a_clean_2d_comic_style_illustration_in_a_4_panel_g.png",
+  "sha256": "d7dcbe363e3356952c5c8d640f9a7345dbedd55136e1b783ad6591223d625c1a",
+  "size_bytes": 2082440,
+  "dimensions": [
+    1402,
+    1122
+  ],
+  "actual_pixels_inspected": true,
+  "finding": "The built-in image runtime again returned the three reference characters socializing in the reference living-room setting across four panels instead of the compiled E002 two-character denim/laundry board. The jeans state sequence, episode-local couple, laundry/search/hand-wash actions, and text-free target semantics are absent; calendar glyphs and gesture marks are also baked into the art. The output is rejected and must not be reused.",
+  "repository_binary_persisted": false,
+  "persistence_note": "The current execution surface exposes the generated binary in the ChatGPT runtime but provides no direct binary handoff from that image-runtime file into the GitHub connector. Hash, dimensions, runtime generation id, and actual-pixel QC are persisted in this receipt; the output remains ineligible for any production or reference use.",
+  "reference_transport": {
+    "repository_direct_attempted": true,
+    "repository_direct_result": "UNAVAILABLE_ON_CURRENT_IMAGE_RUNTIME",
+    "session_carrier_fallback_used": true,
+    "session_carrier_sha256_matches": {
+      "LEGACY_REF_V2_D": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
+      "LEGACY_REF_V2_E": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049"
+    }
+  },
+  "retry_budget_effect": "DOES_NOT_CONSUM_WHOLE_BOARD_RETRY_BUDGET",
+  "recorded_at": "2026-09-07T17:14:00Z"
+}
