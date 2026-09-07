@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-08 01:45 KST  
+Updated: 2026-09-08 02:07 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
@@ -32,6 +32,21 @@ Architecture: `GPT_APP_BOARD_FIRST_V1`
 Calibration attempt 1 remains rejected and quarantined. Calibration attempt 2
 remains the accepted calibration board only; its convenience-store story is a
 fixture and is not E001 content.
+
+## Execution surface modes
+
+- Chat is the low-cost interactive production lane and uses bounded autonomous
+  multi-turn execution. Its durable response boundaries are
+  `BOARD_DISPATCH_READY -> ART_SEQUENCE_QC -> DONE`. A boundary is not a new
+  production stage or block; repository state and `exact_next_action` carry the
+  run into the user's next `계속` turn without routine re-approval.
+- Work is the scale-out lane and prefers one-shot execution to `DONE` or a real
+  retryable block while preserving the same stage checkpoints, references and QC.
+- Chat and Work therefore share one production state machine. The difference is
+  scheduling only; neither surface may trade away evidence or quality gates to fit
+  its execution budget.
+- Every new execution turn canonical-boots latest `main`; after boot, context is
+  limited to the companions needed by the active exact next action.
 
 ## Active production
 
