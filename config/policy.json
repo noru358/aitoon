@@ -111,7 +111,9 @@
       }
     },
     "generator_empty_cells_forbidden": true,
-    "deterministic_pack_to_canonical_2x2": true
+    "deterministic_pack_to_canonical_2x2": true,
+    "runtime_pack_preserve_native_pixels": true,
+    "non_4x5_runtime_cells_route_to_board_bound_expansion": true
   },
   "source": {
     "human_seed_required": true,
