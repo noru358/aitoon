@@ -25,10 +25,27 @@
     "camera_bias": "FAIL: all four panels reuse essentially the same living-room frontal group staging rather than beat-serving S01-S04 cameras."
   },
   "routing": {
-    "action": "RETRY_WHOLE_BOARD",
+    "action": "WAIT_FOR_VALID_RUNTIME_DISPATCH",
     "whole_board_retry_used": false,
     "isolated_repair_required": false,
-    "retry_budget_remaining": 1
+    "retry_budget_remaining": 1,
+    "block_code": "WAITING_TOOL_RECOVERY",
+    "resume_condition": "A new Chat/Work execution surface must be able to accept the compiled E002-B01-MASTER-A2 target semantics together with the already locked D/E SESSION_ONLY carriers. Re-run runtime-attachment/dispatch preflight before execution."
   },
-  "root_cause": "Board-wide semantic/cast failure. The visual references dominated the image call while the locked target dispatch was not sufficiently surfaced to the current image runtime. Retry must preserve the same locked story and reference authority while making target-only cell semantics explicit."
+  "root_cause": "Board-wide semantic/cast failure. The visual references dominated the image call while the locked target dispatch was not sufficiently surfaced to the current image runtime. Retry must preserve the same locked story and reference authority while making target-only cell semantics explicit.",
+  "runtime_execution_faults": [
+    {
+      "intended_dispatch": "E002-B01-MASTER-A2",
+      "status": "REJECTED_TOOL_MISDISPATCH",
+      "inspected_path": "episodes/E002/quarantine/B01.master.A2-misdispatch.png",
+      "sha256": "e7d75f3f106494025434126de77d44afd2d5b03f3b419ed86307c154e6941e5a",
+      "dimensions": [
+        1104,
+        1425
+      ],
+      "actual_pixels": true,
+      "finding": "The current image runtime again substituted a reference-trio living-room hangout instead of the explicit locked two-character denim/laundry board. Because the target dispatch semantics were not accepted by the runtime, this output is quarantined as a tool misdispatch and cannot be used as style, continuity, repair, or board evidence.",
+      "retry_budget_effect": "DOES_NOT_CONSUM_WHOLE_BOARD_RETRY_BUDGET"
+    }
+  ]
 }
