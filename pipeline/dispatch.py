@@ -106,11 +106,25 @@ def compile_master_board_dispatch(
     episode = root / "episodes" / episode_id
     storyboard = read_json(episode / "storyboard.json")
     visual_packet = read_json(episode / "visual_packet.json")
+    state = read_json(episode / "state.json")
     board = read_json(board_plan_path)
     if storyboard.get("episode_id") != episode_id or visual_packet.get("episode_id") != episode_id:
         raise DispatchError("episode identity mismatch in storyboard or visual packet")
     if board.get("episode_id") != episode_id:
         raise DispatchError("board plan episode mismatch")
+    revision = int(state.get("protocol_revision", 1))
+    if revision >= 2:
+        review = read_json(episode / "editorial_review.json")
+        if review.get("status") != "APPROVED":
+            raise DispatchError("cannot compile v2 image dispatch before editorial approval")
+        approved = review.get("approved_hashes")
+        if not isinstance(approved, dict):
+            raise DispatchError("approved editorial hash lock is missing")
+        for name in ("source.md", "story.md", "storyboard.json"):
+            if approved.get(name) != sha256_file(episode / name):
+                raise DispatchError(f"reviewed file changed after approval: {name}")
+        if visual_packet.get("status") != "LOCKED":
+            raise DispatchError("v2 visual packet must be LOCKED before image dispatch")
     if board.get("rows") != 2 or board.get("columns") != 2:
         raise DispatchError("master board must be 2x2")
     if not 1 <= attempt <= 2:
@@ -132,11 +146,29 @@ def compile_master_board_dispatch(
         geometry = slide.get("screen_geometry")
         geometry_text = f"; screen_geometry={json.dumps(geometry, ensure_ascii=False)}" if geometry else ""
         anatomy_text = _anatomy_contract_text(slide)
+        design_text = ""
+        if revision >= 2:
+            level = slide.get("background_level")
+            essential = slide.get("essential_background")
+            if level not in {"NONE", "SYMBOLIC", "LOCATION_ANCHOR", "FULL_SCENE"}:
+                raise DispatchError(f"{slide_id}: invalid background_level")
+            if not isinstance(essential, list):
+                raise DispatchError(f"{slide_id}: essential_background must be a list")
+            if level == "FULL_SCENE" and not str(slide.get("background_reason", "")).strip():
+                raise DispatchError(f"{slide_id}: FULL_SCENE requires background_reason")
+            face = str(slide.get("face_acting_intent", "")).strip()
+            emotion = str(slide.get("emotion_delta", "")).strip()
+            if not face or not emotion:
+                raise DispatchError(f"{slide_id}: v2 face acting fields are required")
+            design_text = (
+                f"; background_level={level}; essential_background={json.dumps(essential, ensure_ascii=False)}"
+                f"; face_acting_intent={face}; emotion_delta={emotion}"
+            )
         cell_lines.append(
             f"- {_cell_label(*position)} {slide_id}: shot={slide['shot']}; "
             f"action={slide['action']}; expression={slide['expression']}; "
             f"visual_owner={slide['visual_owner']}; beat={slide['beat']}; "
-            f"leave_text_space={slide['text_safe_region']}{geometry_text}{anatomy_text}"
+            f"leave_text_space={slide['text_safe_region']}{design_text}{geometry_text}{anatomy_text}"
         )
     for position in ((0, 0), (0, 1), (1, 0), (1, 1)):
         if position not in occupied:
@@ -149,18 +181,31 @@ def compile_master_board_dispatch(
     palette = ", ".join(str(x) for x in visual_packet.get("palette", [])) or "follow the bound references"
     line_grammar = "; ".join(str(x) for x in visual_packet.get("line_grammar", [])) or "follow the bound references"
     reject = "; ".join(str(x) for x in visual_packet.get("reject_traits", []))
+    style_dimensions = "; ".join(str(x) for x in visual_packet.get("style_match_dimensions", []))
+    characters = visual_packet.get("characters", [])
+    cast_line = ""
+    if revision >= 2:
+        if not isinstance(characters, list):
+            raise DispatchError("visual packet characters must be a list")
+        cast_line = (
+            f"Target cast has exactly {len(characters)} episode characters defined by the visual packet. "
+            "Do not copy people or identities visible in style references unless a character entry explicitly binds that identity."
+        )
 
     prompt = "\n".join(
         [
             "Create one TEXT-FREE 2x2 storyboard master board for a Korean Instagram comic.",
+            cast_line,
             "All four cells are portrait 4:5 with clean straight gutters. Draw the occupied cells as one coherent episode in the same visual hand.",
+            "Use the LOWEST-SUFFICIENT background in each cell. Omit decorative furniture, plants, wall art, lamps, shelves, appliances, packaging, and texture unless the cell explicitly declares them story-bearing or location-essential. Empty space is valid.",
             "The attached images are binding visual references with separate roles:",
             *reference_lines,
             f"Palette: {palette}.",
             f"Line/shape behavior: {line_grammar}.",
+            f"Style-match dimensions that must all agree with the references: {style_dimensions or 'line, face/eye grammar, proportion, hair massing, shading, texture, detail budget'}. Palette match alone is not a style PASS.",
             "Cells:",
             *cell_lines,
-            "Preserve recurring identity, clothing, palette, location facts, object states, and drawing language across cells, while making each framing and body action serve its own beat.",
+            "Preserve only declared recurring identity, clothing, palette, story-bearing location anchors, object states, and drawing language across cells. Do not preserve decorative background clutter. Make each framing, expression, and body action serve its own beat; when emotion_delta changes, visible face acting must change rather than reusing a near-identical face render.",
             "Do not add titles, dialogue, captions, speech bubbles, letters, numerals, logos, watermarks, panel labels, or readable UI text.",
             f"Reject: {reject}.",
             "Return exactly one master-board image and nothing else inside the image.",
