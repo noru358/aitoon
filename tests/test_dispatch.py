@@ -105,6 +105,16 @@ class DispatchTests(unittest.TestCase):
         self.assertIn("TEXT-FREE", dispatch["prompt"])
         self.assertIn("anatomy_contract=", dispatch["prompt"])
         self.assertIn("extra limb", dispatch["prompt"])
+        runtime = dispatch["runtime_attachment"]
+        self.assertTrue(runtime["preflight_required_before_execute"])
+        self.assertEqual(runtime["source_authority"], "REPOSITORY_REGISTRY_SHA256")
+        self.assertEqual(runtime["carrier_scope"], "SESSION_ONLY")
+        self.assertEqual(runtime["preferred_carrier"], "REPOSITORY_DIRECT")
+        self.assertIn("CURRENT_SESSION_ATTACHMENT", runtime["fallback_carriers"])
+        self.assertTrue(runtime["fallback_only_after_direct_runtime_bridge_unavailable"])
+        self.assertTrue(runtime["revalidate_after_session_or_surface_change"])
+        self.assertTrue(runtime["attachment_does_not_reset_episode_or_stage"])
+        self.assertFalse(runtime["opaque_runtime_handle_is_reference_authority"])
         self.assertTrue(output.is_file())
 
     def test_reference_hash_mismatch_fails_closed(self) -> None:
