@@ -1,17 +1,33 @@
 {
   "schema_version": "1.0",
   "episode_id": "REPLACE_ME",
+  "status": "DRAFT_UNBOUND",
   "references": [],
   "characters": [],
   "palette": [],
   "line_grammar": [],
   "shape_grammar": [],
+  "style_match_dimensions": [
+    "LINE_GRAMMAR",
+    "EYE_FACE_GRAMMAR",
+    "HEAD_BODY_PROPORTION",
+    "HAIR_MASSING",
+    "SHADING_DENSITY",
+    "TEXTURE",
+    "DETAIL_BUDGET"
+  ],
+  "background_policy": {
+    "strategy": "LOWEST_SUFFICIENT",
+    "decorative_assets_default": "OMIT",
+    "note": "Use only story-bearing or location-essential background cues declared in storyboard.json."
+  },
   "reject_traits": [
     "generic glossy anime or webtoon beautification",
     "detailed irises and shiny hair",
     "cinematic depth of field or lighting",
     "global beige wash",
-    "uniform lead-like extras"
+    "uniform lead-like extras",
+    "reference-character identity copied into an episode-local character"
   ],
   "reference_registry": "references/registry.json",
   "reference_selection": {
