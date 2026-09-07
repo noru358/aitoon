@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "board_id": "B01",
+  "dispatch_id": "E002-B01-MASTER-A1",
+  "status": "FAIL",
+  "inspected": [
+    {
+      "path": "episodes/E002/boards/B01.master.png",
+      "sha256": "125b76fc2cdb9d65b5f0337e7f32ef37a6554edb508682b13b74ad8e994a91ad",
+      "dimensions": [
+        1144,
+        1375
+      ],
+      "actual_pixels": true,
+      "runtime_gen_id": "4dba741c-0d87-4bdd-a60a-4855dab9c9b7"
+    }
+  ],
+  "checks": {
+    "output_contract": "FAIL: 2x2 grid exists, but baked Latin 'Z' sleep marks appear in S04; art must contain no letters or readable UI.",
+    "style_and_identity": "FAIL: the board copies the three recurring reference characters instead of authoring one distinct episode-local girlfriend and one distinct episode-local boyfriend.",
+    "anatomy_and_contact": "NOT_OWNING_FAILURE: visible limbs are mostly plausible, but the requested jeans/phone/washing contacts were not rendered, so the declared anatomy contracts were not exercised.",
+    "shot_meaning": "FAIL: none of the four locked denim/laundry beats is present; the board instead shows the reference trio socializing around a coffee table.",
+    "continuity": "FAIL: the story-bearing jeans do not appear and the required stained/dry -> researched -> wet hand-wash -> dry folded state sequence is absent.",
+    "camera_bias": "FAIL: all four panels reuse essentially the same living-room frontal group staging rather than beat-serving S01-S04 cameras."
+  },
+  "routing": {
+    "action": "RETRY_WHOLE_BOARD",
+    "whole_board_retry_used": false,
+    "isolated_repair_required": false,
+    "retry_budget_remaining": 1
+  },
+  "root_cause": "Board-wide semantic/cast failure. The visual references dominated the image call while the locked target dispatch was not sufficiently surfaced to the current image runtime. Retry must preserve the same locked story and reference authority while making target-only cell semantics explicit."
+}
