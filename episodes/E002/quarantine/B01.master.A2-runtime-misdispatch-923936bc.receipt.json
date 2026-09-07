@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "board_id": "B01",
+  "intended_dispatch": "E002-B01-MASTER-A2",
+  "status": "REJECTED_TOOL_MISDISPATCH",
+  "runtime_gen_id": "923936bc-7fb8-4afd-b674-40acf7ca19cc",
+  "runtime_file_name": "a_wide_landscape_infographic_slide_screenshot_in.png",
+  "sha256": "6e954c1ee09119870976a38ec9c3c040243025580126b738ebe46a31abd957d6",
+  "size_bytes": 1682962,
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "actual_pixels_inspected": true,
+  "finding": "The built-in image runtime returned an AITOON kanban/completion infographic rather than the compiled E002 two-character denim/laundry 2x2 master board. No E002 story beat, jeans state sequence, or episode-local couple appears. The output is rejected and must not be reused.",
+  "repository_binary_persisted": false,
+  "persistence_note": "The current execution surface exposes the generated binary in the ChatGPT runtime but provides no direct binary handoff from that image-runtime file into the GitHub connector. Hash, dimensions, runtime generation id, and actual-pixel QC are persisted in this receipt; the output remains ineligible for any production or reference use.",
+  "retry_budget_effect": "DOES_NOT_CONSUM_WHOLE_BOARD_RETRY_BUDGET",
+  "recorded_at": "2026-09-07T16:45:00Z"
+}
