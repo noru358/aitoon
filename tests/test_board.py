@@ -105,16 +105,67 @@ class BoardTests(unittest.TestCase):
             receipt = pack_runtime_sheet(
                 sheet_path, plan_path, dispatch_path, output_path, 1080, 1350
             )
-            self.assertEqual((receipt["width"], receipt["height"]), (2180, 2720))
+            self.assertEqual((receipt["width"], receipt["height"]), (820, 1020))
+            self.assertEqual((receipt["cell_width"], receipt["cell_height"]), (400, 500))
+            self.assertTrue(receipt["direct_split_4x5_eligible"])
             with Image.open(output_path) as image:
-                self.assertEqual(image.size, (2180, 2720))
+                self.assertEqual(image.size, (820, 1020))
                 red = Image.new("RGB", (1, 1), "red").getpixel((0, 0))
                 green = Image.new("RGB", (1, 1), "green").getpixel((0, 0))
                 white = Image.new("RGB", (1, 1), "white").getpixel((0, 0))
-                self.assertEqual(image.getpixel((540, 675)), red)
-                self.assertEqual(image.getpixel((1640, 675)), green)
-                self.assertEqual(image.getpixel((540, 2045)), white)
-                self.assertEqual(image.getpixel((1640, 2045)), white)
+                self.assertEqual(image.getpixel((200, 250)), red)
+                self.assertEqual(image.getpixel((620, 250)), green)
+                self.assertEqual(image.getpixel((200, 770)), white)
+                self.assertEqual(image.getpixel((620, 770)), white)
+
+
+    def test_pack_non_4x5_runtime_sheet_preserves_pixels_and_routes_expansion(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_name:
+            root = Path(temp_name)
+            # Equal 1x2 cells, but each cell is 600x500 (not 4:5).
+            sheet = Image.new("RGB", (1220, 500), "white")
+            sheet.paste("red", (0, 0, 600, 500))
+            sheet.paste("green", (620, 0, 1220, 500))
+            sheet_path = root / "sheet.png"
+            sheet.save(sheet_path)
+            plan = {
+                "schema_version": "1.0",
+                "episode_id": "E001",
+                "board_id": "B01",
+                "rows": 2,
+                "columns": 2,
+                "outer_margin_px": 0,
+                "gutter_px": 20,
+                "cells": [
+                    {"slide_id": "S01", "row": 0, "column": 0, "intent": "one"},
+                    {"slide_id": "S02", "row": 0, "column": 1, "intent": "two"}
+                ]
+            }
+            dispatch = {
+                "schema_version": "1.0",
+                "runtime_sheet": {
+                    "strategy": "NATURAL_OCCUPANCY",
+                    "rows": 1,
+                    "columns": 2,
+                    "cell_count": 2,
+                    "cells": [
+                        {"slide_id": "S01", "runtime_row": 0, "runtime_column": 0, "canonical_row": 0, "canonical_column": 0},
+                        {"slide_id": "S02", "runtime_row": 0, "runtime_column": 1, "canonical_row": 0, "canonical_column": 1}
+                    ],
+                    "generator_empty_cells_forbidden": True,
+                    "pack_to_canonical_2x2": True
+                }
+            }
+            plan_path = root / "plan.json"
+            dispatch_path = root / "dispatch.json"
+            output_path = root / "canonical.png"
+            plan_path.write_text(json.dumps(plan), encoding="utf-8")
+            dispatch_path.write_text(json.dumps(dispatch), encoding="utf-8")
+            receipt = pack_runtime_sheet(sheet_path, plan_path, dispatch_path, output_path)
+            self.assertEqual((receipt["cell_width"], receipt["cell_height"]), (600, 500))
+            self.assertFalse(receipt["direct_split_4x5_eligible"])
+            with self.assertRaises(BoardError):
+                split_master_board(output_path, plan_path, root / "art")
 
     def test_reject_non_4x5_cells(self) -> None:
         with tempfile.TemporaryDirectory() as temp_name:
