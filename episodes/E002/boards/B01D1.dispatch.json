@@ -18,8 +18,8 @@
     }
   ],
   "attempt": 1,
-  "status": "READY",
-  "eligible_for_execution": true,
+  "status": "WAITING_RETRY",
+  "eligible_for_execution": false,
   "runtime_attachment": {
     "preflight_required_before_execute": true,
     "source_authority": "REPOSITORY_REGISTRY_SHA256",
@@ -33,5 +33,11 @@
     "revalidate_after_session_or_surface_change": true,
     "attachment_does_not_reset_episode_or_stage": true,
     "opaque_runtime_handle_is_reference_authority": false
+  },
+  "runtime_fault_evidence": {
+    "stable_app_handle": "image_gen:8df5e643-7a44-4f35-a672-3b6e2e84a50d",
+    "sha256": "ae203c506ea214c836239d7a98519453c1488f336dba9f172b7b180f9109509b",
+    "qc_path": "episodes/E002/qc/B01D1.runtime-misdispatch.json",
+    "receipt_path": "episodes/E002/quarantine/B01D1.runtime-misdispatch.receipt.json"
   }
 }
