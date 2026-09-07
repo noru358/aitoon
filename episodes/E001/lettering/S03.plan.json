@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "slide_id": "S03",
+  "base_art": {"path": "episodes/E001/art/S03.png", "sha256": "2f633eaec812e6f3f5174e68a7877b848fe8db492de5e56ad5918043d7d6f329"},
+  "canvas": {"width": 1080, "height": 1350},
+  "font": {"path": "assets/fonts/NotoSansKR-Regular.woff2", "sha256": "d1bf8649914a4fe9477a8735bf056383e44e466141fb3d61897252e06d900c1a"},
+  "elements": [
+    {
+      "id": "speech_harin", "role": "SPEECH", "text": "지금! 지금!",
+      "box": {"x": 35, "y": 40, "width": 400, "height": 135},
+      "align": "center", "font_size": 48, "fill": "#111111",
+      "bubble": {"fill": "#FFFFFF", "outline": "#111111", "outline_width": 4, "radius": 32, "padding": 22, "tail_tip": {"x": 300, "y": 255}}
+    },
+    {
+      "id": "speech_clerk", "role": "SPEECH", "text": "노노, 시엔짜이!",
+      "box": {"x": 570, "y": 40, "width": 470, "height": 135},
+      "align": "center", "font_size": 45, "fill": "#111111",
+      "bubble": {"fill": "#FFFFFF", "outline": "#111111", "outline_width": 4, "radius": 32, "padding": 22, "tail_tip": {"x": 820, "y": 255}}
+    }
+  ]
+}

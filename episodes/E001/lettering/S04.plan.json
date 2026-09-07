@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "slide_id": "S04",
+  "base_art": {"path": "episodes/E001/art/S04.png", "sha256": "66a95350914263b1c67babc5388177465df9f23f847e218e927057d6b9816852"},
+  "canvas": {"width": 1080, "height": 1350},
+  "font": {"path": "assets/fonts/NotoSansKR-Regular.woff2", "sha256": "d1bf8649914a4fe9477a8735bf056383e44e466141fb3d61897252e06d900c1a"},
+  "elements": [
+    {
+      "id": "caption_1", "role": "CAPTION", "text": "대답 못 하고 도망침",
+      "box": {"x": 40, "y": 45, "width": 520, "height": 125},
+      "align": "center", "font_size": 44, "fill": "#111111",
+      "bubble": {"fill": "#FFFFFF", "outline": "#111111", "outline_width": 4, "radius": 30, "padding": 22}
+    },
+    {
+      "id": "landing_1", "role": "CAPTION", "text": "근데 맛은 있었음",
+      "box": {"x": 610, "y": 1125, "width": 425, "height": 125},
+      "align": "center", "font_size": 44, "fill": "#111111",
+      "bubble": {"fill": "#FFFFFF", "outline": "#111111", "outline_width": 4, "radius": 30, "padding": 22}
+    }
+  ]
+}

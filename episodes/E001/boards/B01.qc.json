@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E001",
+  "board_id": "B01",
+  "dispatch_id": "E001-B01-MASTER-A1",
+  "status": "PASS",
+  "inspected": [
+    {
+      "path": "episodes/E001/boards/B01.master.png",
+      "sha256": "aa1bdf78754d342e6f1d0cd9fc3249772a1b45c5c4936b83d7d2e44effc1332b",
+      "dimensions": [1122, 1402],
+      "actual_pixels": true
+    }
+  ],
+  "checks": {
+    "output_contract": "PASS: clean text-free 2x2 board; four occupied portrait cells; no logos, labels or readable generated text",
+    "style_and_identity": "PASS: matches the user-approved A2 finish; Harin face, hair, cream cardigan and black pants remain stable",
+    "anatomy_and_contact": "PASS: cup transfer, two-handed clutch, pointing gesture, teaching finger, straw and walking pose are plausible",
+    "shot_meaning": "PASS: queue, question, coaching and embarrassed escape are visually distinct and preserve the locked beat order",
+    "continuity": "PASS: the same purple grape drink and cafe facts persist across all cells",
+    "camera_bias": "PASS: high oblique, profile two-shot, reverse three-quarter and exterior long shot provide story-serving variation"
+  },
+  "advisories": [
+    "The cafe clerk is rendered attractively, but the blue apron, rectangular face and episode-only role distinguish him from the recurring cast.",
+    "S04 approaches the camera diagonally rather than showing Harin's back; the shielded face and cafe behind her still communicate escape without changing the beat."
+  ],
+  "routing": {
+    "action": "SPLIT_BOARD",
+    "whole_board_retry_used": false,
+    "isolated_repair_required": false
+  }
+}

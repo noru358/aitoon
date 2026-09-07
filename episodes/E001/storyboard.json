@@ -4,152 +4,63 @@
   "slides": [
     {
       "slide_id": "S01",
-      "beat": "술이 묻은 청바지를 남자친구 집에 두고 가며 세탁기에 같이 돌려 달라고 가볍게 부탁한다.",
-      "state_delta": "청바지 착용 상태 -> 세탁이 필요한 청바지가 남자친구 집에 남고 부탁이 생김",
-      "visual_owner": "RELATIONSHIP",
-      "shot": "현관/거실 경계의 eye-level medium two-shot; 여자친구는 갈아입은 편한 옷 차림, 남자친구는 옆에 서 있고 청바지가 두 사람 사이의 시각적 초점",
-      "action": "여자친구가 술이 묻은 청바지를 빨래 바구니 쪽에 내려놓으며 가볍게 부탁하고, 남자친구는 별일 아니라는 듯 고개를 끄덕인다.",
-      "expression": "여자친구는 대수롭지 않은 표정, 남자친구는 편안한 수긍",
-      "screen_geometry": null,
-      "continuity_in": [
-        "동일한 익명 성인 한국인 커플",
-        "여자친구의 청바지에 술 얼룩이 생긴 상태",
-        "남자친구의 집"
-      ],
-      "continuity_out": [
-        "청바지는 남자친구 집에 남는다",
-        "남자친구가 세탁 부탁을 맡는다",
-        "여자친구는 갈아입은 편한 옷으로 귀가할 준비"
-      ],
-      "text_safe_region": "상단 좌측과 두 인물 머리 사이의 여백; 청바지와 손 동작은 가리지 않음",
-      "copy": [
-        {
-          "role": "DIALOGUE",
-          "speaker": "GF",
-          "text": "이거 그냥 세탁기에 같이 돌려줘."
-        }
-      ]
+      "beat": "After a visibly long wait, Harin finally receives a sealed purple grape drink at a very crowded Shanghai cafe counter.",
+      "state_delta": "empty hands and anticipation -> drink in hand and relief",
+      "visual_owner": "the drink being passed across the counter into Harin's hands",
+      "shot": "high oblique medium-wide from beside the pickup counter, showing the long queue receding behind Harin",
+      "action": "Harin accepts one clear cup of purple grape drink with both hands while exhausted customers wait behind her",
+      "gaze": "Harin looks only at the drink; clerk looks at Harin",
+      "expression": "Harin has small tired relief, not a broad beauty smile",
+      "props": ["one blank clear cup with purple grape drink", "plain pickup counter", "queue stanchion"],
+      "continuity_in": ["Harin wears cream cardigan, black wide pants and black sneakers", "crowded modern Shanghai cafe"],
+      "continuity_out": ["Harin now holds the drink", "she remains at the counter"],
+      "text_safe_region": "upper left, away from faces and the drink",
+      "silence_carries_beat": true
     },
     {
       "slide_id": "S02",
-      "beat": "혼자 남은 남자친구가 청바지와 휴대폰을 번갈아 보며 세탁법을 검색한다.",
-      "state_delta": "가벼운 부탁 -> 청바지를 망칠 수 있다는 걱정 때문에 세탁법을 따로 조사함",
-      "visual_owner": "ACTION",
-      "shot": "남자친구 뒤쪽 3/4 over-shoulder medium-close; 한 손에 청바지 허리 부분, 다른 손에 휴대폰, 시선은 휴대폰으로 향함",
-      "action": "남자친구가 청바지 상태를 확인한 뒤 휴대폰으로 세탁법을 찾아본다. 화면 내용은 관객에게 읽히지 않도록 한다.",
-      "expression": "사소한 일을 지나치게 진지하게 받아들인 집중/걱정",
-      "screen_geometry": {
-        "viewer_sees": "phone back edge and oblique non-readable glow only",
-        "character_sees": "phone front",
-        "meaning_bearing_ui_in_art": false
-      },
-      "continuity_in": [
-        "S01의 같은 청바지와 동일한 술 얼룩",
-        "여자친구는 이미 떠남",
-        "남자친구 집 내부"
-      ],
-      "continuity_out": [
-        "남자친구는 기계 세탁 대신 더 조심스러운 방법을 택한다",
-        "청바지는 아직 젖지 않은 세탁 전 상태"
-      ],
-      "text_safe_region": "상단 좌측 벽면 여백; 휴대폰과 청바지를 가리지 않음",
-      "copy": [],
-      "anatomy_contract": {
-        "risk_reason": "청바지와 휴대폰을 동시에 다루는 컷이라 모델이 턱 짚기 같은 제3의 손동작을 덧붙일 위험이 큼",
-        "limb_roles": [
-          "BF prop hand: 청바지만 잡는다",
-          "BF device hand: 휴대폰만 잡는다"
-        ],
-        "required_contacts": [
-          "BF 한 손 -> 청바지",
-          "BF 다른 한 손 -> 휴대폰"
-        ],
-        "forbidden_outcomes": [
-          "BF의 추가 팔 또는 손",
-          "턱이나 머리로 향하는 추가 self-touch 손동작",
-          "몸통이나 소매에 연결되지 않는 손",
-          "한 손이 서로 떨어진 두 위치를 동시에 점유"
-        ],
-        "simplification_fallback": "걱정과 집중은 눈썹, 시선, 고개 각도로 표현하고 양손은 각각 청바지와 휴대폰 역할만 유지한다."
-      }
+      "beat": "The clerk asks a simple question and Harin's prepared Chinese vanishes.",
+      "state_delta": "relieved -> frozen blank",
+      "visual_owner": "Harin's suddenly empty stare while clutching the drink",
+      "shot": "tight counter-level two-shot in profile, Harin left and clerk right, clearly different silhouettes",
+      "action": "clerk makes a small open-palm either-or gesture; Harin stops mid-turn with shoulders raised and cup held safely at chest height",
+      "gaze": "clerk looks at Harin; Harin looks at the clerk without responding",
+      "expression": "clerk politely questioning; Harin's eyes widen and mouth becomes a tiny uncertain line",
+      "props": ["same grape drink", "plain counter"],
+      "continuity_in": ["same clothing", "same cup", "same counter"],
+      "continuity_out": ["Harin has not moved or answered"],
+      "text_safe_region": "upper center between their heads; small thought space over Harin",
+      "silence_carries_beat": false
     },
     {
       "slide_id": "S03",
-      "beat": "남자친구가 세면대/대야에서 청바지를 직접 조심스럽게 손빨래한다.",
-      "state_delta": "검색만 함 -> 실제로 시간을 들여 손빨래함",
-      "visual_owner": "ACTION",
-      "shot": "욕실/세탁공간의 slightly high-angle medium-full; 몸통과 양손, 대야/세면대 속 청바지 접촉이 명확히 보이게",
-      "action": "남자친구가 맨손으로 청바지를 물에 담가 천천히 주무르며 손빨래한다. 출처에 없는 첨가물이나 특수 세탁법은 묘사하지 않는다.",
-      "expression": "진지하고 조심스러운 집중, 과장된 영웅 표정 금지",
-      "screen_geometry": null,
-      "continuity_in": [
-        "S02의 같은 청바지",
-        "동일한 남자친구 의상과 머리",
-        "남자친구 집"
-      ],
-      "continuity_out": [
-        "청바지는 손세탁 완료 후 건조 단계로 넘어갈 수 있는 젖은 상태",
-        "남자친구의 과잉 조심성이 행동으로 증명됨"
-      ],
-      "text_safe_region": "상단 우측 벽면 여백; 손-청바지-물 접촉 영역은 비워 둠",
-      "copy": []
+      "beat": "Harin repeats the Korean word '지금'; the amused but kind clerk turns it into an impromptu pronunciation lesson.",
+      "state_delta": "private panic -> public coaching loop",
+      "visual_owner": "contrasting gestures: Harin urgently points down-now while the clerk gently demonstrates pronunciation",
+      "shot": "slightly low three-quarter medium shot across the counter, reversing the prior flat profile",
+      "action": "Harin holds the drink in one hand and repeatedly points at the floor with the other; clerk raises one teaching finger and slowly shapes the word",
+      "gaze": "Harin pleads toward clerk; clerk meets her gaze",
+      "expression": "Harin desperate and flushed; clerk lightly amused, friendly, never mocking",
+      "props": ["same grape drink", "plain counter"],
+      "continuity_in": ["same positions and clothing", "same drink"],
+      "continuity_out": ["clerk expects Harin to repeat the corrected word"],
+      "text_safe_region": "two separate upper speech regions with clear speaker ownership",
+      "silence_carries_beat": false
     },
     {
       "slide_id": "S04",
-      "beat": "다음 방문, 남자친구가 말끔히 접은 청바지를 건네고 여자친구가 손빨래했다는 사실을 알아챈다.",
-      "state_delta": "평범하게 세탁됐을 거라 예상 -> 남자친구가 검색하고 손빨래까지 했음을 알고 귀여움이 터짐",
-      "visual_owner": "RELATIONSHIP",
-      "shot": "현관/거실의 eye-level medium two-shot이되 S01보다 가까운 거리; 막 건네받은 접힌 청바지와 여자친구 표정이 중심",
-      "action": "남자친구가 청바지를 건넨 직후, 여자친구가 완전히 마른 접힌 청바지를 두 손으로 들고 놀라 웃는다. 남자친구는 한 손을 뒤통수에 가볍게 대고 다른 손은 무릎이나 몸 옆에 둔다.",
-      "expression": "남자친구는 담담하고 약간 머쓱함, 여자친구는 순간 놀랐다가 참지 못하고 부드럽게 웃음",
-      "screen_geometry": null,
-      "continuity_in": [
-        "같은 커플과 같은 집",
-        "청바지는 세탁·건조가 끝난 동일 물건",
-        "시간이 다음 방문으로 이동"
-      ],
-      "continuity_out": [
-        "청바지는 여자친구에게 돌아감",
-        "여자친구는 남자친구의 과잉 배려를 귀엽게 받아들임"
-      ],
-      "text_safe_region": "상단 중앙과 좌측 여백; 두 얼굴과 청바지 전달 동작을 가리지 않음",
-      "copy": [
-        {
-          "role": "DIALOGUE",
-          "speaker": "GF",
-          "text": "이걸… 손빨래 했어?"
-        },
-        {
-          "role": "DIALOGUE",
-          "speaker": "BF",
-          "text": "혹시 망가질까 봐."
-        },
-        {
-          "role": "CAPTION",
-          "speaker": "GF",
-          "text": "그냥 세탁기에 돌려도 되는데…"
-        }
-      ],
-      "anatomy_contract": {
-        "risk_reason": "소품 전달과 머쓱한 self-touch를 같은 순간에 겹치면 남자친구의 손과 팔이 중복 생성되기 쉬움",
-        "limb_roles": [
-          "GF both hands: 이미 건네받은 접힌 청바지를 든다",
-          "BF expressive hand: 뒤통수에 가볍게 닿는다",
-          "BF resting hand: 무릎 또는 몸 옆에 둔다"
-        ],
-        "required_contacts": [
-          "GF 두 손 -> 접힌 청바지",
-          "BF 한 손 -> 뒤통수",
-          "BF 다른 손 -> 무릎 또는 몸 옆"
-        ],
-        "forbidden_outcomes": [
-          "BF가 청바지를 추가로 잡는 접촉",
-          "BF의 추가 팔 또는 손",
-          "몸통이나 소매에 연결되지 않는 손",
-          "여러 손이 작은 청바지 가장자리에 과밀하게 몰리는 구도"
-        ],
-        "simplification_fallback": "전달 직후의 순간으로 고정한다. 여자친구가 청바지를 이미 소유하고 남자친구는 머쓱한 제스처만 남긴다."
-      }
+      "beat": "Outside the cafe, Harin speed-walks away, then drinks through the straw without looking back.",
+      "state_delta": "frozen at lesson -> escaped with dignity abandoned but drink secured",
+      "visual_owner": "Harin's retreating full body and satisfied sip",
+      "shot": "exterior night long shot from cafe doorway, Harin moving diagonally away in full body with the cafe behind",
+      "action": "Harin hurries away with one hand holding the drink and takes a stubborn sip through the straw; free hand shields the side of her face",
+      "gaze": "down at the drink, never back at the cafe",
+      "expression": "embarrassed, cheeks warm, but visibly pleased by the taste",
+      "props": ["same grape drink with straw", "blank cafe facade"],
+      "continuity_in": ["same clothing", "same drink", "night outside the same cafe"],
+      "continuity_out": ["episode ends outside with drink intact"],
+      "text_safe_region": "upper left and lower right, clear of face and cup",
+      "silence_carries_beat": false
     }
   ]
 }

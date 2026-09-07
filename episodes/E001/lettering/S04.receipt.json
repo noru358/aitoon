@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "slide_id": "S04",
+  "plan_path": "episodes/E001/lettering/S04.plan.json",
+  "plan_sha256": "a0ccb6633390e0c59aa2842dd88145ae4a51d5642f28fa90468ce2e07758b6e9",
+  "base_art_sha256": "66a95350914263b1c67babc5388177465df9f23f847e218e927057d6b9816852",
+  "font_sha256": "d1bf8649914a4fe9477a8735bf056383e44e466141fb3d61897252e06d900c1a",
+  "output_path": "episodes/E001/final/S04.png",
+  "output_sha256": "63bcf440a9526ff9074ae9092c7a864313b0999d4f25d5d63ab6b229e6ac6b78",
+  "text": [
+    "대답 못 하고 도망침",
+    "근데 맛은 있었음"
+  ]
+}

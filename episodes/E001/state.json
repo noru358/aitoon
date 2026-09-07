@@ -1,43 +1,241 @@
 {
   "schema_version": "1.0",
   "episode_id": "E001",
-  "title": "그냥 세탁기에 돌려도 되는데",
+  "title": "지금! 지금!",
   "slide_count": 4,
-  "stage": "STORYBOARD_LOCK",
-  "run_status": "ACTIVE",
+  "stage": "DONE",
+  "run_status": "DONE",
   "blocked": null,
-  "exact_next_action": "Resolve the production-eligible D/E entries from references/registry.json, retrieve and inspect their actual repository bytes, bind the minimum sufficient set in episodes/E001/visual_packet.json with path/SHA-256/role/allowed_influence/forbidden_inference, and advance exactly to VISUAL_PACKET_LOCK. Do not generate B01 until those actual bytes are bound.",
+  "exact_next_action": "Publish the four ordered export slides or initialize E002 from a new traceable Korean human story seed.",
   "stage_history": [
     {
-      "at": "2026-09-07T09:36:09Z",
+      "at": "2026-09-07T09:03:11+00:00",
       "from": null,
       "to": "BOOTSTRAP",
-      "evidence": "Fresh publishable E001 initialized from CURRENT_STATE exact next action with GPT_APP_BOARD_FIRST_V1 locked as production default."
+      "evidence": "episode package initialized"
     },
     {
-      "at": "2026-09-07T09:36:09Z",
+      "at": "2026-09-07T09:06:13+00:00",
       "from": "BOOTSTRAP",
       "to": "SOURCE_LOCK",
-      "evidence": "Locked a direct Korean TeamBlind human-authored romance post dated 2025-02-24; URL, observed facts, uncertainty, short wording fragment and adaptation scope recorded in source.md."
+      "evidence": "Direct anonymous Theqoo post captured with URL, date, observed facts, uncertainty and copyright-safe adaptation boundary."
     },
     {
-      "at": "2026-09-07T09:36:09Z",
+      "at": "2026-09-07T09:06:13+00:00",
       "from": "SOURCE_LOCK",
       "to": "STORY_LOCK",
-      "evidence": "Locked a four-beat copyright-safe adaptation preserving the stained-denim, casual laundry request, online research, hand-wash and cute-discovery state changes without inventing an exact washing recipe."
+      "evidence": "Four state-changing beats and concise source-derived dialogue locked in story.md."
     },
     {
-      "at": "2026-09-07T09:36:09Z",
+      "at": "2026-09-07T09:06:13+00:00",
       "from": "STORY_LOCK",
       "to": "STORYBOARD_LOCK",
-      "evidence": "Locked four slide contracts with state deltas, distinct beat-serving camera choices, physical actions, expressions, continuity, phone geometry, text-safe regions and post-art copy."
+      "evidence": "Four distinct shots with action, gaze, props, continuity and text-safe regions locked in storyboard.json."
     },
     {
-      "at": "2026-09-07T10:26:00Z",
+      "at": "2026-09-07T09:06:14+00:00",
       "from": "STORYBOARD_LOCK",
-      "to": "STORYBOARD_LOCK",
-      "evidence": "resumed WAITING_REQUIRED_BYTES after reference-policy correction: the required D/E bytes already exist in-repository; user/project designation is sufficient production provenance, independent authorship verification is recorded separately, and repository retrieval must be attempted before any missing-bytes block."
+      "to": "VISUAL_PACKET_LOCK",
+      "evidence": "Three inspected repository references hash-bound with explicit allowed and forbidden influence."
+    },
+    {
+      "at": "2026-09-07T09:06:14+00:00",
+      "from": "VISUAL_PACKET_LOCK",
+      "to": "BOARD_DISPATCH_READY",
+      "evidence": "E001-B01-MASTER-A1 compiled from locked storyboard, board plan and three hash-verified reference files."
+    },
+    {
+      "at": "2026-09-07T09:09:26+00:00",
+      "from": "BOARD_DISPATCH_READY",
+      "to": "MASTER_BOARD_IMPORTED",
+      "evidence": "Generated B01.master.png copied from built-in image generation and SHA-256 registered."
+    },
+    {
+      "at": "2026-09-07T09:09:26+00:00",
+      "from": "MASTER_BOARD_IMPORTED",
+      "to": "MASTER_BOARD_QC",
+      "evidence": "B01.qc.json records actual-pixel PASS for style, identity, anatomy/contact, story meaning and shot variation."
+    },
+    {
+      "at": "2026-09-07T09:11:59+00:00",
+      "from": "MASTER_BOARD_QC",
+      "to": "SLIDES_EXPANDED",
+      "evidence": "B01 split manifest produced four hash-registered 1080x1350 art files."
+    },
+    {
+      "at": "2026-09-07T09:11:59+00:00",
+      "from": "SLIDES_EXPANDED",
+      "to": "ART_SEQUENCE_QC",
+      "evidence": "qc/art_sequence.json records actual-pixel PASS for all four separate slides."
+    },
+    {
+      "at": "2026-09-07T10:22:27+00:00",
+      "from": "ART_SEQUENCE_QC",
+      "to": "LETTERING_COMPLETE",
+      "evidence": "Four hash-bound lettering plans rendered; actual final pixels inspected; wording, tails, spacing and occlusion passed."
+    },
+    {
+      "at": "2026-09-07T10:22:27+00:00",
+      "from": "LETTERING_COMPLETE",
+      "to": "FINAL_QC",
+      "evidence": "qc/final.json records actual-pixel PASS for wording, speaker ownership, reading order, edge safety, rhythm and landing."
+    },
+    {
+      "at": "2026-09-07T10:22:28+00:00",
+      "from": "FINAL_QC",
+      "to": "EXPORT_READY",
+      "evidence": "export/manifest.json binds four ordered 1080x1350 files whose hashes match the final PASS slides."
+    },
+    {
+      "at": "2026-09-07T10:22:29+00:00",
+      "from": "EXPORT_READY",
+      "to": "DONE",
+      "evidence": "All source, story, board, art, lettering, final QC and export evidence validated; four export files present."
     }
   ],
-  "artifacts": []
+  "artifacts": [
+    {
+      "artifact_id": "A0001",
+      "role": "MASTER_BOARD",
+      "path": "episodes/E001/boards/B01.master.png",
+      "sha256": "aa1bdf78754d342e6f1d0cd9fc3249772a1b45c5c4936b83d7d2e44effc1332b",
+      "size_bytes": 1985903,
+      "width": 1122,
+      "height": 1402,
+      "producing_dispatch": "E001-B01-MASTER-A1",
+      "registered_at": "2026-09-07T09:09:26+00:00"
+    },
+    {
+      "artifact_id": "A0002",
+      "role": "ART_SLIDE",
+      "path": "episodes/E001/art/S01.png",
+      "sha256": "5eddf660f986a23106893ab1dc35389f527db7e294f79084b61643cc9c3d0e54",
+      "size_bytes": 1285618,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "E001-B01-MASTER-A1",
+      "registered_at": "2026-09-07T09:11:58+00:00"
+    },
+    {
+      "artifact_id": "A0003",
+      "role": "ART_SLIDE",
+      "path": "episodes/E001/art/S02.png",
+      "sha256": "6ab0d51e37d182200353023dae2e6bfb759d5a9ce7400a8dbe65b27b9af2b56f",
+      "size_bytes": 1202088,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "E001-B01-MASTER-A1",
+      "registered_at": "2026-09-07T09:11:58+00:00"
+    },
+    {
+      "artifact_id": "A0004",
+      "role": "ART_SLIDE",
+      "path": "episodes/E001/art/S03.png",
+      "sha256": "2f633eaec812e6f3f5174e68a7877b848fe8db492de5e56ad5918043d7d6f329",
+      "size_bytes": 1216391,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "E001-B01-MASTER-A1",
+      "registered_at": "2026-09-07T09:11:58+00:00"
+    },
+    {
+      "artifact_id": "A0005",
+      "role": "ART_SLIDE",
+      "path": "episodes/E001/art/S04.png",
+      "sha256": "66a95350914263b1c67babc5388177465df9f23f847e218e927057d6b9816852",
+      "size_bytes": 1131373,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "E001-B01-MASTER-A1",
+      "registered_at": "2026-09-07T09:11:59+00:00"
+    },
+    {
+      "artifact_id": "A0006",
+      "role": "FINAL_SLIDE",
+      "path": "episodes/E001/final/S01.png",
+      "sha256": "6f010fc0f5fb8cde1335c5283ff80a91a2727e7e4c7c8244fad3e29b9e6e30db",
+      "size_bytes": 1243727,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "DETERMINISTIC_LETTERING",
+      "registered_at": "2026-09-07T10:22:26+00:00"
+    },
+    {
+      "artifact_id": "A0007",
+      "role": "FINAL_SLIDE",
+      "path": "episodes/E001/final/S02.png",
+      "sha256": "7bd3a429e9e28054f2c75000a187dcd751c1bcf4e742871d507937e885947364",
+      "size_bytes": 1166799,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "DETERMINISTIC_LETTERING",
+      "registered_at": "2026-09-07T10:22:26+00:00"
+    },
+    {
+      "artifact_id": "A0008",
+      "role": "FINAL_SLIDE",
+      "path": "episodes/E001/final/S03.png",
+      "sha256": "70598e850daf37674e197c76d84726c1735c7dc08075423988f0035ba3324e77",
+      "size_bytes": 1151078,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "DETERMINISTIC_LETTERING",
+      "registered_at": "2026-09-07T10:22:26+00:00"
+    },
+    {
+      "artifact_id": "A0009",
+      "role": "FINAL_SLIDE",
+      "path": "episodes/E001/final/S04.png",
+      "sha256": "63bcf440a9526ff9074ae9092c7a864313b0999d4f25d5d63ab6b229e6ac6b78",
+      "size_bytes": 1077137,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "DETERMINISTIC_LETTERING",
+      "registered_at": "2026-09-07T10:22:27+00:00"
+    },
+    {
+      "artifact_id": "A0010",
+      "role": "EXPORT_SLIDE",
+      "path": "episodes/E001/export/S01.png",
+      "sha256": "6f010fc0f5fb8cde1335c5283ff80a91a2727e7e4c7c8244fad3e29b9e6e30db",
+      "size_bytes": 1243727,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "DETERMINISTIC_EXPORT",
+      "registered_at": "2026-09-07T10:22:27+00:00"
+    },
+    {
+      "artifact_id": "A0011",
+      "role": "EXPORT_SLIDE",
+      "path": "episodes/E001/export/S02.png",
+      "sha256": "7bd3a429e9e28054f2c75000a187dcd751c1bcf4e742871d507937e885947364",
+      "size_bytes": 1166799,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "DETERMINISTIC_EXPORT",
+      "registered_at": "2026-09-07T10:22:27+00:00"
+    },
+    {
+      "artifact_id": "A0012",
+      "role": "EXPORT_SLIDE",
+      "path": "episodes/E001/export/S03.png",
+      "sha256": "70598e850daf37674e197c76d84726c1735c7dc08075423988f0035ba3324e77",
+      "size_bytes": 1151078,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "DETERMINISTIC_EXPORT",
+      "registered_at": "2026-09-07T10:22:28+00:00"
+    },
+    {
+      "artifact_id": "A0013",
+      "role": "EXPORT_SLIDE",
+      "path": "episodes/E001/export/S04.png",
+      "sha256": "63bcf440a9526ff9074ae9092c7a864313b0999d4f25d5d63ab6b229e6ac6b78",
+      "size_bytes": 1077137,
+      "width": 1080,
+      "height": 1350,
+      "producing_dispatch": "DETERMINISTIC_EXPORT",
+      "registered_at": "2026-09-07T10:22:28+00:00"
+    }
+  ]
 }

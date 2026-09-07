@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "slide_id": "S01",
+  "plan_path": "episodes/E001/lettering/S01.plan.json",
+  "plan_sha256": "dcf3962fef87ed6721187b8b233d418196c564fe25877c41e7fe9ba5f9e0a9b5",
+  "base_art_sha256": "5eddf660f986a23106893ab1dc35389f527db7e294f79084b61643cc9c3d0e54",
+  "font_sha256": "d1bf8649914a4fe9477a8735bf056383e44e466141fb3d61897252e06d900c1a",
+  "output_path": "episodes/E001/final/S01.png",
+  "output_sha256": "6f010fc0f5fb8cde1335c5283ff80a91a2727e7e4c7c8244fad3e29b9e6e30db",
+  "text": [
+    "한 시간 기다려서 겨우 받음"
+  ]
+}

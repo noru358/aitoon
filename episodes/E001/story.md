@@ -1,23 +1,30 @@
 # Story lock
 
-- Premise: 여자친구는 술이 묻은 청바지를 남자친구 집에 두고 "세탁기에 같이 돌려줘" 정도로 가볍게 부탁한다. 남자친구는 혹시 망가뜨릴까 봐 인터넷을 찾아본 뒤 혼자 조심스럽게 손빨래해 둔다.
-- Emotional engine: 부탁한 사람에게는 사소한 집안일인데, 부탁받은 사람에게는 상대 물건을 망치면 안 된다는 과한 조심성이 된다. 그 불균형 자체가 애정으로 읽히는 순간이 웃음과 설렘을 만든다.
-- Specific details preserved: 술이 묻은 바지, 남자친구 집에 두고 감, 같이 세탁해 달라는 가벼운 부탁, 청바지라는 점, 인터넷 검색, 손빨래, 다음 방문에서 세탁된 옷을 발견함.
-- Landing type: 과잉 배려를 뒤늦게 알아차리고 혼자 웃게 되는 달달한 관찰형 엔딩.
-- What must not be invented: 정확한 세탁 레시피나 첨가물, 등장인물의 이름/나이/직업, 브랜드, 집 구조, 원문에 없는 갈등, 남자친구의 정확한 실제 발언.
+- Premise: In a crowded Shanghai cafe, Harin knows the answer until a real clerk asks the question.
+- Emotional engine: tiny language panic escalating because both people sincerely try to help.
+- Specific details preserved: one-hour wait, grape drink, sudden blank, repeated Korean "지금", clerk's "시엔짜이" correction, silent escape, drink tastes good.
+- Landing type: embarrassed retreat followed by a mundane taste verdict.
+- What must not be invented: cruelty, fluent conversation, romance, conflict, dropped drink, or a triumphant language-learning ending.
 
 ## Beats
 
 | # | Beat | State before | State after | Reader question |
 |---:|---|---|---|---|
-| 1 | 술이 묻은 청바지를 남자친구 집에 두고 가며 세탁기에 같이 돌려 달라고 가볍게 부탁한다. | 청바지는 입고 있던 옷이며 세탁 계획이 없다. | 청바지가 남자친구에게 맡겨지고 세탁 부탁이 생긴다. | 진짜 그냥 세탁기에 넣을까? |
-| 2 | 혼자 남은 남자친구가 청바지와 휴대폰을 번갈아 보며 세탁법을 검색한다. | 단순한 세탁 부탁이다. | 그는 '잘못 빨면 망가질 수 있다'고 과하게 신경 쓰기 시작한다. | 얼마나 진지하게 할 건데? |
-| 3 | 남자친구가 세면대/대야에서 청바지를 직접 조심조심 주무르며 손빨래한다. | 기계 세탁이면 끝날 일이었다. | 시간이 드는 수작업으로 바뀐다. | 여자친구가 이걸 알면? |
-| 4 | 다음 방문, 남자친구가 말끔히 말려 접은 청바지를 건네고 여자친구가 손빨래했다는 사실을 알아챈다. | 여자친구는 평범하게 세탁됐을 것으로 생각한다. | '그냥 돌려도 됐는데 저걸 혼자 검색해가며 했구나'라는 상상이 생기며 귀여움으로 착지한다. | 이 과잉 배려를 어떻게 안 귀여워하지? |
+| 1 | Harin finally reaches the counter after a one-hour wait and receives the grape drink. | Tired but prepared | Relieved and holding the prize | Can she just leave now? |
+| 2 | The clerk asks a simple serving question in Chinese. Harin's rehearsed words disappear. | Knows a basic answer | Mind completely blank | What will come out of her mouth? |
+| 3 | Harin blurts "지금! 지금!" in Korean; the clerk gently coaches "시엔짜이!" | Trying to communicate | Accidentally enrolled in a pronunciation lesson | Will she repeat it? |
+| 4 | Harin freezes, bows, and speed-walks away with the drink; outside, she takes a sip. | Public embarrassment at maximum | Escaped; grape drink still excellent | None—the taste verdict is the landing. |
 
 ## Dialogue notes
 
-- Register: 짧고 일상적인 한국 연인 대화. 설명조/교훈조 금지.
-- Source-derived wording: 핵심 의미만 변형해 "그냥 세탁기에 돌려도 되는데…"로 사용 가능.
-- Deliberate silence: S02와 S03은 남자친구의 지나친 진지함 자체가 웃음이므로 대사를 최소화한다.
-- Removed AI-sounding lines: "사랑은 사소한 배려에서 시작된다", "그날 나는 다시 사랑에 빠졌다", "이게 바로 사랑인가 보다" 같은 정리형 문장 전부 금지.
+- Register: short Korean community/SNS speech; awkward fragments instead of explanatory narration.
+- Source-derived wording: "지금! 지금!" and "시엔짜이!" only.
+- Deliberate silence: Harin does not answer the lesson; the escape is visual.
+- Removed AI-sounding lines: no moral about courage, travel, communication, or growth.
+
+## Locked lettering copy
+
+- S01 caption: `한 시간 기다려서 겨우 받음`
+- S02 clerk: `포장해 드릴까요?` / Harin thought: `아는 말인데`
+- S03 Harin: `지금! 지금!` / clerk: `노노, 시엔짜이!`
+- S04 caption: `대답 못 하고 도망침` / landing: `근데 맛은 있었음`

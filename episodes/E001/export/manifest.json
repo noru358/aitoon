@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E001",
+  "title": "지금! 지금!",
+  "source_url": "https://theqoo.net/china/3476715206",
+  "files": [
+    {"order": 1, "path": "episodes/E001/export/S01.png", "sha256": "6f010fc0f5fb8cde1335c5283ff80a91a2727e7e4c7c8244fad3e29b9e6e30db", "width": 1080, "height": 1350},
+    {"order": 2, "path": "episodes/E001/export/S02.png", "sha256": "7bd3a429e9e28054f2c75000a187dcd751c1bcf4e742871d507937e885947364", "width": 1080, "height": 1350},
+    {"order": 3, "path": "episodes/E001/export/S03.png", "sha256": "70598e850daf37674e197c76d84726c1735c7dc08075423988f0035ba3324e77", "width": 1080, "height": 1350},
+    {"order": 4, "path": "episodes/E001/export/S04.png", "sha256": "63bcf440a9526ff9074ae9092c7a864313b0999d4f25d5d63ab6b229e6ac6b78", "width": 1080, "height": 1350}
+  ],
+  "qc_report": "episodes/E001/qc/final.json",
+  "status": "READY"
+}

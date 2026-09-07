@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "dispatch_id": "E001-B01-MASTER-A1",
+  "episode_id": "E001",
+  "target_id": "B01",
+  "operation": "GENERATE_MASTER_BOARD",
+  "prompt": "Create one TEXT-FREE 2x2 storyboard master board for a Korean Instagram comic.\nAll four cells are portrait 4:5 with clean straight gutters. Draw the occupied cells as one coherent episode in the same visual hand.\nThe attached images are binding visual references with separate roles:\n- user-approved dominant episode style and Harin continuity anchor: use only Harin identity, cream-and-black outfit, line finish, flat-color behavior, eye grammar, camera variety and background abstraction; never infer convenience-store story, water bottle, basket, shopping bags, exact poses, exact compositions or location\n- Harin identity sheet and person drawing-language support: use only Harin facial proportions, hair silhouette, clothing identity and restrained expression grammar; never infer other recurring leads, reference labels, reference poses or a three-person cast\n- human-scale interaction and indoor background abstraction support: use only shared person/background line language, body scale, simple furniture and restrained depth; never infer living room, seated pose, original cast identities, clothing, story or camera\nPalette: Harin cream #F3EFE5 and near-black #191919, muted blue-gray cafe fixtures, grape drink purple as the only saturated accent, night navy exterior, natural pale skin without yellow cast.\nLine/shape behavior: clean black outlines with modest hand-drawn variation; stable face and hair silhouette across all four cells; flat local color with restrained soft shading; more detail on hands, cup and gestures than on decor.\nCells:\n- TOP_LEFT S01: shot=high oblique medium-wide from beside the pickup counter, showing the long queue receding behind Harin; action=Harin accepts one clear cup of purple grape drink with both hands while exhausted customers wait behind her; expression=Harin has small tired relief, not a broad beauty smile; visual_owner=the drink being passed across the counter into Harin's hands; beat=After a visibly long wait, Harin finally receives a sealed purple grape drink at a very crowded Shanghai cafe counter.; leave_text_space=upper left, away from faces and the drink\n- TOP_RIGHT S02: shot=tight counter-level two-shot in profile, Harin left and clerk right, clearly different silhouettes; action=clerk makes a small open-palm either-or gesture; Harin stops mid-turn with shoulders raised and cup held safely at chest height; expression=clerk politely questioning; Harin's eyes widen and mouth becomes a tiny uncertain line; visual_owner=Harin's suddenly empty stare while clutching the drink; beat=The clerk asks a simple question and Harin's prepared Chinese vanishes.; leave_text_space=upper center between their heads; small thought space over Harin\n- BOTTOM_LEFT S03: shot=slightly low three-quarter medium shot across the counter, reversing the prior flat profile; action=Harin holds the drink in one hand and repeatedly points at the floor with the other; clerk raises one teaching finger and slowly shapes the word; expression=Harin desperate and flushed; clerk lightly amused, friendly, never mocking; visual_owner=contrasting gestures: Harin urgently points down-now while the clerk gently demonstrates pronunciation; beat=Harin repeats the Korean word '지금'; the amused but kind clerk turns it into an impromptu pronunciation lesson.; leave_text_space=two separate upper speech regions with clear speaker ownership\n- BOTTOM_RIGHT S04: shot=exterior night long shot from cafe doorway, Harin moving diagonally away in full body with the cafe behind; action=Harin hurries away with one hand holding the drink and takes a stubborn sip through the straw; free hand shields the side of her face; expression=embarrassed, cheeks warm, but visibly pleased by the taste; visual_owner=Harin's retreating full body and satisfied sip; beat=Outside the cafe, Harin speed-walks away, then drinks through the straw without looking back.; leave_text_space=upper left and lower right, clear of face and cup\nPreserve recurring identity, clothing, palette, location facts, object states, and drawing language across cells, while making each framing and body action serve its own beat.\nDo not add titles, dialogue, captions, speech bubbles, letters, numerals, logos, watermarks, panel labels, or readable UI text.\nReject: generic glossy anime or webtoon beautification; detailed irises and shiny hair; cinematic depth of field or lighting; global beige wash; uniform lead-like extras.\nReturn exactly one master-board image and nothing else inside the image.",
+  "bound_media": [
+    {
+      "path_or_handle": "calibration/B01.master.png",
+      "sha256": "c984a5840d73f2448172f25f78b62e6ad4fb0513eeb442a1302c0fe4c6789aeb",
+      "role": "user-approved dominant episode style and Harin continuity anchor"
+    },
+    {
+      "path_or_handle": "calibration/references/REF_V2_D_MAIN_CAST_GAEUN_HARIN_TAEMIN.jpeg",
+      "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
+      "role": "Harin identity sheet and person drawing-language support"
+    },
+    {
+      "path_or_handle": "calibration/references/REF_V2_E_3PERSON_INDOOR_SCENE.jpeg",
+      "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
+      "role": "human-scale interaction and indoor background abstraction support"
+    }
+  ],
+  "attempt": 1,
+  "status": "EXECUTED_PASS"
+}

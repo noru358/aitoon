@@ -6,8 +6,17 @@ Architecture: `GPT_APP_BOARD_FIRST_V1`
 
 ## Production default
 
-`GPT_APP_BOARD_FIRST_V1` is locked as the production default after the accepted
-board-first calibration.
+- canonical GPT-app-only production protocol;
+- zero-paid-fallback machine policy;
+- fail-closed episode state machine with retryable resource states;
+- hash-bound reference/dispatch compiler;
+- clean 2x2 board to separate 1080x1350 slide extractor;
+- hash-bound editable Korean lettering renderer;
+- repository/calibration validator and regression tests;
+- read-only benchmark and calibration references copied into this repository;
+- live calibration dispatch compiled and both bounded attempts executed;
+- first publishable episode completed end-to-end with one built-in master-board
+  generation, deterministic splitting, lettering, QC and export.
 
 - internal coherence unit: text-free 2x2 master board, up to four occupied 4:5 cells;
 - delivery unit: one separate 1080x1350 PNG per slide;
@@ -22,12 +31,19 @@ fixture and is not E001 content.
 
 ## Active production
 
-Active episode: `E001`  
-Title: `그냥 세탁기에 돌려도 되는데`  
-Stage: `STORYBOARD_LOCK`  
+Publishable episode: `E001 / 지금! 지금!`
+
+Stage: `DONE`
+
+Run status: `DONE`
+
+Next draft: `E002 / 그냥 세탁기에 돌려도 되는데`
+
+Stage: `STORYBOARD_LOCK`
+
 Run status: `ACTIVE`
 
-Completed for E001:
+Completed for E002:
 
 - `SOURCE_LOCK`: direct Korean TeamBlind human story seed dated 2025-02-24;
 - `STORY_LOCK`: four-beat sweet-romance adaptation preserving the stained denim,
@@ -36,29 +52,16 @@ Completed for E001:
   anatomy/contact intent, phone front/back geometry, continuity and text-safe regions;
 - future copy is recorded in storyboard metadata but no lettering is permitted in art.
 
-## Reference-policy correction
+## Reference policy
 
-The earlier E001 `WAITING_REQUIRED_BYTES` block was over-conservative and is
-cleared. The actual D/E reference bytes already exist in the repository and are
-hash-bound.
+The production-eligible D/E files already exist in the repository and are
+registered as user-designated `PRIMARY_STYLE` references. Independent authorship
+verification remains explicitly unasserted; it is not fabricated or treated as a
+routine production gate. E002 is therefore active rather than waiting for bytes.
 
-Canonical rules now are:
-
-- user/project designation is sufficient production provenance unless conflicting
-  evidence exists; independent authorship verification is recorded separately;
-- existing repository bytes must be retrieved by the operator before declaring
-  `WAITING_REQUIRED_BYTES`;
-- required visual roles are coverage requirements, not one-file-per-role quotas;
-- generated approved art is `EPISODE_LOCAL` by default and may become only a
-  `CONTINUITY_ANCHOR` after explicit user pixel approval, objective QC PASS and
-  nonredundant continuity value;
-- continuity anchors never override `PRIMARY_STYLE`;
-- dispatches use the minimum sufficient reference set rather than accumulating all
-  approved episode images.
-
-The curated production authority is `references/registry.json`. The existing D/E
-files remain stored under `calibration/references/` and are active
-`PRIMARY_STYLE` references; duplicating the binary files is unnecessary.
+Before its image dispatch, E002 must retrieve and inspect those actual bytes and
+bind the minimum sufficient reference set by path, SHA-256, role,
+`allowed_influence` and `forbidden_inference`.
 
 ## Anatomy/contact guard update
 
@@ -73,20 +76,40 @@ architecture via `docs/ANATOMY_CONTACT_POLICY.md`.
   extra/disconnected limbs, and a simplification fallback;
 - the board dispatch compiler carries a declared `anatomy_contract` into the
   generation prompt;
-- E001 S02 and S04 now carry scoped contracts. S04 is staged immediately after
+- E002 S02 and S04 carry scoped contracts. S04 is staged immediately after
   the handoff so the girlfriend owns the folded jeans while the boyfriend's
   sheepish gesture no longer competes for the same prop.
 
+## Publishable episode E001
+
+`E001 / 지금! 지금!` is complete and its evidence-bound state is `DONE`.
+
+- source: anonymous Korean community travel anecdote published on Theqoo on
+  2024-11-07 (`https://theqoo.net/china/3476715206`);
+- adaptation: a traveller's basic Chinese vanishes when a Shanghai cafe clerk
+  asks how to serve a grape drink, producing the repeated Korean reply
+  `지금! 지금!` and the clerk's correction `시엔짜이!`;
+- generation: one text-free 2x2 master board made with ChatGPT built-in image
+  generation and three inspected, hash-bound repository references;
+- packaging: four separately inspected 1080x1350 art slides, followed by
+  deterministic Korean lettering and four ordered 1080x1350 exports;
+- result: master-board, art-sequence, lettering and final-pixel QC all pass;
+- evidence: `episodes/E001/state.json`, `episodes/E001/boards/B01.qc.json`,
+  `episodes/E001/qc/art_sequence.json`, `episodes/E001/qc/final.json` and
+  `episodes/E001/export/manifest.json`.
+
+E001 was generated from the user-approved calibration style anchors before the
+production registry was formalized. Its inspected pixels and evidence remain
+publishable. Its generated assets stay episode-local and do not replace primary
+style authority.
+
+No paid API or paid fallback was used. `instatoon`, `AutoPipeline` and `jipbap`
+were not edited.
+
 ## Exact next action
 
-Resolve the production-eligible D/E entries from `references/registry.json`,
-retrieve and inspect their actual repository bytes, bind the minimum sufficient set
-in `episodes/E001/visual_packet.json` with path/SHA-256/role/allowed_influence/
-forbidden_inference, and advance exactly to `VISUAL_PACKET_LOCK`.
-
-Do not require three separate reference files when the actual D/E pixels cover
-multiple roles. Do not generate B01 until those actual bytes are bound. After
-`VISUAL_PACKET_LOCK`, compile the text-free 2x2 B01 dispatch and continue the
-canonical board-first, slide-final pipeline.
-
-See `episodes/E001/state.json` for the machine resume record.
+Publish `episodes/E001/export/S01.png` through `S04.png` in order. To continue
+E002, resolve D/E from `references/registry.json`, inspect and hash-check their
+actual repository bytes, bind the minimum sufficient set in
+`episodes/E002/visual_packet.json`, then advance to `VISUAL_PACKET_LOCK` and
+compile B01. Keep `GPT_APP_BOARD_FIRST_V1` as the production default.

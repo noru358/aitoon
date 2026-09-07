@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "slide_id": "S02",
+  "base_art": {"path": "episodes/E001/art/S02.png", "sha256": "6ab0d51e37d182200353023dae2e6bfb759d5a9ce7400a8dbe65b27b9af2b56f"},
+  "canvas": {"width": 1080, "height": 1350},
+  "font": {"path": "assets/fonts/NotoSansKR-Regular.woff2", "sha256": "d1bf8649914a4fe9477a8735bf056383e44e466141fb3d61897252e06d900c1a"},
+  "elements": [
+    {
+      "id": "thought_1", "role": "THOUGHT", "text": "아는 말인데",
+      "box": {"x": 35, "y": 55, "width": 330, "height": 115},
+      "align": "center", "font_size": 42, "fill": "#333333",
+      "bubble": {"fill": "#FFFFFF", "outline": "#666666", "outline_width": 3, "radius": 28, "padding": 20}
+    },
+    {
+      "id": "speech_clerk", "role": "SPEECH", "text": "포장해 드릴까요?",
+      "box": {"x": 565, "y": 40, "width": 475, "height": 135},
+      "align": "center", "font_size": 43, "fill": "#111111",
+      "bubble": {"fill": "#FFFFFF", "outline": "#111111", "outline_width": 4, "radius": 32, "padding": 22, "tail_tip": {"x": 820, "y": 255}}
+    }
+  ]
+}

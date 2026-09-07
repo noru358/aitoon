@@ -1,45 +1,67 @@
 {
   "schema_version": "1.0",
   "episode_id": "E001",
-  "references": [],
-  "characters": [
+  "references": [
     {
-      "id": "GF_E001",
-      "scope": "EPISODE_LOCAL",
-      "role": "girlfriend",
-      "note": "anonymous adult Korean woman; identity must be authored from future verified human-drawn visual evidence, not copied from calibration cast"
+      "path": "calibration/B01.master.png",
+      "sha256": "c984a5840d73f2448172f25f78b62e6ad4fb0513eeb442a1302c0fe4c6789aeb",
+      "role": "user-approved dominant episode style and Harin continuity anchor",
+      "allowed_influence": "Harin identity, cream-and-black outfit, line finish, flat-color behavior, eye grammar, camera variety and background abstraction",
+      "forbidden_inference": "convenience-store story, water bottle, basket, shopping bags, exact poses, exact compositions or location"
     },
     {
-      "id": "BF_E001",
-      "scope": "EPISODE_LOCAL",
-      "role": "boyfriend",
-      "note": "anonymous adult Korean man; identity must be authored from future verified human-drawn visual evidence, not copied from calibration cast"
+      "path": "calibration/references/REF_V2_D_MAIN_CAST_GAEUN_HARIN_TAEMIN.jpeg",
+      "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
+      "role": "Harin identity sheet and person drawing-language support",
+      "allowed_influence": "Harin facial proportions, hair silhouette, clothing identity and restrained expression grammar",
+      "forbidden_inference": "other recurring leads, reference labels, reference poses or a three-person cast"
+    },
+    {
+      "path": "calibration/references/REF_V2_E_3PERSON_INDOOR_SCENE.jpeg",
+      "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
+      "role": "human-scale interaction and indoor background abstraction support",
+      "allowed_influence": "shared person/background line language, body scale, simple furniture and restrained depth",
+      "forbidden_inference": "living room, seated pose, original cast identities, clothing, story or camera"
+    }
+  ],
+  "characters": [
+    {
+      "id": "HARIN",
+      "role": "lead and fictional traveler surrogate",
+      "identity": "long wavy black hair with bangs, large round black eyes, cream cardigan, black wide pants, black sneakers",
+      "acting_range": "tired relief -> blank panic -> urgent embarrassment -> fleeing satisfaction"
+    },
+    {
+      "id": "CAFE_CLERK",
+      "role": "episode-only helper",
+      "identity": "young local cafe worker with short straight dark hair, rectangular face, muted blue apron over a plain shirt; clearly not Taemin, Gaeun or Harin",
+      "acting_range": "polite question -> gentle amused coaching"
     }
   ],
   "palette": [
-    "reference-led muted everyday local colors",
-    "denim blue reserved for the story-bearing jeans",
-    "no global beige wash"
+    "Harin cream #F3EFE5 and near-black #191919",
+    "muted blue-gray cafe fixtures",
+    "grape drink purple as the only saturated accent",
+    "night navy exterior",
+    "natural pale skin without yellow cast"
   ],
   "line_grammar": [
-    "simple hand-drawn black outline",
-    "flat local color",
-    "restrained or near-zero modeled shading",
-    "small consistent human irregularity"
+    "clean black outlines with modest hand-drawn variation",
+    "stable face and hair silhouette across all four cells",
+    "flat local color with restrained soft shading",
+    "more detail on hands, cup and gestures than on decor"
   ],
   "shape_grammar": [
-    "simple readable silhouettes",
-    "faces remain minimally detailed at distance",
-    "hands and cloth contact prioritized over decorative detail",
-    "backgrounds functional and sparse"
+    "large readable eyes and small simple mouth",
+    "soft simplified clothing folds",
+    "background people reduced and never lead-like",
+    "plain abstract packaging and signs with no readable marks"
   ],
   "reject_traits": [
     "generic glossy anime or webtoon beautification",
     "detailed irises and shiny hair",
     "cinematic depth of field or lighting",
     "global beige wash",
-    "uniform lead-like extras",
-    "generated letters numerals logos watermarks or readable UI",
-    "use of calibration quarantine or other rejected generated artifacts as reference"
+    "uniform lead-like extras"
   ]
 }

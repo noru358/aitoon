@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "board_id": "B01",
+  "master_path": "episodes/E001/boards/B01.master.png",
+  "master_sha256": "aa1bdf78754d342e6f1d0cd9fc3249772a1b45c5c4936b83d7d2e44effc1332b",
+  "plan_sha256": "03a64494765d39739aff97da18deacfa4fde989fc4d3f85fe1886cfac411fd64",
+  "outputs": [
+    {
+      "slide_id": "S01",
+      "path": "episodes/E001/art/S01.png",
+      "sha256": "5eddf660f986a23106893ab1dc35389f527db7e294f79084b61643cc9c3d0e54",
+      "width": 1080,
+      "height": 1350,
+      "source_box": [
+        10,
+        10,
+        555,
+        695
+      ]
+    },
+    {
+      "slide_id": "S02",
+      "path": "episodes/E001/art/S02.png",
+      "sha256": "6ab0d51e37d182200353023dae2e6bfb759d5a9ce7400a8dbe65b27b9af2b56f",
+      "width": 1080,
+      "height": 1350,
+      "source_box": [
+        567,
+        10,
+        1112,
+        695
+      ]
+    },
+    {
+      "slide_id": "S03",
+      "path": "episodes/E001/art/S03.png",
+      "sha256": "2f633eaec812e6f3f5174e68a7877b848fe8db492de5e56ad5918043d7d6f329",
+      "width": 1080,
+      "height": 1350,
+      "source_box": [
+        10,
+        707,
+        555,
+        1392
+      ]
+    },
+    {
+      "slide_id": "S04",
+      "path": "episodes/E001/art/S04.png",
+      "sha256": "66a95350914263b1c67babc5388177465df9f23f847e218e927057d6b9816852",
+      "width": 1080,
+      "height": 1350,
+      "source_box": [
+        567,
+        707,
+        1112,
+        1392
+      ]
+    }
+  ]
+}

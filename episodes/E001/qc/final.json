@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E001",
+  "status": "PASS",
+  "inspected": [
+    {"slide_id": "S01", "path": "episodes/E001/final/S01.png", "sha256": "6f010fc0f5fb8cde1335c5283ff80a91a2727e7e4c7c8244fad3e29b9e6e30db", "dimensions": [1080, 1350], "actual_pixels": true},
+    {"slide_id": "S02", "path": "episodes/E001/final/S02.png", "sha256": "7bd3a429e9e28054f2c75000a187dcd751c1bcf4e742871d507937e885947364", "dimensions": [1080, 1350], "actual_pixels": true},
+    {"slide_id": "S03", "path": "episodes/E001/final/S03.png", "sha256": "70598e850daf37674e197c76d84726c1735c7dc08075423988f0035ba3324e77", "dimensions": [1080, 1350], "actual_pixels": true},
+    {"slide_id": "S04", "path": "episodes/E001/final/S04.png", "sha256": "63bcf440a9526ff9074ae9092c7a864313b0999d4f25d5d63ab6b229e6ac6b78", "dimensions": [1080, 1350], "actual_pixels": true}
+  ],
+  "copy_check": {
+    "S01": ["한 시간 기다려서 겨우 받음"],
+    "S02": ["아는 말인데", "포장해 드릴까요?"],
+    "S03": ["지금! 지금!", "노노, 시엔짜이!"],
+    "S04": ["대답 못 하고 도망침", "근데 맛은 있었음"]
+  },
+  "checks": {
+    "wording": "PASS: every rendered string matches the locked lettering plan character-for-character",
+    "speaker_ownership": "PASS: S02 and S03 bubble tails identify the clerk and Harin without ambiguity",
+    "reading_order": "PASS: top-to-bottom and left-to-right order is immediate on each slide",
+    "edge_safety": "PASS: all bubbles remain inside safe canvas margins",
+    "occlusion": "PASS: lettering does not cover faces, hands, gestures or the grape drink",
+    "visual_rhythm": "PASS: lettering density rises through S03 and resolves to two short captions on S04",
+    "landing": "PASS: the final taste verdict is visually separated at lower right and reads last",
+    "one_file_per_slide": "PASS: four separately packaged 1080x1350 PNGs"
+  },
+  "repair_required": false,
+  "next_action": "Copy the four final PASS files to export and verify hashes."
+}

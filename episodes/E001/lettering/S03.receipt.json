@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "slide_id": "S03",
+  "plan_path": "episodes/E001/lettering/S03.plan.json",
+  "plan_sha256": "c469d1d959835d0ba7aeae69706b9e90ae57da3c8e3bffe55b4f72bc32e72066",
+  "base_art_sha256": "2f633eaec812e6f3f5174e68a7877b848fe8db492de5e56ad5918043d7d6f329",
+  "font_sha256": "d1bf8649914a4fe9477a8735bf056383e44e466141fb3d61897252e06d900c1a",
+  "output_path": "episodes/E001/final/S03.png",
+  "output_sha256": "70598e850daf37674e197c76d84726c1735c7dc08075423988f0035ba3324e77",
+  "text": [
+    "지금! 지금!",
+    "노노, 시엔짜이!"
+  ]
+}

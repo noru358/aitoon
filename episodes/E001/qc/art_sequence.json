@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E001",
+  "status": "PASS",
+  "inspected": [
+    {"slide_id": "S01", "path": "episodes/E001/art/S01.png", "sha256": "5eddf660f986a23106893ab1dc35389f527db7e294f79084b61643cc9c3d0e54", "dimensions": [1080, 1350], "actual_pixels": true},
+    {"slide_id": "S02", "path": "episodes/E001/art/S02.png", "sha256": "6ab0d51e37d182200353023dae2e6bfb759d5a9ce7400a8dbe65b27b9af2b56f", "dimensions": [1080, 1350], "actual_pixels": true},
+    {"slide_id": "S03", "path": "episodes/E001/art/S03.png", "sha256": "2f633eaec812e6f3f5174e68a7877b848fe8db492de5e56ad5918043d7d6f329", "dimensions": [1080, 1350], "actual_pixels": true},
+    {"slide_id": "S04", "path": "episodes/E001/art/S04.png", "sha256": "66a95350914263b1c67babc5388177465df9f23f847e218e927057d6b9816852", "dimensions": [1080, 1350], "actual_pixels": true}
+  ],
+  "checks": {
+    "separate_files": "PASS: four independent 4:5 PNG files",
+    "crop_integrity": "PASS: no adjacent-cell leakage, destructive crop, or gutter residue",
+    "identity": "PASS: Harin's face, hair silhouette and clothing remain stable",
+    "character_distinction": "PASS: clerk has a distinct face, silhouette, uniform and episode-only function",
+    "object_continuity": "PASS: one purple grape drink persists through transfer, question, coaching and exit",
+    "anatomy_contact": "PASS: hands, cup, pointing finger, straw and walking limbs remain plausible",
+    "meaning": "PASS: the four locked semantic beats survive without generated lettering",
+    "visual_rhythm": "PASS: high oblique, profile, reverse three-quarter and exterior long shot avoid repeated staging"
+  },
+  "repair_required": false,
+  "next_action": "Render the locked Korean lettering plans over the hash-bound art files."
+}

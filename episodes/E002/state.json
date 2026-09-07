@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "title": "그냥 세탁기에 돌려도 되는데",
+  "slide_count": 4,
+  "stage": "STORYBOARD_LOCK",
+  "run_status": "ACTIVE",
+  "blocked": null,
+  "exact_next_action": "Resolve the production-eligible D/E entries from references/registry.json, retrieve and inspect their actual repository bytes, bind the minimum sufficient set in episodes/E002/visual_packet.json with path/SHA-256/role/allowed_influence/forbidden_inference, and advance exactly to VISUAL_PACKET_LOCK. Do not generate B01 until those actual bytes are bound.",
+  "stage_history": [
+    {
+      "at": "2026-09-07T09:36:09Z",
+      "from": null,
+      "to": "BOOTSTRAP",
+      "evidence": "Fresh publishable E002 initialized from CURRENT_STATE exact next action with GPT_APP_BOARD_FIRST_V1 locked as production default."
+    },
+    {
+      "at": "2026-09-07T09:36:09Z",
+      "from": "BOOTSTRAP",
+      "to": "SOURCE_LOCK",
+      "evidence": "Locked a direct Korean TeamBlind human-authored romance post dated 2025-02-24; URL, observed facts, uncertainty, short wording fragment and adaptation scope recorded in source.md."
+    },
+    {
+      "at": "2026-09-07T09:36:09Z",
+      "from": "SOURCE_LOCK",
+      "to": "STORY_LOCK",
+      "evidence": "Locked a four-beat copyright-safe adaptation preserving the stained-denim, casual laundry request, online research, hand-wash and cute-discovery state changes without inventing an exact washing recipe."
+    },
+    {
+      "at": "2026-09-07T09:36:09Z",
+      "from": "STORY_LOCK",
+      "to": "STORYBOARD_LOCK",
+      "evidence": "Locked four slide contracts with state deltas, distinct beat-serving camera choices, physical actions, expressions, continuity, phone geometry, text-safe regions and post-art copy."
+    },
+    {
+      "at": "2026-09-07T10:26:00Z",
+      "from": "STORYBOARD_LOCK",
+      "to": "STORYBOARD_LOCK",
+      "evidence": "resumed WAITING_REQUIRED_BYTES after reference-policy correction: the required D/E bytes already exist in-repository; user/project designation is sufficient production provenance, independent authorship verification is recorded separately, and repository retrieval must be attempted before any missing-bytes block."
+    }
+  ],
+  "artifacts": []
+}

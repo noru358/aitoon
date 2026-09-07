@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "slide_id": "S02",
+  "plan_path": "episodes/E001/lettering/S02.plan.json",
+  "plan_sha256": "03dbfdd91f2ff899cf64e7e4b7c8d8eb5f5bcadad64fe8e29dea7bd4c93b2907",
+  "base_art_sha256": "6ab0d51e37d182200353023dae2e6bfb759d5a9ce7400a8dbe65b27b9af2b56f",
+  "font_sha256": "d1bf8649914a4fe9477a8735bf056383e44e466141fb3d61897252e06d900c1a",
+  "output_path": "episodes/E001/final/S02.png",
+  "output_sha256": "7bd3a429e9e28054f2c75000a187dcd751c1bcf4e742871d507937e885947364",
+  "text": [
+    "아는 말인데",
+    "포장해 드릴까요?"
+  ]
+}
