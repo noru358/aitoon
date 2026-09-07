@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "board_id": "B01",
+  "intended_dispatch": "E002-B01-MASTER-A2",
+  "status": "REJECTED_TOOL_MISDISPATCH",
+  "recorded_at": "2026-09-07T17:31:00Z",
+  "runtime": {
+    "surface": "CHATGPT_CHAT_BUILTIN_IMAGE",
+    "gen_id": "a4c7b712-bd5d-4ae9-8cda-cfddc26cbc40",
+    "returned_file_name": "wide_comic_style_illustration_split_into_a_2x2_pan.png"
+  },
+  "runtime_attachment_preflight": {
+    "repository_authority_verified": true,
+    "locked_references": [
+      {
+        "id": "LEGACY_REF_V2_D",
+        "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
+        "width": 1448,
+        "height": 1086
+      },
+      {
+        "id": "LEGACY_REF_V2_E",
+        "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
+        "width": 1536,
+        "height": 864
+      }
+    ],
+    "repository_direct_image_binding": "UNAVAILABLE_ON_CURRENT_IMAGE_SURFACE",
+    "fallback_carrier": "CURRENT_SESSION_ATTACHMENT",
+    "fallback_carrier_verification": [
+      {
+        "local_path": "/mnt/data/main(3).jpeg",
+        "source_sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
+        "sha256_match": true,
+        "dimensions": [
+          1448,
+          1086
+        ]
+      },
+      {
+        "local_path": "/mnt/data/main with background(3).jpeg",
+        "source_sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
+        "sha256_match": true,
+        "dimensions": [
+          1536,
+          864
+        ]
+      }
+    ],
+    "authority_changed": false,
+    "episode_or_stage_reset": false
+  },
+  "inspected_output": {
+    "sha256": "e011bf272b980b585b10b1a25c83ae2d578130a8ebb57ab1f98d2f2880783792",
+    "size_bytes": null,
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "actual_pixels": true
+  },
+  "finding": "The returned pixels are again the three PRIMARY_STYLE reference characters socializing in the reference living room, now with extensive baked Korean speech bubbles. No episode-local two-character couple, no story-bearing jeans, no phone-search/hand-wash/folded-jeans state sequence, and no text-free art contract are present. This is a runtime semantic misdispatch, not a valid A2 execution.",
+  "prior_noncanonical_outputs": "The four standalone denim/laundry art images and four separately lettered images generated in the preceding Chat turn are not imported into the episode package. They were generated independently rather than expanded from an approved master board and therefore cannot satisfy GPT_APP_BOARD_FIRST_V1 evidence.",
+  "reuse_eligibility": "REJECTED_QUARANTINED_RECEIPT_ONLY_DO_NOT_REUSE",
+  "retry_budget_effect": "DOES_NOT_CONSUM_WHOLE_BOARD_RETRY_BUDGET",
+  "exact_resume_action": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only after image-runtime tool recovery or on a built-in execution surface that can demonstrably honor the compiled target semantics. Canonical-boot latest main, re-read the locked D/E references plus B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use any rejected/misdispatched output, and do not import the prior independently generated standalone slides or their lettering because they violate board-first. If a returned 2x2 board actually matches the locked two-character denim/laundry dispatch and is text-free, import it as episodes/E002/boards/B01.master.png, inspect actual pixels, and advance exactly according to board QC."
+}
