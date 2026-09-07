@@ -8,7 +8,7 @@ from pathlib import Path
 from .board import BoardError, split_master_board
 from .dispatch import DispatchError, compile_master_board_dispatch
 from .lettering import LetteringError, render_lettering
-from .state import ROOT, StateError, advance, block, init_episode, load_state, register_file_artifact, resume
+from .state import ROOT, StateError, advance, approve_editorial_review, block, init_episode, load_state, register_file_artifact, resume
 from .validate import ValidationError, validate_repository
 
 
@@ -27,6 +27,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     status = sub.add_parser("status", help="show current episode state")
     status.add_argument("episode_id")
+
+    approve = sub.add_parser("approve-editorial", help="hash-lock the presented preproduction review")
+    approve.add_argument("episode_id")
+    approve.add_argument("--evidence", required=True)
 
     move = sub.add_parser("advance", help="move exactly one canonical stage")
     move.add_argument("episode_id")
@@ -80,6 +84,8 @@ def main(argv: list[str] | None = None) -> int:
             _print_json(init_episode(args.episode_id, args.title, args.slides))
         elif args.command == "status":
             _print_json(load_state(args.episode_id))
+        elif args.command == "approve-editorial":
+            _print_json(approve_editorial_review(args.episode_id, args.evidence))
         elif args.command == "advance":
             _print_json(advance(args.episode_id, args.to, args.evidence, args.next_action))
         elif args.command == "block":
