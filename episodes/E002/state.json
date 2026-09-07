@@ -4,9 +4,14 @@
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
   "stage": "MASTER_BOARD_QC",
-  "run_status": "RUNNING",
-  "blocked": null,
-  "exact_next_action": "Execute E002-B01-MASTER-A2 exactly once with the same locked D/E PRIMARY_STYLE references through the verified current-session carriers. Keep all upstream locks unchanged. Import and inspect the retry board. If PASS, preserve rejected A1 only in quarantine and advance exactly to SLIDES_EXPANDED. If A2 has another board-wide failure, the whole-board retry budget is exhausted and repair must route to the minimum owning failure.",
+  "run_status": "BLOCKED_RETRYABLE",
+  "blocked": {
+    "code": "WAITING_TOOL_RECOVERY",
+    "detail": "The image tool returned an output that did not match the compiled E002-B01-MASTER-A2 board specification. The output was rejected and quarantined.",
+    "resume_action": "Retry E002-B01-MASTER-A2 later from MASTER_BOARD_QC after re-reading the locked references and dispatch. Do not use the rejected quarantine images. If the returned board matches the dispatch, inspect it and continue to the next stage.",
+    "recorded_at": "2026-09-07T15:52:00Z"
+  },
+  "exact_next_action": "Retry E002-B01-MASTER-A2 later from MASTER_BOARD_QC after re-reading the locked references and dispatch. Do not use the rejected quarantine images. If the returned board matches the dispatch, inspect it and continue to the next stage.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
