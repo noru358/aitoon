@@ -1,86 +1,75 @@
 # AIToon
 
 AIToon is a ChatGPT-app-native production protocol for Korean Instagram comics.
-It is designed around two constraints:
+The current architecture is **GPT_APP_BOARD_FIRST_V2**.
+
+Constraints:
 
 1. additional paid spend: **KRW 0**;
-2. the result must read as a deliberately drawn human Instagram comic, not a
-   generic AI illustration.
-
-The system does not pretend that a prompt can guarantee those constraints. It
-uses curated user-designated visual references, one-generation episode boards,
-minimum-scope editing, deterministic state, and evidence-bound QC to make failures
-visible and repairable.
+2. output should read as a deliberately authored Instagram comic rather than a
+   generic AI illustration;
+3. the user retains one meaningful editorial checkpoint before creative locks.
 
 ## Canonical path
 
-`human source -> story -> storyboard -> visual packet -> fixed 2x2 internal board batch ->`
-`separate 4:5 slides -> lettering/UI -> sequence QC -> export`
+`human source -> draft source/story/storyboard/cover -> PREPRODUCTION_REVIEW -> locks -> visual packet -> 2x2 internal board batch -> separate 4:5 slides -> art QC -> semantic lettering + cover -> final QC -> export`
 
-Episode slide count is variable. The fixed 2x2 topology is only an internal coherence
-batch with one to four occupied cells; it is not a four-slide story requirement.
+Episode narrative slide count is variable. The fixed 2x2 topology is only an
+internal coherence batch with one to four occupied cells.
 
-The key rendering decision is **board-first, slide-final**:
+Key v2 changes:
 
-- up to four related shots are drawn together once, preserving one sampled line,
-  palette, character, and location language;
-- the board is an internal artifact, never a publishable collage;
-- each cell is then expanded to a separate 4:5 image without redesign;
-- a local defect repairs one slide; a board-wide drift repairs one board.
+- one hash-bound preproduction review for topic, dialogue, storyboard and cover;
+- lowest-sufficient backgrounds and default omission of decorative assets;
+- cover is required but separate from narrative slide count;
+- thought/narration are explicit optional text roles;
+- project-level typography must be calibrated and locked before v2 final lettering;
+- style QC is multidimensional and rejects palette-only matches or repeated facial
+  acting across meaningful emotional deltas;
+- style references do not imply copying the people or rooms shown in them.
 
-This avoids both known failure modes: unrelated per-slide resampling and rigid
-paper-doll asset composition.
+Board-first remains mandatory: once a board exists, narrative slides are derived from
+that board rather than independently regenerated.
 
-## What “GPT app only” means
+## Runtime and cost
 
-Allowed:
+Allowed: ChatGPT/Work reasoning, web research, image input, built-in image
+generation/editing, local code/file tools, and GitHub storage.
 
-- ChatGPT/Work reasoning, web search, image input, built-in image generation and
-  editing, file tools, and local Python execution supplied by the app;
-- the user's existing GitHub repositories as read-only references;
-- GitHub storage for this repository.
-
-Disallowed by default:
-
-- OpenAI API calls, third-party image APIs, paid renderer credits, paid SaaS,
-  unattended account automation, and hidden manual drawing labor.
-
-The app's included image limits are finite. The protocol therefore uses one
-master-board generation per four slides, bounds repairs, and persists a retryable
-state instead of silently switching to paid infrastructure.
+Disallowed by default: paid APIs, paid renderer credits, paid SaaS, external paid
+image models, and hidden manual production labor.
 
 ## Start or resume
 
 ```bash
-python -m pipeline.cli init E001 --title "working title" --slides 4
-python -m pipeline.cli status E001
+python -m pipeline.cli init E003 --title "working title" --slides 4
+python -m pipeline.cli status E003
 python -m pipeline.cli validate
 ```
 
-The canonical runtime boot order lives in `AGENTS.md`; this README is descriptive,
-not boot authority. Once an active episode is identified, its `state.json` and
-`exact_next_action` control execution. Machine policy is in `config/policy.json`;
-episode files live under `episodes/<episode_id>/`.
+The canonical boot order is in `AGENTS.md`; this README is descriptive only.
+`state.json.exact_next_action` controls resumed execution.
 
 ## Repository map
 
 | Path | Role |
 |---|---|
-| `AGENTS.md` | fail-closed boot and autonomy contract |
-| `docs/GPT_APP_PROTOCOL.md` | canonical creative/execution protocol |
-| `docs/PLATFORM_ASSUMPTIONS.md` | official capability evidence and uncertainty boundary |
-| `config/policy.json` | machine-readable stages, retries, cost, reference and QC policy |
-| `references/registry.json` | curated production reference authority and provenance basis |
-| `docs/REFERENCE_POLICY.md` | primary/continuity/episode-local reference hierarchy and promotion rules |
-| `schemas/` | episode, board, dispatch and QC contracts |
-| `pipeline/` | state, validation, board extraction and command-line tools |
-| `templates/` | prompts and editable episode artifacts |
-| `tests/` | regression coverage for state and image packaging |
-| `CURRENT_STATE.md` | current calibration state and exact resume action |
+| `AGENTS.md` | fail-closed boot and execution contract |
+| `CURRENT_STATE.md` | active repository/episode pointer |
+| `docs/GPT_APP_PROTOCOL.md` | canonical v2 lifecycle |
+| `docs/EDITORIAL_REVIEW_POLICY.md` | one user creative gate and hash lock |
+| `docs/VISUAL_MINIMALISM_POLICY.md` | lowest-sufficient background/asset rules |
+| `docs/LETTERING_STYLE_POLICY.md` | typography, semantic text, cover rules |
+| `docs/REFERENCE_POLICY.md` | reference authority and promotion rules |
+| `docs/ANATOMY_CONTACT_POLICY.md` | conditional physical-contact guard |
+| `config/policy.json` | machine-readable lifecycle and QC policy |
+| `config/lettering_style.json` | project typography calibration/lock |
+| `references/registry.json` | production reference authority |
+| `schemas/` | structured contracts |
+| `pipeline/` | state, validation, dispatch, split and lettering code |
+| `templates/` | episode draft/plan templates |
+| `tests/` | regression coverage |
 
-## Verification boundary
-
-Code can verify state transitions, hashes, dimensions, separate-file delivery,
-and unchanged dependencies. Visual style, identity, anatomy, acting, and meaning
-still require the ChatGPT vision model to inspect the actual pixels and write a
-structured QC report. Passing only the automated checks is never a visual PASS.
+Automated checks can verify hashes, transitions, dimensions, packaging, editorial
+locks, and policy invariants. Actual visual style, anatomy, acting, and meaning still
+require inspection of the real pixels.
