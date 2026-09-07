@@ -64,6 +64,8 @@ def validate_policy(root: Path = ROOT) -> None:
     _require(render.get("runtime_sheet_strategy") == "NATURAL_OCCUPANCY", "runtime sheet strategy drift")
     _require(render.get("generator_empty_cells_forbidden") is True, "generator must not own empty canonical cells")
     _require(render.get("deterministic_pack_to_canonical_2x2") is True, "runtime sheet must pack deterministically")
+    _require(render.get("runtime_pack_preserve_native_pixels") is True, "runtime packing must preserve native pixels")
+    _require(render.get("non_4x5_runtime_cells_route_to_board_bound_expansion") is True, "non-4x5 runtime cells must route to expansion")
     _require(
         render.get("runtime_sheet_layouts") == {
             "1": {"rows": 1, "columns": 1},
