@@ -1,7 +1,42 @@
 {
   "schema_version": "1.0",
   "episode_id": "E002",
-  "references": [],
+  "references": [
+    {
+      "id": "LEGACY_REF_V2_D",
+      "path": "calibration/references/REF_V2_D_MAIN_CAST_GAEUN_HARIN_TAEMIN.jpeg",
+      "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
+      "role": "Harin identity and person drawing language",
+      "authority": "PRIMARY_STYLE",
+      "allowed_influence": "identity proportions, eye grammar, line and flat-color behavior",
+      "forbidden_inference": "current pose, camera, action, story or location",
+      "production_eligible": true,
+      "byte_inspection": {
+        "retrieved_from_repository": true,
+        "size_bytes": 343173,
+        "jpeg_width": 1448,
+        "jpeg_height": 1086,
+        "sha256_verified": true
+      }
+    },
+    {
+      "id": "LEGACY_REF_V2_E",
+      "path": "calibration/references/REF_V2_E_3PERSON_INDOOR_SCENE.jpeg",
+      "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
+      "role": "scene and background drawing language",
+      "authority": "PRIMARY_STYLE",
+      "allowed_influence": "shared character/background abstraction, line and restrained shading",
+      "forbidden_inference": "room layout, current pose, story, clothing or cast requirement",
+      "production_eligible": true,
+      "byte_inspection": {
+        "retrieved_from_repository": true,
+        "size_bytes": 392279,
+        "jpeg_width": 1536,
+        "jpeg_height": 864,
+        "sha256_verified": true
+      }
+    }
+  ],
   "characters": [
     {
       "id": "GF_E002",
@@ -45,6 +80,11 @@
   "reference_registry": "references/registry.json",
   "reference_selection": {
     "strategy": "MINIMUM_SUFFICIENT_SET",
-    "note": "Use registered production-eligible D/E bytes first. Do not request a re-upload or a new episode-local identity reference when those bytes provide sufficient drawing-language coverage."
+    "coverage": [
+      "person/style drawing language via LEGACY_REF_V2_D",
+      "indoor scene/background abstraction via LEGACY_REF_V2_E",
+      "episode-local GF/BF identities authored distinctly inside the bound PRIMARY_STYLE language"
+    ],
+    "note": "D/E are the minimum sufficient registered production-eligible set for this one-off indoor couple episode. No re-upload or dedicated episode-local identity sheet is required."
   }
 }

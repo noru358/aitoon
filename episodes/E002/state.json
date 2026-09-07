@@ -3,10 +3,10 @@
   "episode_id": "E002",
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
-  "stage": "STORYBOARD_LOCK",
+  "stage": "VISUAL_PACKET_LOCK",
   "run_status": "ACTIVE",
   "blocked": null,
-  "exact_next_action": "Resolve the production-eligible D/E entries from references/registry.json, retrieve and inspect their actual repository bytes, bind the minimum sufficient set in episodes/E002/visual_packet.json with path/SHA-256/role/allowed_influence/forbidden_inference, and advance exactly to VISUAL_PACKET_LOCK. Do not generate B01 until those actual bytes are bound.",
+  "exact_next_action": "Compile the first and only B01 2x2 board plan from the locked four-slide storyboard, then compile the hash-bound master-board dispatch using the bound D/E repository references. Advance exactly to BOARD_DISPATCH_READY only after the plan and dispatch exist; do not generate lettering or independent slide art.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -37,6 +37,12 @@
       "from": "STORYBOARD_LOCK",
       "to": "STORYBOARD_LOCK",
       "evidence": "resumed WAITING_REQUIRED_BYTES after reference-policy correction: the required D/E bytes already exist in-repository; user/project designation is sufficient production provenance, independent authorship verification is recorded separately, and repository retrieval must be attempted before any missing-bytes block."
+    },
+    {
+      "at": "2026-09-07T14:50:00Z",
+      "from": "STORYBOARD_LOCK",
+      "to": "VISUAL_PACKET_LOCK",
+      "evidence": "Retrieved the actual production-eligible D/E JPEG bytes from main, verified registry SHA-256 exactly (D dbddf458..., E b496832...), confirmed valid JPEG structure/dimensions (1448x1086 and 1536x864), and bound the minimum sufficient set with role/allowed_influence/forbidden_inference in episodes/E002/visual_packet.json. No quarantined or rejected artifact is bound."
     }
   ],
   "artifacts": []

@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-07 23:34 KST  
+Updated: 2026-09-07 23:50 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
@@ -37,9 +37,9 @@ Stage: `DONE`
 
 Run status: `DONE`
 
-Next draft: `E002 / 그냥 세탁기에 돌려도 되는데`
+Active episode: `E002 / 그냥 세탁기에 돌려도 되는데`
 
-Stage: `STORYBOARD_LOCK`
+Stage: `VISUAL_PACKET_LOCK`
 
 Run status: `ACTIVE`
 
@@ -50,6 +50,9 @@ Completed for E002:
   casual laundry request, online research, hand-wash and cute discovery;
 - `STORYBOARD_LOCK`: four slide contracts with state deltas, beat-serving cameras,
   anatomy/contact intent, phone front/back geometry, continuity and text-safe regions;
+- `VISUAL_PACKET_LOCK`: actual D/E repository JPEG bytes retrieved, registry SHA-256 values
+  verified exactly, JPEG structure/dimensions inspected, and the minimum sufficient
+  production-eligible PRIMARY_STYLE set bound with explicit allowed/forbidden influence;
 - future copy is recorded in storyboard metadata but no lettering is permitted in art.
 
 ## Boot/reference guard maintenance
@@ -67,9 +70,10 @@ registered as user-designated `PRIMARY_STYLE` references. Independent authorship
 verification remains explicitly unasserted; it is not fabricated or treated as a
 routine production gate. E002 is therefore active rather than waiting for bytes.
 
-Before its image dispatch, E002 must retrieve and inspect those actual bytes and
-bind the minimum sufficient reference set by path, SHA-256, role,
-`allowed_influence` and `forbidden_inference`.
+E002 has retrieved and inspected those actual repository bytes and bound D/E as the
+minimum sufficient set by path, SHA-256, role, `allowed_influence` and
+`forbidden_inference`. The next production step is board-plan/dispatch compilation;
+no user re-upload or episode-local identity sheet is required.
 
 ## Anatomy/contact guard update
 
@@ -116,8 +120,8 @@ were not edited.
 
 ## Exact next action
 
-Publish `episodes/E001/export/S01.png` through `S04.png` in order. To continue
-E002, resolve D/E from `references/registry.json`, inspect and hash-check their
-actual repository bytes, bind the minimum sufficient set in
-`episodes/E002/visual_packet.json`, then advance to `VISUAL_PACKET_LOCK` and
-compile B01. Keep `GPT_APP_BOARD_FIRST_V1` as the production default.
+For E002, compile the single 2x2 B01 board plan from the four locked storyboard
+slides, compile the hash-bound master-board dispatch from the locked visual packet,
+and advance exactly to `BOARD_DISPATCH_READY`. Generate one TEXT-FREE master
+board only after that dispatch exists. Keep `GPT_APP_BOARD_FIRST_V1` as the
+production default.
