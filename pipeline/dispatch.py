@@ -189,6 +189,7 @@ def compile_master_board_dispatch(
     style_dimensions = "; ".join(str(x) for x in visual_packet.get("style_match_dimensions", []))
     characters = visual_packet.get("characters", [])
     cast_line = ""
+    character_lines: list[str] = []
     if revision >= 2:
         if not isinstance(characters, list):
             raise DispatchError("visual packet characters must be a list")
@@ -196,11 +197,24 @@ def compile_master_board_dispatch(
             f"Target cast has exactly {len(characters)} episode characters defined by the visual packet. "
             "Do not copy people or identities visible in style references unless a character entry explicitly binds that identity."
         )
+        for character in characters:
+            if not isinstance(character, dict):
+                raise DispatchError("visual packet character entry must be an object")
+            char_id = str(character.get("id", "")).strip()
+            role = str(character.get("role", "")).strip()
+            appearance = str(character.get("appearance", character.get("note", ""))).strip()
+            if not char_id or not role:
+                raise DispatchError("visual packet character requires id and role")
+            character_lines.append(
+                f"- {char_id} ({role}): {appearance or 'author a distinct episode-local identity inside the PRIMARY_STYLE drawing language'}"
+            )
 
     prompt = "\n".join(
         [
             "Create one TEXT-FREE 2x2 storyboard master board for a Korean Instagram comic.",
             cast_line,
+            "Target character definitions:",
+            *character_lines,
             "All four cells are portrait 4:5 with clean straight gutters. Draw the occupied cells as one coherent episode in the same visual hand.",
             "Use the LOWEST-SUFFICIENT background in each cell. Omit decorative furniture, plants, wall art, lamps, shelves, appliances, packaging, and texture unless the cell explicitly declares them story-bearing or location-essential. Empty space is valid.",
             "The attached images are binding visual references with separate roles:",
