@@ -93,6 +93,10 @@ class DispatchTests(unittest.TestCase):
         (episode / "story.md").write_text("# Story draft / lock\n- Premise: test\n", encoding="utf-8")
         advance("E001", "PREPRODUCTION_REVIEW", "review payload prepared", "present", self.root)
         approve_editorial_review("E001", "user approved", self.root)
+        advance("E001", "SOURCE_LOCK", "approved source hash locked", "lock story", self.root)
+        advance("E001", "STORY_LOCK", "approved story hash locked", "lock storyboard", self.root)
+        advance("E001", "STORYBOARD_LOCK", "approved storyboard hash locked", "lock visual packet", self.root)
+        advance("E001", "VISUAL_PACKET_LOCK", "minimum sufficient visual packet locked", "compile B01", self.root)
         self.plan = self.root / "episodes" / "E001" / "boards" / "B01.plan.json"
         self.plan.write_text(
             json.dumps(
@@ -137,6 +141,14 @@ class DispatchTests(unittest.TestCase):
         self.assertTrue(runtime["attachment_does_not_reset_episode_or_stage"])
         self.assertFalse(runtime["opaque_runtime_handle_is_reference_authority"])
         self.assertTrue(output.is_file())
+
+    def test_v2_dispatch_cannot_compile_before_visual_packet_lock(self) -> None:
+        state_path = self.root / "episodes" / "E001" / "state.json"
+        state = json.loads(state_path.read_text(encoding="utf-8"))
+        state["stage"] = "STORYBOARD_LOCK"
+        state_path.write_text(json.dumps(state, ensure_ascii=False), encoding="utf-8")
+        with self.assertRaises(DispatchError):
+            compile_master_board_dispatch("E001", self.plan, self.plan.with_name("early.json"), self.root)
 
     def test_reference_hash_mismatch_fails_closed(self) -> None:
         visual_path = self.root / "episodes" / "E001" / "visual_packet.json"
