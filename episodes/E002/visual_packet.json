@@ -89,16 +89,17 @@
     "note": "Follow each approved storyboard background_level and essential_background list. Do not carry reference-room furniture or decorative inventory into the episode."
   },
   "user_visual_direction": {
-    "scope": "SESSION_FEEDBACK_ONLY_NOT_REFERENCE_AUTHORITY",
+    "scope": "OPERATIONAL_EPISODE_LOCAL_VISUAL_ANCHOR",
+    "manifest": "episodes/E002/approved_visual_anchor.json",
     "observed_preview_gen_id": "b049ef95-5dbe-4cf3-9ef8-89afac36bd93",
     "observed_preview_sha256": "536d8a75f7d549faab5d0627d94a7862f3fa17c3a4784c94f5666e38b95cebbb",
     "observed_preview_dimensions": [
       1122,
       1402
     ],
-    "user_response": "APPROVED_PROVISIONALLY",
-    "allowed_use": "textual cast/outfit/acting preference only",
-    "forbidden_use": "persistent style authority, replacement for repository reference bytes, proof of canonical master-board production"
+    "user_response": "APPROVED_PROVISIONALLY_BUT_OPERATIONAL",
+    "allowed_use": "identity, hair, outfit, local palette, and approved rendering treatment within the manifest scope",
+    "forbidden_use": "known S02 phone geometry, exact poses, contacts, panel layout, backgrounds, text, or project-level PRIMARY_STYLE promotion"
   },
   "reject_traits": [
     "generic glossy anime or webtoon beautification",
