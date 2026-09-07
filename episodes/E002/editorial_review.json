@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "status": "PENDING",
+  "review_scope": [
+    "SOURCE",
+    "TOPIC",
+    "PREMISE",
+    "SLIDE_COUNT",
+    "BEATS",
+    "DIALOGUE",
+    "THOUGHT_NARRATION",
+    "COVER_CONCEPT"
+  ],
+  "approved_hashes": null,
+  "approval_evidence": null,
+  "approved_at": null,
+  "migration_note": "Protocol v2 migration invalidated the prior unreviewed creative locks. Existing rejected image evidence remains quarantine-only. The current source/story/storyboard are drafts until the user approves this review."
+}
