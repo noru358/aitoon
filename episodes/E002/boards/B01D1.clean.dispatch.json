@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "dispatch_id": "E002-B01D1-V2-CLEAN-MASTER-A1",
+  "episode_id": "E002",
+  "target_id": "B01D1",
+  "operation": "GENERATE_MASTER_BOARD",
+  "prompt": "Create one completely TEXT-FREE 1x2 runtime contact sheet with exactly TWO portrait 4:5 cells: LEFT=S01 and RIGHT=S02.\nDo not add any third/fourth panel, future scene, title area, blank placeholder panel, speech bubble, thought bubble, caption box, Korean/English text, letter, numeral, UI text, logo, watermark, heart, sparkle, or emphasis symbol.\nThe user-approved episode visual anchor is binding for GF/BF identity, hair, outfit, palette, and approved rendering treatment. Do not redesign those anchored attributes.\nUse PRIMARY_STYLE references only for drawing-language support; do not copy their cast or room.\nGF_E002: adult Korean woman matching the approved anchor, dark-brown hair in a loose low bun with soft face-framing strands, cream/off-white relaxed top, pale-blue wide-leg pants.\nBF_E002: adult Korean man matching the approved anchor, soft rounded black wavy hair, black crewneck top, light-gray relaxed pants.\nDrawing language: simple hand-drawn black outline, minimally detailed eyes/faces, flat local color, restrained or near-zero modeled shading, low detail budget. Avoid glossy generic anime/webtoon beautification.\nLEFT S01: eye-level medium two-shot. GF casually leaves the same stained DRY blue jeans beside a simple laundry basket while BF calmly accepts the request. Background is only a doorway outline plus laundry basket. GF face is relaxed and ordinary.\nRIGHT S02: BF alone, 3/4 over-shoulder medium-close. One hand holds the SAME stained DRY jeans; the other hand holds a phone. Exactly two hand roles. No self-touch, no third hand. BF looks serious/cautious. The character sees the phone front; the viewer sees ONLY the phone BACK or oblique edge, never the screen/front. Background is NONE.\nPreserve BF identity across both cells and the exact same jeans/stain state.\nReturn exactly one 1x2 art-only runtime sheet.",
+  "bound_media": [
+    {
+      "path_or_handle": "calibration/references/REF_V2_D_MAIN_CAST_GAEUN_HARIN_TAEMIN.jpeg",
+      "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
+      "role": "person drawing-language reference only"
+    },
+    {
+      "path_or_handle": "calibration/references/REF_V2_E_3PERSON_INDOOR_SCENE.jpeg",
+      "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
+      "role": "scene/background abstraction reference only"
+    }
+  ],
+  "runtime_sheet": {
+    "strategy": "NATURAL_OCCUPANCY",
+    "rows": 1,
+    "columns": 2,
+    "cell_count": 2,
+    "cells": [
+      {
+        "slide_id": "S01",
+        "runtime_row": 0,
+        "runtime_column": 0,
+        "canonical_row": 0,
+        "canonical_column": 0
+      },
+      {
+        "slide_id": "S02",
+        "runtime_row": 0,
+        "runtime_column": 1,
+        "canonical_row": 0,
+        "canonical_column": 1
+      }
+    ],
+    "generator_empty_cells_forbidden": true,
+    "pack_to_canonical_2x2": true
+  },
+  "context_isolation": {
+    "art_only": true,
+    "allowed": [
+      "THIS_DISPATCH",
+      "APPROVED_VISUAL_ANCHOR_MANIFEST",
+      "BOUND_REFERENCE_REGISTRY_ENTRIES",
+      "ACTUAL_REFERENCE_OR_ANCHOR_MEDIA"
+    ],
+    "forbidden": [
+      "SOURCE_PROSE",
+      "STORY_COPY",
+      "STORYBOARD_COPY_TEXT",
+      "EDITORIAL_DIALOGUE",
+      "LETTERING_PLAN",
+      "COVER_COPY",
+      "FUTURE_BEATS_OUTSIDE_RUNTIME_SHEET"
+    ]
+  },
+  "approved_visual_anchor": {
+    "anchor_id": "E002_APPROVED_VISUAL_ANCHOR_01",
+    "sha256": "536d8a75f7d549faab5d0627d94a7862f3fa17c3a4784c94f5666e38b95cebbb",
+    "allowed_influence": "GF/BF facial identity, GF low-bun hair, BF rounded black hair, cream/black outfit identity, pale-blue/light-gray lower clothing, local palette, and approved restrained rendering treatment",
+    "forbidden_inference": "S02 phone/screen geometry, hand/contact geometry, exact poses, panel layout, backgrounds, laundry-basket geometry, text, symbols, dialogue, or any objective defect",
+    "transport": "SESSION_CARRIER_REQUIRED"
+  },
+  "attempt": 1,
+  "status": "READY",
+  "eligible_for_execution": true,
+  "runtime_attachment": {
+    "preflight_required_before_execute": true,
+    "source_authority": "REPOSITORY_MANIFEST_AND_SHA256",
+    "carrier_scope": "SESSION_ONLY",
+    "preferred_carrier": "REPOSITORY_DIRECT",
+    "fallback_carriers": [
+      "CURRENT_SESSION_ATTACHMENT",
+      "WORK_RUNTIME_FILE"
+    ],
+    "required_sha_carriers": [
+      {
+        "anchor_id": "E002_APPROVED_VISUAL_ANCHOR_01",
+        "sha256": "536d8a75f7d549faab5d0627d94a7862f3fa17c3a4784c94f5666e38b95cebbb",
+        "role": "USER_APPROVED_EPISODE_VISUAL_ANCHOR",
+        "allowed_influence": "GF/BF facial identity, GF low-bun hair, BF rounded black hair, cream/black outfit identity, pale-blue/light-gray lower clothing, local palette, and approved restrained rendering treatment",
+        "forbidden_inference": "S02 phone/screen geometry, hand/contact geometry, exact poses, panel layout, backgrounds, laundry-basket geometry, text, symbols, dialogue, or any objective defect"
+      }
+    ],
+    "fallback_only_after_direct_runtime_bridge_unavailable": true,
+    "revalidate_after_session_or_surface_change": true,
+    "attachment_does_not_reset_episode_or_stage": true,
+    "opaque_runtime_handle_is_reference_authority": false
+  }
+}
