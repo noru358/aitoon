@@ -77,6 +77,8 @@ Completed for E002:
 - the current image execution surface still did not honor the compiled A2 target and returned the three reference characters socializing in the reference living room, with no denim/laundry sequence and baked glyphs. The actual pixels were inspected and rejected; receipt: `episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-06397a4f.receipt.json`;
 - `episodes/E002/boards/B01.qc.json` and `episodes/E002/state.json` record the retryable tool block at `MASTER_BOARD_QC`; the whole-board retry budget remains unconsumed because the compiled target semantics were not executed.
 
+- validation note for this checkpoint: the sandbox could not resolve `github.com`, so a fresh checkout and the canonical `unittest` / `pipeline.cli validate` commands could not be run; no PASS is inferred. GitHub reported no combined statuses and no PR-triggered workflow runs for the checkpoint head at the time checked;
+
 The episode is not `DONE`. No rejected image may be reused.
 
 ## Boot/reference guard maintenance
