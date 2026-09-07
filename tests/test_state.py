@@ -90,6 +90,13 @@ class StateTests(unittest.TestCase):
         self.assertFalse(data["execution_modes"]["chat"]["continuation_token_is_approval"])
         self.assertEqual(data["execution_modes"]["work"]["strategy"], "ONE_SHOT_AFTER_EDITORIAL_APPROVAL_TO_DONE_OR_RETRYABLE_BLOCK")
         self.assertTrue(data["execution_modes"]["common"]["same_production_state_machine"])
+        self.assertIn("WAITING_CLEAN_IMAGE_SESSION", data["execution"]["retryable_states"])
+        self.assertEqual(data["render"]["runtime_sheet_strategy"], "NATURAL_OCCUPANCY")
+        self.assertTrue(data["render"]["generator_empty_cells_forbidden"])
+        self.assertTrue(data["render"]["deterministic_pack_to_canonical_2x2"])
+        self.assertTrue(data["visual_approval"]["explicit_visual_approval_is_operational"])
+        self.assertTrue(data["image_runtime"]["art_only_context_required"])
+        self.assertTrue(data["image_runtime"]["same_session_retry_after_semantic_noncompliance_forbidden"])
 
         data["execution_modes"]["chat"]["continuation_token_is_approval"] = True
         policy_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
