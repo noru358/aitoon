@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "dispatch_id": "E002-B01D1-V2-MASTER-A1",
+  "episode_id": "E002",
+  "target_id": "B01D1",
+  "operation": "GENERATE_MASTER_BOARD",
+  "prompt": "Create one completely TEXT-FREE 2x2 internal master board. Only the TOP_LEFT and TOP_RIGHT cells are illustrated. Both bottom cells must be EMPTY plain paper.\nDo not draw any speech bubble, thought bubble, caption box, letter, numeral, Korean/English text, logo, watermark, UI text, heart, sparkle, emphasis mark, or decorative emotion symbol anywhere.\nUse the supplied style references only for drawing language. Do not copy their characters or rooms.\nEpisode-local cast:\n- GF_E002: adult Korean woman, dark-brown hair in a loose LOW BUN with soft face-framing strands, cream/off-white relaxed top, pale-blue wide-leg pants. She must not have a bob haircut and must not carry a shoulder bag.\n- BF_E002: adult Korean man, soft rounded black wavy hair, plain black crewneck top, light-gray relaxed pants.\nDrawing language: simple black hand-drawn outline, minimally detailed eyes/faces, flat local colors, restrained or near-zero shading, no glossy anime/webtoon beautification.\nTOP_LEFT S01: eye-level medium two-shot. GF casually leaves one pair of stained DRY blue jeans beside a simple laundry basket and a minimal doorway line. BF calmly receives the request. Only the doorway outline and laundry basket may indicate location. GF face is relaxed and ordinary, not surprised.\nTOP_RIGHT S02: BF alone, 3/4 over-shoulder medium-close, still holding the SAME stained DRY jeans in one hand and a phone in the other. Exactly two hand roles: jeans hand and phone hand. No third hand, no self-touch. BF looks serious and cautious. The character sees the phone front; the viewer sees ONLY the phone BACK/edge, never the screen. Background is NONE, plain empty field.\nPreserve BF identity from S01 to S02 and preserve the exact same jeans object/stain state.\nReturn only one 2x2 board image.",
+  "bound_media": [
+    {
+      "path_or_handle": "calibration/references/REF_V2_D_MAIN_CAST_GAEUN_HARIN_TAEMIN.jpeg",
+      "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
+      "role": "person drawing-language reference only"
+    },
+    {
+      "path_or_handle": "calibration/references/REF_V2_E_3PERSON_INDOOR_SCENE.jpeg",
+      "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
+      "role": "scene abstraction reference only"
+    }
+  ],
+  "attempt": 1,
+  "status": "READY",
+  "eligible_for_execution": true,
+  "runtime_attachment": {
+    "preflight_required_before_execute": true,
+    "source_authority": "REPOSITORY_REGISTRY_SHA256",
+    "carrier_scope": "SESSION_ONLY",
+    "preferred_carrier": "REPOSITORY_DIRECT",
+    "fallback_carriers": [
+      "CURRENT_SESSION_ATTACHMENT",
+      "WORK_RUNTIME_FILE"
+    ],
+    "fallback_only_after_direct_runtime_bridge_unavailable": true,
+    "revalidate_after_session_or_surface_change": true,
+    "attachment_does_not_reset_episode_or_stage": true,
+    "opaque_runtime_handle_is_reference_authority": false
+  }
+}
