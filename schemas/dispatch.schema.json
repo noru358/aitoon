@@ -4,31 +4,137 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "schema_version", "dispatch_id", "episode_id", "target_id", "operation",
-    "prompt", "bound_media", "attempt", "status"
+    "schema_version",
+    "dispatch_id",
+    "episode_id",
+    "target_id",
+    "operation",
+    "prompt",
+    "bound_media",
+    "attempt",
+    "status"
   ],
   "properties": {
-    "schema_version": {"const": "1.0"},
-    "dispatch_id": {"type": "string", "minLength": 1},
-    "episode_id": {"type": "string", "pattern": "^E[0-9]{3,}$"},
-    "target_id": {"type": "string", "minLength": 1},
-    "operation": {"enum": ["GENERATE_MASTER_BOARD", "EXPAND_SLIDE", "REPAIR_SLIDE", "ADD_LETTERING"]},
-    "prompt": {"type": "string", "minLength": 1},
+    "schema_version": {
+      "const": "1.0"
+    },
+    "dispatch_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "episode_id": {
+      "type": "string",
+      "pattern": "^E[0-9]{3,}$"
+    },
+    "target_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operation": {
+      "enum": [
+        "GENERATE_MASTER_BOARD",
+        "EXPAND_SLIDE",
+        "REPAIR_SLIDE",
+        "ADD_LETTERING"
+      ]
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 1
+    },
     "bound_media": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["path_or_handle", "sha256", "role"],
+        "required": [
+          "path_or_handle",
+          "sha256",
+          "role"
+        ],
         "properties": {
-          "path_or_handle": {"type": "string", "minLength": 1},
-          "sha256": {"type": ["string", "null"]},
-          "role": {"type": "string", "minLength": 1}
+          "path_or_handle": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     },
-    "attempt": {"type": "integer", "minimum": 1},
-    "status": {"enum": ["READY", "DISPATCHED", "IMPORTED", "REJECTED", "APPROVED", "WAITING_RETRY"]}
+    "attempt": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "READY",
+        "DISPATCHED",
+        "IMPORTED",
+        "REJECTED",
+        "APPROVED",
+        "WAITING_RETRY"
+      ]
+    },
+    "runtime_attachment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preflight_required_before_execute",
+        "source_authority",
+        "carrier_scope",
+        "preferred_carrier",
+        "fallback_carriers",
+        "fallback_only_after_direct_runtime_bridge_unavailable",
+        "revalidate_after_session_or_surface_change",
+        "attachment_does_not_reset_episode_or_stage",
+        "opaque_runtime_handle_is_reference_authority"
+      ],
+      "properties": {
+        "preflight_required_before_execute": {
+          "const": true
+        },
+        "source_authority": {
+          "const": "REPOSITORY_REGISTRY_SHA256"
+        },
+        "carrier_scope": {
+          "const": "SESSION_ONLY"
+        },
+        "preferred_carrier": {
+          "const": "REPOSITORY_DIRECT"
+        },
+        "fallback_carriers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "CURRENT_SESSION_ATTACHMENT",
+              "WORK_RUNTIME_FILE"
+            ]
+          }
+        },
+        "fallback_only_after_direct_runtime_bridge_unavailable": {
+          "const": true
+        },
+        "revalidate_after_session_or_surface_change": {
+          "const": true
+        },
+        "attachment_does_not_reset_episode_or_stage": {
+          "const": true
+        },
+        "opaque_runtime_handle_is_reference_authority": {
+          "const": false
+        }
+      }
+    }
   }
 }
-
