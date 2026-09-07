@@ -18,7 +18,7 @@
     }
   ],
   "attempt": 1,
-  "status": "READY",
+  "status": "SUPERSEDED",
   "runtime_attachment": {
     "preflight_required_before_execute": true,
     "source_authority": "REPOSITORY_REGISTRY_SHA256",
@@ -32,5 +32,7 @@
     "revalidate_after_session_or_surface_change": true,
     "attachment_does_not_reset_episode_or_stage": true,
     "opaque_runtime_handle_is_reference_authority": false
-  }
+  },
+  "eligible_for_execution": false,
+  "superseded_reason": "Protocol-v2 migration reopened E002 at PREPRODUCTION_REVIEW and produced E002-B01-V2-MASTER-A1 from user-approved V2 locks. This V1 A1 dispatch must never execute again."
 }
