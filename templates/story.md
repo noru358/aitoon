@@ -1,4 +1,4 @@
-# Story lock
+# Story draft / lock
 
 - Premise:
 - Emotional engine:
@@ -11,10 +11,11 @@
 | # | Beat | State before | State after | Reader question |
 |---:|---|---|---|---|
 
-## Dialogue notes
+## Dialogue / interiority notes
 
 - Register:
 - Source-derived wording:
+- Dialogue:
+- Thought / narration candidates:
 - Deliberate silence:
 - Removed AI-sounding lines:
-
