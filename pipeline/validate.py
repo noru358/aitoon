@@ -19,6 +19,8 @@ def _require(condition: bool, message: str) -> None:
 def validate_policy(root: Path = ROOT) -> None:
     data = policy(root)
     _require(data.get("schema_version") == "1.0", "unsupported policy schema")
+    _require(data.get("architecture") == "GPT_APP_BOARD_FIRST_V2", "architecture revision drift")
+    _require(data.get("protocol_revision") == 2, "protocol revision drift")
     execution = data.get("execution", {})
     _require(execution.get("additional_paid_budget_krw") == 0, "paid budget must be zero")
     _require(execution.get("paid_api_allowed") is False, "paid API must be disabled")
@@ -31,17 +33,19 @@ def validate_policy(root: Path = ROOT) -> None:
     common = modes.get("common", {})
     _require(chat.get("strategy") == "BOUNDED_AUTONOMOUS_MULTI_TURN", "Chat execution strategy drift")
     _require(chat.get("routine_approval_required") is False, "Chat must not create routine approval gates")
+    _require(chat.get("editorial_review_mode") == "USER_REQUIRED", "Chat must preserve the editorial user gate")
     _require(chat.get("continuation_token_is_approval") is False, "Chat continuation token cannot be an approval")
     _require(
-        chat.get("durable_turn_boundaries") == ["BOARD_DISPATCH_READY", "ART_SEQUENCE_QC", "DONE"],
+        chat.get("durable_turn_boundaries") == ["PREPRODUCTION_REVIEW", "BOARD_DISPATCH_READY", "ART_SEQUENCE_QC", "DONE"],
         "Chat durable turn boundary drift",
     )
     _require(chat.get("boundary_checkpoint_required") is True, "Chat turn boundary must checkpoint repository state")
     _require(chat.get("response_boundary_is_state_machine_stage") is False, "response boundary cannot become a production stage")
     _require(chat.get("quality_gates_may_be_skipped_for_turn_budget") is False, "Chat turn budget cannot weaken quality gates")
-    _require(work.get("strategy") == "ONE_SHOT_TO_DONE_OR_RETRYABLE_BLOCK", "Work execution strategy drift")
+    _require(work.get("strategy") == "ONE_SHOT_AFTER_EDITORIAL_APPROVAL_TO_DONE_OR_RETRYABLE_BLOCK", "Work execution strategy drift")
     _require(work.get("routine_approval_required") is False, "Work must not create routine approval gates")
-    _require(work.get("intentional_turn_boundaries") is False, "Work should not intentionally stop at Chat boundaries")
+    _require(work.get("editorial_review_mode") == "USER_REQUIRED_BY_DEFAULT", "Work editorial review policy drift")
+    _require(work.get("stops_for_unapproved_editorial_review") is True, "Work must not bypass an unapproved editorial review")
     _require(work.get("stage_checkpoint_required") is True, "Work must preserve stage checkpoints")
     _require(work.get("quality_gates_may_be_skipped_for_execution_budget") is False, "Work execution budget cannot weaken quality gates")
     _require(common.get("same_production_state_machine") is True, "Chat and Work must share one state machine")
@@ -52,10 +56,24 @@ def validate_policy(root: Path = ROOT) -> None:
     stages = data.get("stages")
     _require(isinstance(stages, list) and len(stages) == len(set(stages)), "stages must be unique")
     _require(stages[0] == "BOOTSTRAP" and stages[-1] == "DONE", "stage boundary drift")
+    _require(stages[1] == "PREPRODUCTION_REVIEW", "editorial review stage drift")
     render = data.get("render", {})
     _require(render.get("default_lane") == "MASTER_BOARD", "master-board lane must remain default")
     _require(render.get("maximum_slides_per_board") == 4, "v1 board capacity drift")
-    _require(data.get("product", {}).get("delivery") == "ONE_FILE_PER_SLIDE", "delivery contract drift")
+    product = data.get("product", {})
+    _require(product.get("delivery") == "ONE_FILE_PER_SLIDE", "delivery contract drift")
+    _require(product.get("narrative_slide_count_excludes_cover") is True, "cover must not change narrative slide_count")
+    cover = product.get("cover", {})
+    _require(cover.get("required_from_protocol_revision") == 2, "cover requirement drift")
+    _require(cover.get("default_strategy") == "DERIVED_FROM_APPROVED_ART", "cover should default to approved-art derivation")
+    design = data.get("visual_design", {})
+    _require(design.get("background_default") == "LOWEST_SUFFICIENT", "background minimalism drift")
+    _require(design.get("background_levels") == ["NONE", "SYMBOLIC", "LOCATION_ANCHOR", "FULL_SCENE"], "background level drift")
+    _require(design.get("decorative_assets_default") == "OMIT", "decorative asset default drift")
+    editorial = data.get("editorial", {})
+    _require(editorial.get("stage") == "PREPRODUCTION_REVIEW", "editorial stage policy drift")
+    _require(editorial.get("explicit_user_approval_required") is True, "editorial approval must be explicit")
+    _require(editorial.get("approval_hash_binds") == ["source.md", "story.md", "storyboard.json"], "editorial hash binding drift")
     runtime = data.get("runtime_attachment", {})
     _require(runtime.get("preflight_required_before_image_dispatch") is True, "runtime attachment preflight must be required")
     _require(runtime.get("revalidate_after_session_or_surface_change") is True, "runtime attachment must be session-revalidated")
@@ -68,6 +86,86 @@ def validate_policy(root: Path = ROOT) -> None:
     _require(runtime.get("opaque_runtime_handle_is_reference_authority") is False, "runtime handles must not become reference authority")
     _require(runtime.get("file_uri_alone_proves_image_binding") is False, "file URI alone cannot prove image-runtime binding")
 
+
+
+def validate_lettering_style(root: Path = ROOT) -> None:
+    data = read_json(root / "config" / "lettering_style.json")
+    _require(data.get("schema_version") == "1.0", "lettering style schema drift")
+    _require(data.get("style_id") == "AIT_V2_EDITORIAL_COMIC", "lettering style id drift")
+    _require(data.get("status") in {"CALIBRATION_PENDING", "LOCKED"}, "bad lettering style status")
+    roles = data.get("roles")
+    _require(isinstance(roles, dict), "lettering role config missing")
+    for role in ("DIALOGUE", "THOUGHT", "NARRATION", "SFX", "UI", "TITLE"):
+        item = roles.get(role)
+        _require(isinstance(item, dict), f"lettering role missing: {role}")
+        bounds = item.get("font_size_range")
+        _require(isinstance(bounds, list) and len(bounds) == 2 and 8 <= bounds[0] <= bounds[1] <= 220, f"bad lettering size range: {role}")
+
+
+def _validate_editorial_review(root: Path, episode_dir: Path, episode_id: str, state: dict[str, Any]) -> None:
+    revision = int(state.get("protocol_revision", 1))
+    if revision < 2:
+        return
+    review_path = episode_dir / "editorial_review.json"
+    _require(review_path.is_file(), f"{episode_id}: missing editorial_review.json")
+    review = read_json(review_path)
+    _require(review.get("episode_id") == episode_id, f"{episode_id}: editorial review id mismatch")
+    _require(review.get("status") in {"PENDING", "APPROVED"}, f"{episode_id}: bad editorial review status")
+    stages = policy(root)["stages"]
+    if stages.index(state["stage"]) > stages.index("PREPRODUCTION_REVIEW"):
+        _require(review.get("status") == "APPROVED", f"{episode_id}: advanced without editorial approval")
+        approved = review.get("approved_hashes")
+        _require(isinstance(approved, dict), f"{episode_id}: approved review lacks hashes")
+        for name in ("source.md", "story.md", "storyboard.json"):
+            _require(approved.get(name) == sha256_file(episode_dir / name), f"{episode_id}: reviewed file drift after approval: {name}")
+
+
+def _validate_v2_storyboard(root: Path, episode_dir: Path, episode_id: str, state: dict[str, Any]) -> None:
+    if int(state.get("protocol_revision", 1)) < 2:
+        return
+    stages = policy(root)["stages"]
+    if stages.index(state["stage"]) < stages.index("PREPRODUCTION_REVIEW"):
+        return
+    storyboard = read_json(episode_dir / "storyboard.json")
+    cover = storyboard.get("cover")
+    _require(isinstance(cover, dict), f"{episode_id}: v2 storyboard cover is missing")
+    for key in ("title", "visual_concept", "strategy"):
+        _require(isinstance(cover.get(key), str) and cover[key].strip(), f"{episode_id}: cover {key} missing")
+    _require(cover.get("strategy") in {"DERIVED_FROM_APPROVED_ART", "DEDICATED_COVER_ART_IF_NEEDED"}, f"{episode_id}: bad cover strategy")
+    slides = storyboard.get("slides")
+    _require(isinstance(slides, list) and len(slides) == state.get("slide_count"), f"{episode_id}: storyboard slide count mismatch")
+    allowed_backgrounds = {"NONE", "SYMBOLIC", "LOCATION_ANCHOR", "FULL_SCENE"}
+    allowed_copy_roles = {"DIALOGUE", "THOUGHT", "NARRATION", "SFX", "UI"}
+    for slide in slides:
+        sid = slide.get("slide_id", "?")
+        level = slide.get("background_level")
+        _require(level in allowed_backgrounds, f"{episode_id}/{sid}: bad or missing background_level")
+        essential = slide.get("essential_background")
+        _require(isinstance(essential, list) and all(isinstance(x, str) and x.strip() for x in essential), f"{episode_id}/{sid}: essential_background malformed")
+        if level == "NONE":
+            _require(not essential, f"{episode_id}/{sid}: NONE background cannot declare essential background assets")
+        if level == "FULL_SCENE":
+            _require(isinstance(slide.get("background_reason"), str) and slide["background_reason"].strip(), f"{episode_id}/{sid}: FULL_SCENE requires story reason")
+        _require(isinstance(slide.get("face_acting_intent"), str) and slide["face_acting_intent"].strip(), f"{episode_id}/{sid}: face_acting_intent missing")
+        _require(isinstance(slide.get("emotion_delta"), str) and slide["emotion_delta"].strip(), f"{episode_id}/{sid}: emotion_delta missing")
+        copy = slide.get("copy")
+        _require(isinstance(copy, list), f"{episode_id}/{sid}: copy must be a list")
+        for item in copy:
+            _require(item.get("role") in allowed_copy_roles, f"{episode_id}/{sid}: unsupported copy role")
+
+
+def _validate_v2_cover_done(root: Path, episode_dir: Path, episode_id: str, state: dict[str, Any]) -> None:
+    if int(state.get("protocol_revision", 1)) < 2 or state.get("run_status") != "DONE":
+        return
+    style = read_json(root / "config" / "lettering_style.json")
+    _require(style.get("status") == "LOCKED", f"{episode_id}: DONE with unlocked lettering style")
+    cover_file = episode_dir / "cover" / "final.png"
+    manifest_path = episode_dir / "cover" / "manifest.json"
+    _require(cover_file.is_file() or manifest_path.is_file(), f"{episode_id}: DONE without cover artifact")
+    if manifest_path.is_file():
+        manifest = read_json(manifest_path)
+        _require(manifest.get("episode_id") == episode_id, f"{episode_id}: cover manifest episode mismatch")
+        _require(bool(manifest.get("sha256") or manifest.get("stable_app_handle")), f"{episode_id}: cover manifest lacks evidence")
 
 
 def validate_reference_registry(root: Path = ROOT) -> None:
@@ -190,6 +288,8 @@ def validate_episode(episode_dir: Path, root: Path = ROOT) -> None:
         _require(state.get("blocked") is None, f"{episode_id}: stale blocked record")
     for name in ("source.md", "story.md", "storyboard.json", "visual_packet.json"):
         _require((episode_dir / name).is_file(), f"{episode_id}: missing {name}")
+    _validate_editorial_review(root, episode_dir, episode_id, state)
+    _validate_v2_storyboard(root, episode_dir, episode_id, state)
     for artifact in state.get("artifacts", []):
         _validate_artifact(root, artifact, episode_id)
 
@@ -207,6 +307,7 @@ def validate_episode(episode_dir: Path, root: Path = ROOT) -> None:
     _validate_qc_reports(root, episode_dir, episode_id)
     if state["run_status"] == "DONE":
         _require(state["stage"] == "DONE", f"{episode_id}: DONE status/stage mismatch")
+        _validate_v2_cover_done(root, episode_dir, episode_id, state)
         final_report = episode_dir / "qc" / "final.json"
         _require(final_report.is_file(), f"{episode_id}: DONE without final QC")
         _require(read_json(final_report).get("status") == "PASS", f"{episode_id}: final QC is not PASS")
@@ -235,9 +336,10 @@ def validate_episode(episode_dir: Path, root: Path = ROOT) -> None:
 
 def validate_repository(root: Path = ROOT) -> list[str]:
     validate_policy(root)
+    validate_lettering_style(root)
     validate_reference_registry(root)
     validate_calibration(root)
-    checked = ["policy", "references", "calibration"]
+    checked = ["policy", "lettering_style", "references", "calibration"]
     episodes = root / "episodes"
     if episodes.is_dir():
         for directory in sorted(path for path in episodes.iterdir() if path.is_dir()):
