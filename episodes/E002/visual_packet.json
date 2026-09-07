@@ -6,10 +6,10 @@
       "id": "LEGACY_REF_V2_D",
       "path": "calibration/references/REF_V2_D_MAIN_CAST_GAEUN_HARIN_TAEMIN.jpeg",
       "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
-      "role": "Harin identity and person drawing language",
+      "role": "person drawing-language reference; reference-character identity is not implied",
       "authority": "PRIMARY_STYLE",
-      "allowed_influence": "identity proportions, eye grammar, line and flat-color behavior",
-      "forbidden_inference": "current pose, camera, action, story or location",
+      "allowed_influence": "head/body proportion range, eye/face grammar, line behavior, flat-color behavior, hair massing abstraction",
+      "forbidden_inference": "exact reference-character identity, hairstyle, clothing, current pose, camera, action, story or location unless a separate explicit identity role is bound",
       "production_eligible": true,
       "byte_inspection": {
         "retrieved_from_repository": true,
@@ -23,10 +23,10 @@
       "id": "LEGACY_REF_V2_E",
       "path": "calibration/references/REF_V2_E_3PERSON_INDOOR_SCENE.jpeg",
       "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
-      "role": "scene and background drawing language",
+      "role": "scene/background drawing-language reference only",
       "authority": "PRIMARY_STYLE",
-      "allowed_influence": "shared character/background abstraction, line and restrained shading",
-      "forbidden_inference": "room layout, current pose, story, clothing or cast requirement",
+      "allowed_influence": "background abstraction, line economy, restrained shading and local-color relationship",
+      "forbidden_inference": "room layout, decorative asset inventory, current pose, story, clothing or cast requirement",
       "production_eligible": true,
       "byte_inspection": {
         "retrieved_from_repository": true,
@@ -85,6 +85,21 @@
       "indoor scene/background abstraction via LEGACY_REF_V2_E",
       "episode-local GF/BF identities authored distinctly inside the bound PRIMARY_STYLE language"
     ],
-    "note": "D/E are the minimum sufficient registered production-eligible set for this one-off indoor couple episode. No re-upload or dedicated episode-local identity sheet is required."
+    "note": "STALE after protocol-v2 migration. Rebuild and set status LOCKED only after PREPRODUCTION_REVIEW approval and sequential source/story/storyboard locks."
+  },
+  "status": "STALE_PENDING_EDITORIAL_APPROVAL",
+  "style_match_dimensions": [
+    "LINE_GRAMMAR",
+    "EYE_FACE_GRAMMAR",
+    "HEAD_BODY_PROPORTION",
+    "HAIR_MASSING",
+    "SHADING_DENSITY",
+    "TEXTURE",
+    "DETAIL_BUDGET"
+  ],
+  "background_policy": {
+    "strategy": "LOWEST_SUFFICIENT",
+    "decorative_assets_default": "OMIT",
+    "note": "This packet is stale until editorial approval; when rebuilt, bind only background cues needed by the approved storyboard."
   }
 }
