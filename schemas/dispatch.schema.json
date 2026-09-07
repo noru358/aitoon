@@ -139,6 +139,9 @@
     },
     "eligible_for_execution": {
       "type": "boolean"
+    },
+    "superseded_reason": {
+      "type": "string"
     }
   }
 }
