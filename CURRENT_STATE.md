@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-08 03:04 KST  
+Updated: 2026-09-08 03:20 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V2`
 
@@ -99,26 +99,37 @@ font/profile before any V2 `LETTERING_COMPLETE` PASS.
 `E002 / 그냥 세탁기에 돌려도 되는데`
 
 Protocol revision: 2  
-Stage: `PREPRODUCTION_REVIEW`  
+Stage: `BOARD_DISPATCH_READY`  
 Run status: `ACTIVE`
 
-The previous E002 visual packet and A2 board dispatch are superseded. All rejected
-master-board/runtime outputs remain quarantine-only and cannot be reused.
+Completed in the current V2 run:
 
-E002 has been reopened as a reviewable V2 draft:
+- the presented `PREPRODUCTION_REVIEW` was explicitly user-approved and
+  `source.md`, `story.md`, and `storyboard.json` were SHA-256 hash-bound in
+  `episodes/E002/editorial_review.json`;
+- the state advanced sequentially through `SOURCE_LOCK -> STORY_LOCK -> STORYBOARD_LOCK`
+  without changing the approved files;
+- both registered PRIMARY_STYLE JPEGs were re-read from latest main and verified
+  byte-for-byte against registry SHA-256 and dimensions;
+- `visual_packet.json` is now `LOCKED` with V2-narrowed reference influence,
+  lowest-sufficient background policy, multidimensional style QC dimensions, and
+  distinct episode-local GF/BF appearance text;
+- the user's current-session 2x2 preview was visually approved provisionally and
+  its observed hash/gen-id/dimensions are recorded only as session feedback. It is
+  **not** canonical master-board evidence, not persistent reference authority, and
+  does not replace PRIMARY_STYLE;
+- a fresh V2 board plan and dispatch were compiled:
+  `episodes/E002/boards/B01.plan.v2.json` and
+  `episodes/E002/boards/B01.v2.A1.dispatch.json`;
+- the active dispatch ID is `E002-B01-V2-MASTER-A1`;
+- the fresh dispatch includes target cast definitions, state/continuity contracts,
+  lowest-sufficient background levels, S02 phone geometry, conditional anatomy
+  contracts, and explicit S01/S04 face-acting separation;
+- the legacy V1 A1 and A2 dispatches are marked `SUPERSEDED` and ineligible for
+  execution; rejected/quarantined prior outputs remain non-reusable.
 
-- source remains the same traceable TeamBlind post;
-- four narrative beats remain;
-- decorative backgrounds are reduced to the lowest sufficient level;
-- S02 uses a boyfriend thought instead of adding environmental exposition;
-- S04 uses a girlfriend thought for the source-derived landing;
-- S01 and S04 now declare different face-acting intents so a copied facial template
-  is a QC failure;
-- a separate cover concept is drafted from S04-style approved art rather than a new
-  independent illustration.
-
-No image dispatch is eligible until this review is approved and the source/story/
-storyboard hashes are locked.
+The Chat durable boundary `BOARD_DISPATCH_READY` has been reached. No canonical
+V2 image call has been executed after this boundary yet.
 
 ## Execution surfaces
 
@@ -130,12 +141,14 @@ storyboard hashes are locked.
 
 ## Exact next action
 
-Present the E002 `PREPRODUCTION_REVIEW` to the user in one compact package:
-source/topic, premise, four beats, all dialogue/thought copy, background plan, and
-cover concept. Accept edits or explicit approval. Do not execute image generation.
+Execute only `episodes/E002/boards/B01.v2.A1.dispatch.json` after current-surface
+runtime-attachment preflight. Prefer repository-direct binding of the verified D/E
+PRIMARY_STYLE bytes; if that bridge is unavailable, use matching current-session
+copies only as `SESSION_ONLY` transport.
 
-After explicit approval, record the exact hashes in
-`episodes/E002/editorial_review.json`, advance exactly to `SOURCE_LOCK`, then
-continue sequentially through story/storyboard locks, rebuild a `LOCKED` visual
-packet, and compile a new V2 board dispatch. The superseded A2 dispatch must never
-resume.
+Do not execute the superseded V1/A2 dispatches and do not treat the previously
+user-approved session preview as canonical board evidence. Import the returned 2x2
+V2 board, inspect actual pixels for text contamination, target cast, anatomy/contact,
+phone geometry, jeans state continuity, lowest-sufficient background use, style
+dimensions, and S01/S04 acting separation, then advance exactly through
+`MASTER_BOARD_IMPORTED -> MASTER_BOARD_QC`.
