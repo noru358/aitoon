@@ -87,6 +87,39 @@ episodes/E001/
 Chat memory is never the only copy of a decision. `state.json` identifies the
 stage and exact next action. Media records include path, SHA-256 and dimensions.
 
+### Chat vs Work execution scheduling
+
+Chat and Work share one production architecture. Do not fork story, rendering,
+reference, retry, QC or export rules by surface.
+
+**Chat default: bounded autonomous multi-turn.** A normal episode is intentionally
+split across durable execution turns rather than forcing the entire pipeline through
+one assistant response. The preferred boundaries are:
+
+1. `BOARD_DISPATCH_READY`;
+2. `ART_SEQUENCE_QC`;
+3. `DONE`.
+
+When a Chat turn reaches one of those boundaries after substantive work, write all
+stage evidence and the exact next action to the repository, then end the response.
+The user's next `계속` message starts a fresh execution turn from canonical boot.
+It is a transport/control token only, not a routine approval gate. Do not ask the
+user to re-approve unchanged story, storyboard, references, boards, or art merely
+because a new turn began.
+
+**Work default: one-shot autonomous completion.** Continue across the same durable
+checkpoints toward `DONE` in one Work execution whenever the built-in tools remain
+available. A real retryable tool/resource/permission block is still recorded
+fail-closed; Work does not bypass limits or quality gates.
+
+A response boundary is never represented as a production stage or retryable block.
+The state machine remains the sole production lifecycle. If execution must resume in
+another turn, `state.json.exact_next_action` is sufficient handoff authority.
+Optimize context by reading only the companion files needed for that action; never
+optimize by dropping actual reference-byte verification, pixel inspection, anatomy/
+contact checks, quarantine, lettering verification, final QC, export evidence or
+repository validation.
+
 ## 4. Autonomous stage protocol
 
 ### BOOTSTRAP
