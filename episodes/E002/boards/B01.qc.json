@@ -25,12 +25,12 @@
     "camera_bias": "FAIL: all four panels reuse essentially the same living-room frontal group staging rather than beat-serving S01-S04 cameras."
   },
   "routing": {
-    "action": "WAIT_FOR_VALID_RUNTIME_DISPATCH",
+    "action": "SUPERSEDED_BY_PROTOCOL_V2",
     "whole_board_retry_used": false,
     "isolated_repair_required": false,
     "retry_budget_remaining": 1,
-    "block_code": "WAITING_TOOL_RECOVERY",
-    "resume_condition": "Retry E002-B01-MASTER-A2 from MASTER_BOARD_QC only after image-runtime tool recovery or on a built-in execution surface that can demonstrably honor the compiled target semantics. Canonical-boot latest main, re-read the locked D/E references plus B01.qc.json and B01.dispatch.A2.json, rerun runtime-attachment/dispatch preflight, prefer repository-direct transport, and use matching session copies only as SESSION_ONLY carriers. Do not use any rejected/misdispatched output, and do not import the prior independently generated standalone slides or their lettering because they violate board-first. If a returned 2x2 board actually matches the locked two-character denim/laundry dispatch and is text-free, import it as episodes/E002/boards/B01.master.png, inspect actual pixels, and advance exactly according to board QC."
+    "block_code": null,
+    "resume_condition": "Do not resume this board. E002 has migrated to PREPRODUCTION_REVIEW; only a newly compiled dispatch from user-approved v2 source/story/storyboard and a re-LOCKED visual packet may execute."
   },
   "root_cause": "Board-wide semantic/cast failure. The visual references dominated the image call while the locked target dispatch was not sufficiently surfaced to the current image runtime. Retry must preserve the same locked story and reference authority while making target-only cell semantics explicit.",
   "runtime_execution_faults": [
@@ -102,6 +102,7 @@
   ],
   "protocol_guard": {
     "prior_standalone_art_from_chat": "NOT_IMPORTED",
-    "reason": "Independently generated slides/lettering are not board-derived and therefore cannot be accepted as canonical episode art under GPT_APP_BOARD_FIRST_V1."
+    "reason": "Independently generated slides/lettering are not board-derived and therefore cannot be accepted as canonical episode art under GPT_APP_BOARD_FIRST_V1.",
+    "v2_migration": "All B01 v1/A2 execution paths are superseded. Quarantine evidence remains non-reusable."
   }
 }
