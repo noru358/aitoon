@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-08 03:20 KST  
+Updated: 2026-09-08 03:32 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V2`
 
@@ -99,37 +99,38 @@ font/profile before any V2 `LETTERING_COMPLETE` PASS.
 `E002 / 그냥 세탁기에 돌려도 되는데`
 
 Protocol revision: 2  
-Stage: `BOARD_DISPATCH_READY`  
-Run status: `ACTIVE`
+Stage: `MASTER_BOARD_QC`  
+Run status: `BLOCKED_RETRYABLE`  
+Block: `WAITING_TOOL_RECOVERY`
 
-Completed in the current V2 run:
+Current V2 evidence:
 
-- the presented `PREPRODUCTION_REVIEW` was explicitly user-approved and
-  `source.md`, `story.md`, and `storyboard.json` were SHA-256 hash-bound in
-  `episodes/E002/editorial_review.json`;
-- the state advanced sequentially through `SOURCE_LOCK -> STORY_LOCK -> STORYBOARD_LOCK`
-  without changing the approved files;
-- both registered PRIMARY_STYLE JPEGs were re-read from latest main and verified
-  byte-for-byte against registry SHA-256 and dimensions;
-- `visual_packet.json` is now `LOCKED` with V2-narrowed reference influence,
-  lowest-sufficient background policy, multidimensional style QC dimensions, and
-  distinct episode-local GF/BF appearance text;
-- the user's current-session 2x2 preview was visually approved provisionally and
-  its observed hash/gen-id/dimensions are recorded only as session feedback. It is
-  **not** canonical master-board evidence, not persistent reference authority, and
-  does not replace PRIMARY_STYLE;
-- a fresh V2 board plan and dispatch were compiled:
-  `episodes/E002/boards/B01.plan.v2.json` and
-  `episodes/E002/boards/B01.v2.A1.dispatch.json`;
-- the active dispatch ID is `E002-B01-V2-MASTER-A1`;
-- the fresh dispatch includes target cast definitions, state/continuity contracts,
-  lowest-sufficient background levels, S02 phone geometry, conditional anatomy
-  contracts, and explicit S01/S04 face-acting separation;
-- the legacy V1 A1 and A2 dispatches are marked `SUPERSEDED` and ineligible for
-  execution; rejected/quarantined prior outputs remain non-reusable.
+- editorial approval remains hash-locked and unchanged;
+- D/E PRIMARY_STYLE bytes remain verified and `visual_packet.json` remains `LOCKED`;
+- canonical parent board `B01` A1 failed actual-pixel QC for baked text, style/cast drift,
+  S02 phone geometry and extra-hand contact;
+- the single allowed parent-board retry A2 improved S02 phone/back geometry and
+  two-hand ownership, but still failed board-wide baked-text, style and GF cast
+  appearance gates; there is no A3;
+- per the repeated-structural-failure rule, B01 was decomposed into
+  `B01D1(S01-S02)` then `B01D2(S03-S04)`, preserving board-first rather than
+  switching to independent final-slide generation;
+- current runtime execution of `B01D1` was a semantic misdispatch rather than a
+  valid decomposed-board attempt: despite a two-cell top-row contract with both
+  bottom cells EMPTY and zero text/symbols, the runtime generated all four beats,
+  Korean speech/thought bubbles, a heart, the wrong bob-haired/shoulder-bag GF, and
+  an extra S02 self-touch hand;
+- D1 misdispatch actual pixels are recorded by stable handle
+  `image_gen:8df5e643-7a44-4f35-a672-3b6e2e84a50d`, SHA-256
+  `ae203c506ea214c836239d7a98519453c1488f336dba9f172b7b180f9109509b`,
+  dimensions 1224x1285;
+- receipt:
+  `episodes/E002/quarantine/B01D1.runtime-misdispatch.receipt.json`;
+- QC:
+  `episodes/E002/qc/B01D1.runtime-misdispatch.json`.
 
-The Chat durable boundary `BOARD_DISPATCH_READY` has been reached. No canonical
-V2 image call has been executed after this boundary yet.
+The D1 target semantics were not executed, so the D1 attempt budget is not consumed.
+Rejected A1/A2/D1 pixels are ineligible for style, continuity, or repair reuse.
 
 ## Execution surfaces
 
@@ -141,14 +142,26 @@ V2 image call has been executed after this boundary yet.
 
 ## Exact next action
 
-Execute only `episodes/E002/boards/B01.v2.A1.dispatch.json` after current-surface
-runtime-attachment preflight. Prefer repository-direct binding of the verified D/E
-PRIMARY_STYLE bytes; if that bridge is unavailable, use matching current-session
-copies only as `SESSION_ONLY` transport.
+Retry the unchanged decomposed dispatch
+`episodes/E002/boards/B01D1.dispatch.json` only after image-runtime tool recovery
+or on a clean built-in image surface that demonstrably honors the current target
+semantics.
 
-Do not execute the superseded V1/A2 dispatches and do not treat the previously
-user-approved session preview as canonical board evidence. Import the returned 2x2
-V2 board, inspect actual pixels for text contamination, target cast, anatomy/contact,
-phone geometry, jeans state continuity, lowest-sufficient background use, style
-dimensions, and S01/S04 acting separation, then advance exactly through
-`MASTER_BOARD_IMPORTED -> MASTER_BOARD_QC`.
+Canonical-boot latest `main`, rerun D/E runtime-attachment preflight, keep the
+parent B01 whole-board retry budget exhausted, and do not use any rejected
+A1/A2/D1 output.
+
+A valid D1 must:
+
+- illustrate only S01 and S02 in the top row;
+- leave both bottom cells EMPTY;
+- contain zero text, bubbles, hearts, symbols or UI;
+- preserve low-bun GF and BF episode-local appearances;
+- preserve the same stained dry jeans;
+- obey S02 phone-back geometry and exactly two BF hand roles;
+- keep lowest-sufficient backgrounds;
+- match PRIMARY_STYLE drawing grammar.
+
+If D1 passes actual-pixel QC, continue to B01D2, derive slides only after both
+decomposed boards pass, and then advance to `SLIDES_EXPANDED`. Do not attempt a
+parent-board A3.
