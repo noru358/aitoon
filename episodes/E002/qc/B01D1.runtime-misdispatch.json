@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "target_id": "B01D1",
+  "dispatch_id": "E002-B01D1-V2-MASTER-A1",
+  "status": "FAIL",
+  "inspected": [
+    {
+      "stable_app_handle": "image_gen:8df5e643-7a44-4f35-a672-3b6e2e84a50d",
+      "sha256": "ae203c506ea214c836239d7a98519453c1488f336dba9f172b7b180f9109509b",
+      "width": 1224,
+      "height": 1285,
+      "actual_pixels": true
+    }
+  ],
+  "failures": [
+    {
+      "code": "RUNTIME_TARGET_MISDISPATCH",
+      "scope": "BOARD_CONTRACT",
+      "detail": "Bottom two cells were required EMPTY but the runtime generated S03 and S04."
+    },
+    {
+      "code": "BAKED_TEXT",
+      "scope": "BOARD_WIDE",
+      "detail": "Korean bubbles and a heart were generated despite a zero-text/symbol contract."
+    },
+    {
+      "code": "CAST_APPEARANCE_DRIFT",
+      "scope": "S01",
+      "detail": "GF rendered as bob-haired with shoulder bag instead of locked low-bun appearance."
+    },
+    {
+      "code": "ANATOMY_CONTACT",
+      "scope": "S02",
+      "detail": "A self-touch hand was added beyond the intended jeans/phone two-hand ownership."
+    }
+  ],
+  "routing": {
+    "action": "WAITING_TOOL_RECOVERY",
+    "detail": "Do not treat this as a normal D1 attempt; retry unchanged D1 only when the image surface honors the decomposed target."
+  }
+}
