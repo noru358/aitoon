@@ -6,7 +6,7 @@
   "stage": "MASTER_BOARD_QC",
   "run_status": "ACTIVE",
   "blocked": null,
-  "exact_next_action": "Execute only episodes/E002/boards/B01.v2.A2.dispatch.json after current-surface runtime preflight. This is the final whole-board retry. Use the verified D/E reference carriers only for drawing language; do not copy their cast or room. Inspect returned pixels immediately. If PASS, advance to SLIDES_EXPANDED and ART_SEQUENCE_QC; if board-wide failure persists, do not attempt A3 and route fail-closed according to V2 repair/decomposition policy.",
+  "exact_next_action": "Do not attempt B01 A3. Execute the protocol-sanctioned decomposition in episodes/E002/boards/B01.decomposition.json: first compile/execute B01D1 for S01-S02 only with two EMPTY cells and no copy text in the image prompt; inspect actual pixels. If D1 passes, use only its passed episode-local identity continuity to compile/execute B01D2 for S03-S04. Remain at MASTER_BOARD_QC until both decomposed boards PASS; then derive slides and advance to SLIDES_EXPANDED.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -139,6 +139,12 @@
       "from": "MASTER_BOARD_IMPORTED",
       "to": "MASTER_BOARD_QC",
       "evidence": "Actual-pixel QC FAIL recorded at episodes/E002/qc/B01.v2.A1.json: baked Korean bubbles, board-wide style drift, GF appearance drift, S02 phone-front geometry, and an extra self-touch hand. A1 is rejected/quarantined by receipt episodes/E002/quarantine/B01.v2.A1.receipt.json. The single V2 whole-board retry is routed to A2."
+    },
+    {
+      "at": "2026-09-07T18:28:00Z",
+      "from": "MASTER_BOARD_QC",
+      "to": "MASTER_BOARD_QC",
+      "evidence": "Final V2 whole-board retry A2 actual-pixel FAIL recorded at episodes/E002/qc/B01.v2.A2.json: baked Korean bubbles, GF cast drift, and board-wide style drift persist. S02 phone/anatomy improved, but no A3 is allowed. The protocol's repeated-structural-failure clause is now using bounded decomposition into B01D1(S01-S02) and B01D2(S03-S04), preserving all approved editorial hashes and the LOCKED visual packet."
     }
   ],
   "artifacts": [
