@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-08 00:53 KST  
+Updated: 2026-09-08 01:45 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
@@ -78,7 +78,7 @@ registered as user-designated `PRIMARY_STYLE` references. Independent authorship
 verification remains explicitly unasserted; it is not fabricated or treated as a
 routine production gate. E002 is therefore active rather than waiting for bytes.
 
-E002 has retrieved and inspected those actual repository bytes and bound D/E as the minimum sufficient set by path, SHA-256, role, `allowed_influence` and `forbidden_inference`. The current session carriers matched the repository bytes exactly, so reference transport itself is no longer the active blocker. The active blocker is the current image execution surface returning a task-mismatched image instead of the compiled B01 target. Both bad outputs are quarantined and cannot be reused.
+E002 has retrieved and inspected those actual repository bytes and bound D/E as the minimum sufficient set by path, SHA-256, role, `allowed_influence` and `forbidden_inference`. The current session carriers matched the repository bytes exactly, so reference transport itself is no longer the active blocker. The active blocker is the current image execution surface returning task-mismatched images instead of the compiled B01 target. In the latest session, A2 again misdispatched as an unrelated AITOON kanban/completion infographic; actual pixels were rejected and a hash/dimension/runtime receipt was persisted at `episodes/E002/quarantine/B01.master.A2-runtime-misdispatch-923936bc.receipt.json`. No rejected output can be reused.
 
 
 ## Runtime attachment guard
@@ -136,4 +136,4 @@ were not edited.
 
 ## Exact next action
 
-Resume E002 at `MASTER_BOARD_QC` from latest `main`. Re-read `references/registry.json`, the locked D/E bytes, `episodes/E002/boards/B01.qc.json`, and `episodes/E002/boards/B01.dispatch.A2.json`. Retry only after the built-in image execution surface is functioning normally for the compiled target; re-run runtime attachment and dispatch preflight first. Keep the D/E references as the same locked authority and use any matching session copies only as `SESSION_ONLY` carriers. Do not use either quarantined image. When a returned A2 board actually matches the locked two-character denim/laundry specification, import it as the canonical `episodes/E002/boards/B01.master.png`, inspect actual pixels, and advance exactly according to board QC. Do not use paid API/SaaS fallback.
+Resume E002 at `MASTER_BOARD_QC` from latest `main`. Re-read `references/registry.json`, the locked D/E bytes, `episodes/E002/boards/B01.qc.json`, and `episodes/E002/boards/B01.dispatch.A2.json`. Retry only on a built-in image execution surface that can accept the compiled target semantics; re-run runtime attachment and dispatch preflight first. Keep the D/E references as the same locked authority and use any matching session copies only as `SESSION_ONLY` carriers. Do not use any rejected output or receipt as image/reference evidence. When a returned A2 board actually matches the locked two-character denim/laundry specification, import it as the canonical `episodes/E002/boards/B01.master.png`, inspect actual pixels, and advance exactly according to board QC. Do not use paid API/SaaS fallback.
