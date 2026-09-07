@@ -177,9 +177,10 @@ natural occupancy:
 - 4 slides -> 2x2 runtime sheet.
 
 The passed runtime sheet is deterministically packed into the canonical 2x2 board.
-Unused canonical cells are created by code, not by the image generator. Story length
-is never padded or trimmed to fit. More than four slides use another sequential
-batch.
+Unused canonical cells are created by code, not by the image generator. Packing
+preserves native cell pixels/aspect; non-4:5 cells are not stretched and instead
+route to board-bound expansion for the final 4:5 conversion. Story length is never
+padded or trimmed to fit. More than four slides use another sequential batch.
 
 See `docs/IMAGE_RUNTIME_POLICY.md`.
 
