@@ -70,8 +70,14 @@ After a runtime sheet passes pixel QC, code deterministically packs its cells in
 the canonical 2x2 board. Unused canonical cells are created by code as plain empty
 cells.
 
+Packing preserves the runtime cell pixels and native aspect ratio. It must **not**
+stretch a generated non-4:5 cell just to make the final slide dimensions fit. If
+the packed canonical cells are already 4:5, deterministic split/resize is allowed.
+Otherwise the existing board-bound built-in expansion step owns the 4:5 conversion.
+
 This preserves board-first coherence while removing the unreliable request that a
-comic generator intentionally leave some panels blank.
+comic generator intentionally leave some panels blank and avoids trading topology
+stability for geometric distortion.
 
 ## 4. Semantic noncompliance is not a tool outage
 
