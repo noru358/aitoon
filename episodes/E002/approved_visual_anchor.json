@@ -4,7 +4,7 @@
   "anchor_id": "E002_APPROVED_VISUAL_ANCHOR_01",
   "status": "ACTIVE",
   "source_kind": "USER_APPROVED_GENERATED_PIXELS",
-  "approval_evidence": "User explicitly said '우선 승인' after viewing the text-free E002 preview.",
+  "approval_evidence": "User explicitly approved the visible E002 preview and later clarified that the approved image's drawing style and character appearance were expected to carry forward; this makes the approval operational for the declared identity/rendering scope.",
   "source_stable_app_handle": "image_gen:b049ef95-5dbe-4cf3-9ef8-89afac36bd93",
   "sha256": "536d8a75f7d549faab5d0627d94a7862f3fa17c3a4784c94f5666e38b95cebbb",
   "width": 1122,
@@ -19,7 +19,7 @@
     "excluded_objective_failure": [
       "S02 viewer can see phone front/screen more than allowed by storyboard geometry"
     ],
-    "note": "The excluded phone-geometry defect prevents whole-board canonical PASS but does not invalidate the identity/rendering anchor scope."
+    "note": "The excluded S02 phone-geometry defect prevents whole-board canonical PASS but does not invalidate the user-confirmed identity/rendering scope. Later user feedback specifically identified drift away from the approved image as a production defect."
   },
   "promotion_scope": "EPISODE_LOCAL_ONLY",
   "primary_style_promotion": false
