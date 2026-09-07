@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-08 00:12 KST  
+Updated: 2026-09-08 00:53 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
@@ -43,7 +43,7 @@ Run status: `DONE`
 
 Active episode: `E002 / 그냥 세탁기에 돌려도 되는데`
 
-Stage: `BOARD_DISPATCH_READY`
+Stage: `MASTER_BOARD_QC`
 
 Run status: `BLOCKED_RETRYABLE`
 
@@ -51,20 +51,16 @@ Block code: `WAITING_TOOL_RECOVERY`
 
 Completed for E002:
 
-- `SOURCE_LOCK`: direct Korean TeamBlind human story seed dated 2025-02-24;
-- `STORY_LOCK`: four-beat sweet-romance adaptation preserving the stained denim,
-  casual laundry request, online research, hand-wash and cute discovery;
-- `STORYBOARD_LOCK`: four slide contracts with state deltas, beat-serving cameras,
-  anatomy/contact intent, phone front/back geometry, continuity and text-safe regions;
-- `VISUAL_PACKET_LOCK`: actual D/E repository JPEG bytes retrieved, registry SHA-256 values
-  verified exactly, JPEG structure/dimensions inspected, and the minimum sufficient
-  production-eligible PRIMARY_STYLE set bound with explicit allowed/forbidden influence;
-- `BOARD_DISPATCH_READY`: a single four-cell B01 plan and hash-bound A1 dispatch are compiled from the locks; D/E are the only bound media, S02 phone geometry and scoped anatomy contracts are carried into the prompt, and the board is required to remain text-free;
-- repository validation/regression workflow passed for `669d52c2456c68d0c138e8b061741444a16fc081` after the board dispatch commit;
-- the current ChatGPT tool surface cannot hand the already retrieved GitHub repository JPEG bytes to built-in image generation as actual attached media, so the episode is retryably blocked rather than generating unreferenced art;
-- E002-B01-MASTER-A1 now carries an explicit session-scoped runtime-attachment contract: direct repository transport first, current-session Chat/Work attachment fallback only after direct bridge failure, and mandatory re-preflight after session/surface changes;
-- a transport attachment is mapped back to the locked D/E registry roles and never becomes new style authority or a reason to reset the episode/stage;
-- future copy is recorded in storyboard metadata but no lettering is permitted in art.
+- `SOURCE_LOCK`, `STORY_LOCK`, `STORYBOARD_LOCK`, `VISUAL_PACKET_LOCK` and `BOARD_DISPATCH_READY` remain locked and unchanged;
+- repository D/E PRIMARY_STYLE JPEG bytes were re-read from latest main and SHA-256 verified exactly: D `dbddf458...` at 1448x1086 and E `b496832...` at 1536x864;
+- the two user attachments in this session were verified to be byte-for-byte matches of those same locked D/E files, so they were mapped only as `SESSION_ONLY` carriers after the direct repository-to-image-runtime bridge remained unavailable;
+- `E002-B01-MASTER-A1` produced an actual image, which was imported, inspected, hard-failed board-wide, and quarantined because it copied the three reference characters/living-room activity instead of the locked two-character denim/laundry story, omitted the jeans state sequence, repeated the same group staging, and contained baked Latin `Z` marks;
+- the rejected A1 canonical board path was removed after preserving the immutable quarantine copy;
+- one whole-board retry dispatch `E002-B01-MASTER-A2` was compiled without changing story, storyboard, visual packet or reference authority;
+- the current image execution surface did not honor that compiled A2 target either and returned another reference-trio living-room scene. The pixels were inspected and quarantined as a rejected tool-mismatch output. It is not eligible as style, continuity, repair or board evidence;
+- `episodes/E002/boards/B01.qc.json` and `episodes/E002/state.json` now record the retryable tool block at `MASTER_BOARD_QC`.
+
+The episode is not `DONE`. No rejected image may be reused.
 
 ## Boot/reference guard maintenance
 
@@ -82,13 +78,8 @@ registered as user-designated `PRIMARY_STYLE` references. Independent authorship
 verification remains explicitly unasserted; it is not fabricated or treated as a
 routine production gate. E002 is therefore active rather than waiting for bytes.
 
-E002 has retrieved and inspected those actual repository bytes and bound D/E as the
-minimum sufficient set by path, SHA-256, role, `allowed_influence` and
-`forbidden_inference`. The B01 plan/dispatch is compiled. The remaining blocker is
-only the current session's missing GitHub-binary-to-built-in-image media handoff.
-Repository D/E remain authority. If direct transport is still unavailable, matching
-D/E images supplied in the current Chat/Work session may carry those locked references
-to the image runtime without becoming new references or resetting state.
+E002 has retrieved and inspected those actual repository bytes and bound D/E as the minimum sufficient set by path, SHA-256, role, `allowed_influence` and `forbidden_inference`. The current session carriers matched the repository bytes exactly, so reference transport itself is no longer the active blocker. The active blocker is the current image execution surface returning a task-mismatched image instead of the compiled B01 target. Both bad outputs are quarantined and cannot be reused.
+
 
 ## Runtime attachment guard
 
@@ -145,6 +136,4 @@ were not edited.
 
 ## Exact next action
 
-Resume E002 at `BOARD_DISPATCH_READY` from latest `main`. Re-read and SHA-verify the locked D/E references, then run runtime-attachment preflight on the current Chat/Work surface immediately before dispatch. Prefer direct repository-to-image-runtime binding. If that bridge is unavailable and matching D/E images are already present in the current session/Work runtime, use them only as SESSION_ONLY carriers mapped to the locked registry roles; do not change `visual_packet.json`, episode, stage, story, or authority. Re-run preflight after every session/surface change. Once both carriers are actually accepted by the image runtime, resume the retryable block and dispatch `E002-B01-MASTER-A1` exactly once, import/register `episodes/E002/boards/B01.master.png`, and advance exactly to `MASTER_BOARD_IMPORTED`.
-
-If no direct bridge and no eligible current-session carrier is available, remain `WAITING_TOOL_RECOVERY`. Do not generate unreferenced art and do not use paid API/SaaS fallback.
+Resume E002 at `MASTER_BOARD_QC` from latest `main`. Re-read `references/registry.json`, the locked D/E bytes, `episodes/E002/boards/B01.qc.json`, and `episodes/E002/boards/B01.dispatch.A2.json`. Retry only after the built-in image execution surface is functioning normally for the compiled target; re-run runtime attachment and dispatch preflight first. Keep the D/E references as the same locked authority and use any matching session copies only as `SESSION_ONLY` carriers. Do not use either quarantined image. When a returned A2 board actually matches the locked two-character denim/laundry specification, import it as the canonical `episodes/E002/boards/B01.master.png`, inspect actual pixels, and advance exactly according to board QC. Do not use paid API/SaaS fallback.
