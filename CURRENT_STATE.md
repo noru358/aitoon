@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-07 19:26 KST  
+Updated: 2026-09-07 23:34 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
@@ -10,7 +10,7 @@ Architecture: `GPT_APP_BOARD_FIRST_V1`
 - zero-paid-fallback machine policy;
 - fail-closed episode state machine with retryable resource states;
 - hash-bound reference/dispatch compiler;
-- clean 2x2 board to separate 1080x1350 slide extractor;
+- fixed 2x2 internal coherence board (one to four occupied cells; episode slide count remains variable) to separate 1080x1350 slide extractor;
 - hash-bound editable Korean lettering renderer;
 - repository/calibration validator and regression tests;
 - read-only benchmark and calibration references copied into this repository;
@@ -51,6 +51,14 @@ Completed for E002:
 - `STORYBOARD_LOCK`: four slide contracts with state deltas, beat-serving cameras,
   anatomy/contact intent, phone front/back geometry, continuity and text-safe regions;
 - future copy is recorded in storyboard metadata but no lettering is permitted in art.
+
+## Boot/reference guard maintenance
+
+- canonical boot authority is now singular: `AGENTS.md -> CURRENT_STATE.md -> docs/GPT_APP_PROTOCOL.md -> config/policy.json -> active episode state.json`; README is descriptive only;
+- after the active episode is known, `state.json.exact_next_action` is the production execution pointer;
+- registered production-eligible reference bytes must be retrieved from `aitoon` before any user re-upload request;
+- sufficient registry coverage means an episode-local one-off character may receive a distinct new identity inside the PRIMARY_STYLE drawing language without a dedicated new identity image or independent authorship proof;
+- E002's stale character notes that incorrectly implied future verified human-drawn identity evidence were removed; its stage and exact next action remain unchanged.
 
 ## Reference policy
 

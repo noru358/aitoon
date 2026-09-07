@@ -14,8 +14,11 @@ visible and repairable.
 
 ## Canonical path
 
-`human source -> story -> storyboard -> visual packet -> 2x2 master board ->`
+`human source -> story -> storyboard -> visual packet -> fixed 2x2 internal board batch ->`
 `separate 4:5 slides -> lettering/UI -> sequence QC -> export`
+
+Episode slide count is variable. The fixed 2x2 topology is only an internal coherence
+batch with one to four occupied cells; it is not a four-slide story requirement.
 
 The key rendering decision is **board-first, slide-final**:
 
@@ -54,8 +57,10 @@ python -m pipeline.cli status E001
 python -m pipeline.cli validate
 ```
 
-The ChatGPT operator follows `docs/GPT_APP_PROTOCOL.md`. Machine policy is in
-`config/policy.json`; episode files live under `episodes/<episode_id>/`.
+The canonical runtime boot order lives in `AGENTS.md`; this README is descriptive,
+not boot authority. Once an active episode is identified, its `state.json` and
+`exact_next_action` control execution. Machine policy is in `config/policy.json`;
+episode files live under `episodes/<episode_id>/`.
 
 ## Repository map
 

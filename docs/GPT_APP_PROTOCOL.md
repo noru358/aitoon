@@ -43,15 +43,17 @@ assembled result. That conflicts with “a human drew this scene.”
 
 ### Canonical default: episode master board
 
-The model draws up to four related text-free shots in one 2x2 board. The single
-sampling event gives the sequence one visual hand. Each cell is later expanded
-or faithfully extracted as an independent 4:5 slide. The master board is a
-coherence source, not the delivery format.
+The model draws up to four related text-free shots in one fixed 2x2 internal board.
+The single sampling event gives the sequence one visual hand. Each occupied cell is
+later expanded or faithfully extracted as an independent 4:5 slide. The master board
+is a coherence source, not the delivery format.
 
-For more than four slides, use another board. Bind the prior board plus the same
-style/identity/location references. Do not reserve a fake overlap slide or pad a
-story merely to fill four cells; unused cells are explicitly marked EMPTY in the
-plan and ignored on export.
+The 2x2 topology does **not** fix an episode to four slides. Episode slide count is
+story-driven and variable. A board may contain one to four occupied cells; unused
+positions remain EMPTY and never justify padding the story. For more than four slides,
+use another board for the next sequential batch. Bind the prior board only when its
+continuity evidence is materially needed, together with the same primary style
+references.
 
 ## 3. Persistent episode package
 
@@ -89,9 +91,15 @@ stage and exact next action. Media records include path, SHA-256 and dimensions.
 
 ### BOOTSTRAP
 
-Read repository authority, validate policy, inspect the active state, and verify
-that only `aitoon` is writable. Do not continue from remembered older repository
-rules.
+Use the canonical boot order and no competing variant:
+
+`AGENTS.md -> CURRENT_STATE.md -> docs/GPT_APP_PROTOCOL.md -> config/policy.json -> active episode state.json`
+
+After the active state is known, read only the companion policy, registry and actual
+reference/calibration files required by its `exact_next_action`. `README.md` is
+informational and is not part of the authority chain. Verify that only `aitoon` is
+writable. Do not continue from remembered older repository rules or skip ahead from
+the active episode state.
 
 ### SOURCE_LOCK
 
@@ -180,6 +188,13 @@ Required *coverage* is:
 
 This is not a minimum file count. One reference may satisfy several roles when its
 actual pixels genuinely contain the required evidence.
+
+An episode-local one-off character is not a recurring project character and does not
+require a dedicated new identity sheet solely because its identity is new. When the
+registered production references already cover the required person/style plus relevant
+interaction/background drawing language, author a distinct episode-local identity
+inside that visual grammar without copying a reference character. Do not ask the user
+for a new upload or independent human-authorship proof merely to create that identity.
 
 Reference hierarchy:
 

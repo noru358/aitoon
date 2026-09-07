@@ -84,6 +84,9 @@
     ],
     "continuity_anchor_never_overrides_primary_style": true,
     "prefer_minimum_sufficient_reference_set": true,
-    "repo_bytes_must_be_retrieved_before_waiting_required_bytes": true
+    "repo_bytes_must_be_retrieved_before_waiting_required_bytes": true,
+    "episode_local_identity_requires_dedicated_reference": false,
+    "request_new_user_upload_when_registry_coverage_sufficient": false,
+    "registered_reference_bytes_must_be_retrieved_without_reupload": true
   }
 }

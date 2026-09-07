@@ -7,13 +7,13 @@
       "id": "GF_E002",
       "scope": "EPISODE_LOCAL",
       "role": "girlfriend",
-      "note": "anonymous adult Korean woman; identity must be authored from future verified human-drawn visual evidence, not copied from calibration cast"
+      "note": "anonymous adult Korean woman; author a distinct episode-local identity within the bound PRIMARY_STYLE drawing language without copying a reference character; no new user upload or independent authorship proof is required when registered coverage is sufficient"
     },
     {
       "id": "BF_E002",
       "scope": "EPISODE_LOCAL",
       "role": "boyfriend",
-      "note": "anonymous adult Korean man; identity must be authored from future verified human-drawn visual evidence, not copied from calibration cast"
+      "note": "anonymous adult Korean man; author a distinct episode-local identity within the bound PRIMARY_STYLE drawing language without copying a reference character; no new user upload or independent authorship proof is required when registered coverage is sufficient"
     }
   ],
   "palette": [
@@ -41,5 +41,10 @@
     "uniform lead-like extras",
     "generated letters numerals logos watermarks or readable UI",
     "use of calibration quarantine or other rejected generated artifacts as reference"
-  ]
+  ],
+  "reference_registry": "references/registry.json",
+  "reference_selection": {
+    "strategy": "MINIMUM_SUFFICIENT_SET",
+    "note": "Use registered production-eligible D/E bytes first. Do not request a re-upload or a new episode-local identity reference when those bytes provide sufficient drawing-language coverage."
+  }
 }

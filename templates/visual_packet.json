@@ -16,6 +16,6 @@
   "reference_registry": "references/registry.json",
   "reference_selection": {
     "strategy": "MINIMUM_SUFFICIENT_SET",
-    "note": ""
+    "note": "Resolve registered production-eligible bytes first. Do not request a re-upload when registry coverage is sufficient. One-off EPISODE_LOCAL identities do not require a dedicated identity reference unless exact recurring identity continuity is required."
   }
 }

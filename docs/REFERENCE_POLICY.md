@@ -63,7 +63,21 @@ Coverage, not file count, is mandatory. A single actual image may satisfy person
 interaction/full-body and scene drawing-language roles if its pixels genuinely show
 all of them. Do not create artificial user blocks merely to obtain one file per role.
 
-## 5. Repository retrieval semantics
+## 5. Episode-local identity and re-upload rule
+
+A new one-off episode character does not require a dedicated identity reference merely
+because that exact person has not appeared before. `PRIMARY_STYLE` references control
+the drawing language; the operator may author a distinct episode-local identity within
+that language unless the task requires exact recurring-character identity continuity.
+
+When registered production-eligible references already provide the required coverage,
+requesting the user to re-upload those references or supply a new identity image is a
+protocol error. Retrieve the registered bytes from `aitoon` and proceed. Ask for new
+visual evidence only when the required visual role is genuinely uncovered after
+repository retrieval, or when the user explicitly requires an exact identity not
+represented by existing authority.
+
+## 6. Repository retrieval semantics
 
 If a production-eligible reference already exists in `aitoon`, the operator owns
 the retrieval step:
@@ -77,7 +91,7 @@ A file not being attached in the current chat does not mean the bytes are missin
 `WAITING_REQUIRED_BYTES` is valid only when repository retrieval or inspection
 actually fails.
 
-## 6. Rejection and promotion safety
+## 7. Rejection and promotion safety
 
 Rejected/quarantined images can never be promoted or reused.
 
