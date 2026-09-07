@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "E002",
+  "board_id": "B01",
+  "dispatch_id": "E002-B01-V2-MASTER-A2",
+  "status": "REJECTED_QUARANTINED_RECEIPT_ONLY",
+  "recorded_at": "2026-09-07T18:28:00Z",
+  "inspected_output": {
+    "stable_app_handle": "image_gen:ec864b38-81af-41ab-a780-f468172c45ef",
+    "local_runtime_path": "/mnt/data/a_clean_minimal_pastel_toned_4_panel_comic_illus.png",
+    "sha256": "29b1e728913d4cc362fba15009b85df28ed2b44879d30f5ebc5e7394b61c9882",
+    "size_bytes": 1552723,
+    "width": 1448,
+    "height": 1086,
+    "actual_pixels": true
+  },
+  "findings": [
+    "TEXT_CONTAMINATION_PERSISTS: large Korean speech/thought bubbles remain in S01, S02 and S04 despite an explicit zero-text hard guard.",
+    "CAST_APPEARANCE_DRIFT_PERSISTS: GF remains bob-haired and carries a shoulder bag instead of the locked low-bun episode-local appearance.",
+    "STYLE_DRIFT_PERSISTS: generic polished anime/webtoon face/eye treatment remains materially outside the PRIMARY_STYLE drawing grammar.",
+    "S02_OBJECTIVE_GUARDS_IMPROVED: phone back is visible to the viewer and the extra self-touch hand is removed; jeans-hand and phone-hand ownership is now plausible.",
+    "BACKGROUND_MINIMALISM: S02 is sparse and S03 is restrained; S03 adds soap bottle/towel that are not necessary but do not drive the board-wide rejection.",
+    "SEMANTIC_SEQUENCE: denim request -> research -> hand-wash -> folded return is recognizable.",
+    "NO_A3: this was the final allowed whole-board retry."
+  ],
+  "reuse_eligibility": "REJECTED_DO_NOT_REUSE_AS_REFERENCE_OR_REPAIR_ANCHOR",
+  "retry_budget_effect": "WHOLE_BOARD_RETRY_BUDGET_EXHAUSTED",
+  "next_route": "DECOMPOSE_BOARD_INTO_SMALLER_SEQUENTIAL_BATCHES"
+}
