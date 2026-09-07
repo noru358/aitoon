@@ -6,7 +6,7 @@
   "stage": "MASTER_BOARD_QC",
   "run_status": "ACTIVE",
   "blocked": null,
-  "exact_next_action": "Do not attempt B01 A3. Execute the protocol-sanctioned decomposition in episodes/E002/boards/B01.decomposition.json: first compile/execute B01D1 for S01-S02 only with two EMPTY cells and no copy text in the image prompt; inspect actual pixels. If D1 passes, use only its passed episode-local identity continuity to compile/execute B01D2 for S03-S04. Remain at MASTER_BOARD_QC until both decomposed boards PASS; then derive slides and advance to SLIDES_EXPANDED.",
+  "exact_next_action": "Execute only episodes/E002/boards/B01D1.dispatch.json after runtime preflight. D1 contains S01-S02 only; the bottom two cells must stay empty. Inspect actual pixels for zero text/symbol contamination, low-bun GF appearance, BF continuity, S02 phone-back geometry, exactly two BF hand roles, same stained dry jeans, sparse background, and PRIMARY_STYLE drawing grammar. Do not proceed to D2 unless D1 passes.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
