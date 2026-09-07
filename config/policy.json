@@ -107,5 +107,35 @@
     "attachment_does_not_reset_episode_or_stage": true,
     "opaque_runtime_handle_is_reference_authority": false,
     "file_uri_alone_proves_image_binding": false
+  },
+  "execution_modes": {
+    "chat": {
+      "strategy": "BOUNDED_AUTONOMOUS_MULTI_TURN",
+      "routine_approval_required": false,
+      "continuation_token": "계속",
+      "continuation_token_is_approval": false,
+      "durable_turn_boundaries": [
+        "BOARD_DISPATCH_READY",
+        "ART_SEQUENCE_QC",
+        "DONE"
+      ],
+      "boundary_checkpoint_required": true,
+      "response_boundary_is_state_machine_stage": false,
+      "quality_gates_may_be_skipped_for_turn_budget": false
+    },
+    "work": {
+      "strategy": "ONE_SHOT_TO_DONE_OR_RETRYABLE_BLOCK",
+      "routine_approval_required": false,
+      "intentional_turn_boundaries": false,
+      "stage_checkpoint_required": true,
+      "quality_gates_may_be_skipped_for_execution_budget": false
+    },
+    "common": {
+      "same_production_state_machine": true,
+      "repository_state_is_cross_turn_authority": true,
+      "canonical_boot_from_latest_main_each_turn": true,
+      "conversational_summary_is_handoff_authority": false,
+      "load_only_exact_next_action_companions_after_boot": true
+    }
   }
 }
