@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-08 03:32 KST  
+Updated: 2026-09-08 03:46 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V2`
 
@@ -101,36 +101,40 @@ font/profile before any V2 `LETTERING_COMPLETE` PASS.
 Protocol revision: 2  
 Stage: `MASTER_BOARD_QC`  
 Run status: `BLOCKED_RETRYABLE`  
-Block: `WAITING_TOOL_RECOVERY`
+Block: `WAITING_CLEAN_IMAGE_SESSION`
 
-Current V2 evidence:
+The latest structural review identified that the dominant current failure is not an
+ordinary renderer outage. The current long conversation repeatedly produced
+`RUNTIME_SEMANTIC_NONCOMPLIANCE`: forbidden Korean copy, wrong panel topology,
+future beats outside the target batch, and cast-anchor drift.
 
-- editorial approval remains hash-locked and unchanged;
-- D/E PRIMARY_STYLE bytes remain verified and `visual_packet.json` remains `LOCKED`;
-- canonical parent board `B01` A1 failed actual-pixel QC for baked text, style/cast drift,
-  S02 phone geometry and extra-hand contact;
-- the single allowed parent-board retry A2 improved S02 phone/back geometry and
-  two-hand ownership, but still failed board-wide baked-text, style and GF cast
-  appearance gates; there is no A3;
-- per the repeated-structural-failure rule, B01 was decomposed into
-  `B01D1(S01-S02)` then `B01D2(S03-S04)`, preserving board-first rather than
-  switching to independent final-slide generation;
-- current runtime execution of `B01D1` was a semantic misdispatch rather than a
-  valid decomposed-board attempt: despite a two-cell top-row contract with both
-  bottom cells EMPTY and zero text/symbols, the runtime generated all four beats,
-  Korean speech/thought bubbles, a heart, the wrong bob-haired/shoulder-bag GF, and
-  an extra S02 self-touch hand;
-- D1 misdispatch actual pixels are recorded by stable handle
-  `image_gen:8df5e643-7a44-4f35-a672-3b6e2e84a50d`, SHA-256
-  `ae203c506ea214c836239d7a98519453c1488f336dba9f172b7b180f9109509b`,
-  dimensions 1224x1285;
-- receipt:
-  `episodes/E002/quarantine/B01D1.runtime-misdispatch.receipt.json`;
-- QC:
-  `episodes/E002/qc/B01D1.runtime-misdispatch.json`.
+The following changes are now authoritative:
 
-The D1 target semantics were not executed, so the D1 attempt budget is not consumed.
-Rejected A1/A2/D1 pixels are ineligible for style, continuity, or repair reuse.
+- explicit user approval of visible pixels is operational rather than comment-only;
+- the previously approved E002 preview is persisted in
+  `episodes/E002/approved_visual_anchor.json` as an `EPISODE_LOCAL` anchor
+  manifest with SHA-256
+  `536d8a75f7d549faab5d0627d94a7862f3fa17c3a4784c94f5666e38b95cebbb`;
+- its safe influence is scoped to GF/BF identity, hair, outfit, local palette and
+  approved rendering treatment; known S02 phone geometry and all action/contact/
+  layout/text details are explicitly excluded;
+- an applicable approved anchor may no longer be silently replaced by fresh
+  resampling;
+- image execution is now art-only: once a dispatch is compiled, source prose,
+  dialogue/thought/narration copy, lettering, cover copy and future beats are not
+  loaded/restated into the image execution context;
+- the image generator no longer owns empty canonical cells. Runtime batches use
+  natural occupancy (1x1, 1x2, 1x3, or 2x2), then code deterministically packs a
+  passing sheet into the canonical internal 2x2 board;
+- the old `B01D1.dispatch.json` is `SUPERSEDED`;
+- the next executable target is
+  `episodes/E002/boards/B01D1.clean.dispatch.json`, a two-cell 1x2 art-only sheet
+  containing only S01 and S02;
+- same-session prompt escalation after semantic noncompliance is forbidden.
+
+Rejected A1/A2/D1 pixels remain ineligible for style, continuity or repair reuse.
+The approved preview anchor is not a canonical master board and is not promoted to
+project PRIMARY_STYLE; it is only a scoped episode continuity/rendering anchor.
 
 ## Execution surfaces
 
@@ -142,26 +146,21 @@ Rejected A1/A2/D1 pixels are ineligible for style, continuity, or repair reuse.
 
 ## Exact next action
 
-Retry the unchanged decomposed dispatch
-`episodes/E002/boards/B01D1.dispatch.json` only after image-runtime tool recovery
-or on a clean built-in image surface that demonstrably honors the current target
-semantics.
+Start a **clean Chat/Work image execution session**. Canonical-boot latest
+`main`, then load only:
 
-Canonical-boot latest `main`, rerun D/E runtime-attachment preflight, keep the
-parent B01 whole-board retry budget exhausted, and do not use any rejected
-A1/A2/D1 output.
+- `docs/IMAGE_RUNTIME_POLICY.md`;
+- `episodes/E002/boards/B01D1.clean.dispatch.json`;
+- `episodes/E002/approved_visual_anchor.json`;
+- the exact D/E registry entries;
+- the actual D/E media and a current-session carrier whose SHA-256 matches the
+  approved-anchor manifest.
 
-A valid D1 must:
+Do **not** open or restate `source.md`, `story.md`, storyboard copy text,
+dialogue/thought text, lettering plans, cover copy, S03/S04, or rejected images in
+that image-execution session.
 
-- illustrate only S01 and S02 in the top row;
-- leave both bottom cells EMPTY;
-- contain zero text, bubbles, hearts, symbols or UI;
-- preserve low-bun GF and BF episode-local appearances;
-- preserve the same stained dry jeans;
-- obey S02 phone-back geometry and exactly two BF hand roles;
-- keep lowest-sufficient backgrounds;
-- match PRIMARY_STYLE drawing grammar.
-
-If D1 passes actual-pixel QC, continue to B01D2, derive slides only after both
-decomposed boards pass, and then advance to `SLIDES_EXPANDED`. Do not attempt a
-parent-board A3.
+Revalidate all carrier hashes and execute exactly the 1x2 S01-S02 runtime sheet.
+If it passes actual-pixel QC, deterministically pack it into the canonical 2x2 board,
+then continue to D2. If a clean session still ignores topology/copy/anchor semantics,
+do not retry again in that same session; checkpoint for renderer-strategy review.
