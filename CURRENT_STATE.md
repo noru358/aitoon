@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-07 23:53 KST  
+Updated: 2026-09-08 00:12 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
@@ -41,7 +41,9 @@ Active episode: `E002 / 그냥 세탁기에 돌려도 되는데`
 
 Stage: `BOARD_DISPATCH_READY`
 
-Run status: `ACTIVE`
+Run status: `BLOCKED_RETRYABLE`
+
+Block code: `WAITING_TOOL_RECOVERY`
 
 Completed for E002:
 
@@ -54,6 +56,8 @@ Completed for E002:
   verified exactly, JPEG structure/dimensions inspected, and the minimum sufficient
   production-eligible PRIMARY_STYLE set bound with explicit allowed/forbidden influence;
 - `BOARD_DISPATCH_READY`: a single four-cell B01 plan and hash-bound A1 dispatch are compiled from the locks; D/E are the only bound media, S02 phone geometry and scoped anatomy contracts are carried into the prompt, and the board is required to remain text-free;
+- repository validation/regression workflow passed for `669d52c2456c68d0c138e8b061741444a16fc081` after the board dispatch commit;
+- the current ChatGPT tool surface cannot hand the already retrieved GitHub repository JPEG bytes to built-in image generation as actual attached media, so the episode is retryably blocked rather than generating unreferenced art;
 - future copy is recorded in storyboard metadata but no lettering is permitted in art.
 
 ## Boot/reference guard maintenance
@@ -73,7 +77,8 @@ routine production gate. E002 is therefore active rather than waiting for bytes.
 
 E002 has retrieved and inspected those actual repository bytes and bound D/E as the
 minimum sufficient set by path, SHA-256, role, `allowed_influence` and
-`forbidden_inference`. The next production step is board-plan/dispatch compilation;
+`forbidden_inference`. The B01 plan/dispatch is compiled. The remaining blocker is
+only the current session's missing GitHub-binary-to-built-in-image media handoff;
 no user re-upload or episode-local identity sheet is required.
 
 ## Anatomy/contact guard update
@@ -121,10 +126,14 @@ were not edited.
 
 ## Exact next action
 
-Dispatch `episodes/E002/boards/B01.dispatch.json` through ChatGPT built-in image
-generation with both bound D/E repository references supplied as actual media.
-Generate exactly one TEXT-FREE 2x2 master board, persist/import the exact returned
-bytes with SHA-256 and dimensions as `episodes/E002/boards/B01.master.png`, then
-advance exactly to `MASTER_BOARD_IMPORTED`. If the built-in image runtime cannot
-receive the bound repository media, record a retryable `WAITING_TOOL_RECOVERY`
-block rather than generating unreferenced art.
+Resume E002 at `BOARD_DISPATCH_READY` from the latest `main`. Retrieve the bound
+D/E repository JPEG bytes again and confirm their registry SHA-256 values, then use
+a recovered ChatGPT runtime path that can attach those exact repository images as
+actual media to built-in image generation. Dispatch `E002-B01-MASTER-A1` exactly
+once, persist/import the exact returned board bytes as
+`episodes/E002/boards/B01.master.png` with SHA-256 and dimensions, and advance
+exactly to `MASTER_BOARD_IMPORTED`.
+
+Do not ask the user to re-upload while the registered repository bytes remain
+retrievable, do not generate unreferenced art, and do not use paid API/SaaS
+fallback.

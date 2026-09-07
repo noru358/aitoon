@@ -4,9 +4,14 @@
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
   "stage": "BOARD_DISPATCH_READY",
-  "run_status": "ACTIVE",
-  "blocked": null,
-  "exact_next_action": "Dispatch episodes/E002/boards/B01.dispatch.json through ChatGPT built-in image generation with both bound D/E repository reference images supplied as actual media. Generate exactly one TEXT-FREE B01 master board; then persist/import the exact returned bytes as episodes/E002/boards/B01.master.png with SHA-256 and dimensions and advance exactly to MASTER_BOARD_IMPORTED. If the built-in image runtime cannot receive the bound repository media, record a retryable WAITING_TOOL_RECOVERY block rather than generating unreferenced art.",
+  "run_status": "BLOCKED_RETRYABLE",
+  "blocked": {
+    "code": "WAITING_TOOL_RECOVERY",
+    "detail": "The required D/E PRIMARY_STYLE JPEG bytes are present in main, were retrieved from the GitHub repository connector, decoded and structurally inspected, and match the production registry SHA-256 exactly. E002-B01-MASTER-A1 is compiled and repository validation passed on commit 669d52c2456c68d0c138e8b061741444a16fc081. The current ChatGPT session exposes GitHub repository binary files only as base64/text through the connector and exposes no binary/file-reference handoff that can attach those exact bytes as actual media to built-in image generation. Direct public GitHub/raw browser retrieval is disabled in this environment, so a sandbox materialization bridge also cannot be established. No unreferenced generation, user re-upload gate, paid API, or paid SaaS fallback was attempted.",
+    "resume_action": "Resume at BOARD_DISPATCH_READY from the latest main. Retrieve the bound D/E repository JPEG bytes again and confirm their registry SHA-256 values, then use a recovered ChatGPT runtime path that can attach those exact repository images as actual media to the built-in image generation call. Dispatch E002-B01-MASTER-A1 exactly once, persist/import the exact returned board bytes as episodes/E002/boards/B01.master.png with SHA-256 and dimensions, and advance exactly to MASTER_BOARD_IMPORTED. Do not ask the user to re-upload while the registered repository bytes remain retrievable, do not generate unreferenced art, and do not use paid API/SaaS fallback.",
+    "recorded_at": "2026-09-07T15:12:00Z"
+  },
+  "exact_next_action": "Resume at BOARD_DISPATCH_READY from the latest main. Retrieve the bound D/E repository JPEG bytes again and confirm their registry SHA-256 values, then use a recovered ChatGPT runtime path that can attach those exact repository images as actual media to the built-in image generation call. Dispatch E002-B01-MASTER-A1 exactly once, persist/import the exact returned board bytes as episodes/E002/boards/B01.master.png with SHA-256 and dimensions, and advance exactly to MASTER_BOARD_IMPORTED. Do not ask the user to re-upload while the registered repository bytes remain retrievable, do not generate unreferenced art, and do not use paid API/SaaS fallback.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
