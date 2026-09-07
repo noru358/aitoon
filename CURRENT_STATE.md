@@ -26,6 +26,8 @@ The first built-in image generation call returned `usage_limit_reached`.
 - provider reset time returned by the app: `2026-09-07T08:23:37Z`
 - exact resume action: run `calibration/B01.dispatch.json` with its two bound
   images through built-in image generation, then inspect the actual board.
+- autonomous continuation: one-time ChatGPT Work task scheduled for
+  `2026-09-07T09:12:05Z`, after the returned capacity reset time.
 
 This is not a user approval gate and does not consume publishable episode `E001`.
 
@@ -38,4 +40,3 @@ This is not a user approval gate and does not consume publishable episode `E001`
 - repeated structural FAIL: retain GPT-app-only/cost policy, revise the render unit
   based on observed evidence; do not resurrect paid APIs or paper-doll composition
   by default.
-
