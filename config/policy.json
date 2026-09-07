@@ -16,7 +16,8 @@
       "WAITING_INCLUDED_IMAGE_CAPACITY",
       "WAITING_TOOL_RECOVERY",
       "WAITING_REQUIRED_BYTES",
-      "WAITING_PERMISSION_RECOVERY"
+      "WAITING_PERMISSION_RECOVERY",
+      "WAITING_CLEAN_IMAGE_SESSION"
     ]
   },
   "editorial": {
@@ -87,7 +88,30 @@
     "text_in_master_board_forbidden": true,
     "full_slide_generation_from_scratch_forbidden_when_board_exists": true,
     "whole_board_retry_limit": 1,
-    "single_slide_repair_limit": 2
+    "single_slide_repair_limit": 2,
+    "canonical_board_rows": 2,
+    "canonical_board_columns": 2,
+    "runtime_sheet_strategy": "NATURAL_OCCUPANCY",
+    "runtime_sheet_layouts": {
+      "1": {
+        "rows": 1,
+        "columns": 1
+      },
+      "2": {
+        "rows": 1,
+        "columns": 2
+      },
+      "3": {
+        "rows": 1,
+        "columns": 3
+      },
+      "4": {
+        "rows": 2,
+        "columns": 2
+      }
+    },
+    "generator_empty_cells_forbidden": true,
+    "deterministic_pack_to_canonical_2x2": true
   },
   "source": {
     "human_seed_required": true,
@@ -160,7 +184,10 @@
     "fallback_only_after_direct_runtime_bridge_unavailable": true,
     "attachment_does_not_reset_episode_or_stage": true,
     "opaque_runtime_handle_is_reference_authority": false,
-    "file_uri_alone_proves_image_binding": false
+    "file_uri_alone_proves_image_binding": false,
+    "approved_visual_anchor_carrier_allowed": true,
+    "approved_visual_anchor_manifest_is_authority": true,
+    "anchor_carrier_must_match_manifest_sha256": true
   },
   "execution_modes": {
     "chat": {
@@ -177,7 +204,8 @@
       ],
       "boundary_checkpoint_required": true,
       "response_boundary_is_state_machine_stage": false,
-      "quality_gates_may_be_skipped_for_turn_budget": false
+      "quality_gates_may_be_skipped_for_turn_budget": false,
+      "clean_image_session_required_after_semantic_noncompliance": true
     },
     "work": {
       "strategy": "ONE_SHOT_AFTER_EDITORIAL_APPROVAL_TO_DONE_OR_RETRYABLE_BLOCK",
@@ -192,7 +220,8 @@
       "repository_state_is_cross_turn_authority": true,
       "canonical_boot_from_latest_main_each_turn": true,
       "conversational_summary_is_handoff_authority": false,
-      "load_only_exact_next_action_companions_after_boot": true
+      "load_only_exact_next_action_companions_after_boot": true,
+      "image_runtime_context_isolation_required": true
     }
   },
   "stages": [
@@ -211,5 +240,54 @@
     "FINAL_QC",
     "EXPORT_READY",
     "DONE"
-  ]
+  ],
+  "visual_approval": {
+    "explicit_visual_approval_is_operational": true,
+    "approved_pixel_anchor_default_scope": "EPISODE_LOCAL",
+    "anchor_requires": [
+      "EXPLICIT_USER_VISUAL_APPROVAL",
+      "ACTUAL_PIXEL_INSPECTION",
+      "OBJECTIVE_SCOPE_QC"
+    ],
+    "scoped_anchor_may_exclude_known_objective_failures": true,
+    "user_aesthetic_approval_overrides_style_heuristic_for_anchor_scope": true,
+    "objective_anatomy_contact_screen_text_failures_never_overridden": true,
+    "fresh_resampling_when_applicable_anchor_exists_forbidden": true,
+    "preferred_continuation_order": [
+      "DERIVE_FROM_APPROVED_PIXELS",
+      "EDIT_APPROVED_PIXELS",
+      "REFERENCE_APPROVED_ANCHOR"
+    ],
+    "missing_required_anchor_transport_fails_closed": true,
+    "project_primary_style_promotion_requires_separate_explicit_action": true
+  },
+  "image_runtime": {
+    "art_only_context_required": true,
+    "execution_context_allowed": [
+      "ACTIVE_DISPATCH",
+      "APPROVED_VISUAL_ANCHOR_MANIFEST",
+      "BOUND_REFERENCE_REGISTRY_ENTRIES",
+      "ACTUAL_REFERENCE_OR_ANCHOR_MEDIA"
+    ],
+    "execution_context_forbidden": [
+      "SOURCE_PROSE",
+      "STORY_COPY",
+      "STORYBOARD_COPY_TEXT",
+      "EDITORIAL_DIALOGUE",
+      "LETTERING_PLAN",
+      "COVER_COPY",
+      "FUTURE_BEATS_OUTSIDE_ACTIVE_RUNTIME_SHEET"
+    ],
+    "compiled_dispatch_must_be_copy_free": true,
+    "semantic_noncompliance_class": "RUNTIME_SEMANTIC_NONCOMPLIANCE",
+    "semantic_noncompliance_examples": [
+      "GENERATED_FORBIDDEN_TEXT",
+      "IGNORED_RUNTIME_SHEET_TOPOLOGY",
+      "GENERATED_FUTURE_BEATS",
+      "IGNORED_BOUND_CAST_ANCHOR"
+    ],
+    "same_session_retry_after_semantic_noncompliance_forbidden": true,
+    "recovery_after_semantic_noncompliance": "WAITING_CLEAN_IMAGE_SESSION",
+    "stronger_same_session_prompt_escalation_forbidden": true
+  }
 }
