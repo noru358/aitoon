@@ -405,7 +405,11 @@ def compile_master_board_dispatch(
         "status": "READY",
         "runtime_attachment": {
             "preflight_required_before_execute": True,
-            "source_authority": "REPOSITORY_MANIFEST_AND_SHA256",
+            "source_authority": (
+                "REPOSITORY_MANIFEST_AND_SHA256"
+                if anchor_manifest and anchor_manifest.get("status") == "ACTIVE"
+                else "REPOSITORY_REGISTRY_SHA256"
+            ),
             "carrier_scope": "SESSION_ONLY",
             "preferred_carrier": "REPOSITORY_DIRECT",
             "fallback_carriers": [
