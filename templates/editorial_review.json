@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "REPLACE_ME",
+  "status": "PENDING",
+  "review_scope": [
+    "SOURCE",
+    "TOPIC",
+    "PREMISE",
+    "SLIDE_COUNT",
+    "BEATS",
+    "DIALOGUE",
+    "THOUGHT_NARRATION",
+    "COVER_CONCEPT"
+  ],
+  "approved_hashes": null,
+  "approval_evidence": null,
+  "approved_at": null
+}
