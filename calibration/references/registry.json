@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "source_repository": "noru358/instatoon",
   "source_commit": "4ef85b3",
-  "origin_note": "Previously approved project references copied for architecture calibration; human-authorship provenance is not asserted.",
+  "origin_note": "Previously approved user-designated project references copied for architecture calibration. Independent authorship verification is not asserted or required for production eligibility under the current reference policy unless conflicting evidence exists.",
   "assets": [
     {
       "id": "LEGACY_REF_V2_D",
@@ -10,7 +10,12 @@
       "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
       "role": "Harin identity and person drawing language",
       "allowed_influence": "identity proportions, eye grammar, line and flat-color behavior",
-      "forbidden_inference": "current pose, camera, action, story or location"
+      "forbidden_inference": "current pose, camera, action, story or location",
+      "authority": "PRIMARY_STYLE",
+      "provenance_basis": "USER_DESIGNATED_PROJECT_REFERENCE",
+      "independent_authorship_verification": false,
+      "production_eligible": true,
+      "source_kind": "USER_DESIGNATED_PROJECT_REFERENCE"
     },
     {
       "id": "LEGACY_REF_V2_E",
@@ -18,8 +23,12 @@
       "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
       "role": "scene and background drawing language",
       "allowed_influence": "shared character/background abstraction, line and restrained shading",
-      "forbidden_inference": "room layout, current pose, story, clothing or cast requirement"
+      "forbidden_inference": "room layout, current pose, story, clothing or cast requirement",
+      "authority": "PRIMARY_STYLE",
+      "provenance_basis": "USER_DESIGNATED_PROJECT_REFERENCE",
+      "independent_authorship_verification": false,
+      "production_eligible": true,
+      "source_kind": "USER_DESIGNATED_PROJECT_REFERENCE"
     }
   ]
 }
-

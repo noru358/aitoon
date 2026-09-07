@@ -12,6 +12,10 @@
     "cinematic depth of field or lighting",
     "global beige wash",
     "uniform lead-like extras"
-  ]
+  ],
+  "reference_registry": "references/registry.json",
+  "reference_selection": {
+    "strategy": "MINIMUM_SUFFICIENT_SET",
+    "note": ""
+  }
 }
-

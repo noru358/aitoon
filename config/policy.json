@@ -7,7 +7,10 @@
     "paid_api_allowed": false,
     "paid_saas_allowed": false,
     "ask_user_for_routine_approval": false,
-    "terminal_states": ["DONE", "ABANDONED_BY_USER"],
+    "terminal_states": [
+      "DONE",
+      "ABANDONED_BY_USER"
+    ],
     "retryable_states": [
       "WAITING_INCLUDED_IMAGE_CAPACITY",
       "WAITING_TOOL_RECOVERY",
@@ -67,6 +70,20 @@
     "FINAL_QC",
     "EXPORT_READY",
     "DONE"
-  ]
+  ],
+  "references": {
+    "production_registry": "references/registry.json",
+    "user_designation_is_sufficient_provenance": true,
+    "independent_authorship_verification_required": false,
+    "generated_artifact_can_be_primary_style": false,
+    "approved_generated_artifact_default_scope": "EPISODE_LOCAL",
+    "continuity_anchor_promotion_requires": [
+      "EXPLICIT_USER_VISUAL_APPROVAL",
+      "OBJECTIVE_QC_PASS",
+      "NONREDUNDANT_CONTINUITY_VALUE"
+    ],
+    "continuity_anchor_never_overrides_primary_style": true,
+    "prefer_minimum_sufficient_reference_set": true,
+    "repo_bytes_must_be_retrieved_before_waiting_required_bytes": true
+  }
 }
-

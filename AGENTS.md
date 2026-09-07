@@ -1,8 +1,8 @@
 # AIToon operating contract
 
 Read this file first, then `README.md`, `docs/GPT_APP_PROTOCOL.md`,
-`docs/ANATOMY_CONTACT_POLICY.md`, `config/policy.json`, and the active episode's
-`state.json` if one exists.
+`docs/ANATOMY_CONTACT_POLICY.md`, `docs/REFERENCE_POLICY.md`, `config/policy.json`,
+`references/registry.json`, and the active episode's `state.json` if one exists.
 
 ## Non-negotiable runtime
 
@@ -18,6 +18,9 @@ Read this file first, then `README.md`, `docs/GPT_APP_PROTOCOL.md`,
   the blocked image step when the built-in capability is available.
 - Never claim a visual PASS without inspecting the actual image.
 - Never use a rejected image as a style, identity, continuity, or repair input.
+- A user-designated project reference is sufficient production provenance unless conflicting evidence exists; record independent authorship verification separately and never invent it.
+- If eligible reference bytes already exist in `aitoon`, retrieve and inspect them yourself. Absence from the current chat attachment list is not a user-blocking condition; use `WAITING_REQUIRED_BYTES` only after repository retrieval actually fails.
+- Approved generated episode art is episode-local by default. Promote only nonredundant, explicitly user-approved, objective-QC-passing continuity anchors; generated anchors never override primary style references.
 - One published slide is one 4:5 image. A temporary multi-panel master board is
   allowed only as an internal coherence device and must be expanded into separate
   slide images before export.
@@ -26,7 +29,7 @@ Read this file first, then `README.md`, `docs/GPT_APP_PROTOCOL.md`,
 
 1. Start with a traceable human-produced story seed.
 2. Lock story, dialogue, panel intent, and text-safe regions before image work.
-3. Bind actual human-drawn visual references by file and SHA-256.
+3. Bind the minimum sufficient production-eligible reference set from `references/registry.json` by actual file bytes and SHA-256. One file may cover multiple visual roles when its pixels genuinely contain that evidence.
 4. Generate one text-free 2x2 master board for each group of up to four slides.
 5. Expand each cell into its own 4:5 image using the master board as the visual
    source of truth; do not reinterpret the shot.

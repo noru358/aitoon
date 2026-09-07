@@ -4,14 +4,9 @@
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
   "stage": "STORYBOARD_LOCK",
-  "run_status": "BLOCKED_RETRYABLE",
-  "blocked": {
-    "code": "WAITING_REQUIRED_BYTES",
-    "detail": "SOURCE_LOCK, STORY_LOCK and STORYBOARD_LOCK are complete. Image work is fail-closed because no provenance-verified actual human-drawn reference bytes are currently available to E001. The existing calibration D/E files are hash-bound but calibration/references/registry.json explicitly states that human-authorship provenance is not asserted; rejected/quarantined artifacts are excluded.",
-    "resume_action": "Acquire and inspect provenance-verified actual human-drawn person/style, interaction/full-body, and home/interior reference media as actual files usable by the ChatGPT image runtime; copy only permitted bytes into noru358/aitoon, record path/SHA-256/role/allowed_influence/forbidden_inference in episodes/E001/visual_packet.json, exclude all rejected/quarantined/generated artifacts from reference authority, then resume E001 and advance exactly to VISUAL_PACKET_LOCK before compiling B01.",
-    "recorded_at": "2026-09-07T09:36:09Z"
-  },
-  "exact_next_action": "Acquire and inspect provenance-verified actual human-drawn person/style, interaction/full-body, and home/interior reference media as actual files usable by the ChatGPT image runtime; copy only permitted bytes into noru358/aitoon, record path/SHA-256/role/allowed_influence/forbidden_inference in episodes/E001/visual_packet.json, exclude all rejected/quarantined/generated artifacts from reference authority, then resume E001 and advance exactly to VISUAL_PACKET_LOCK before compiling B01.",
+  "run_status": "ACTIVE",
+  "blocked": null,
+  "exact_next_action": "Resolve the production-eligible D/E entries from references/registry.json, retrieve and inspect their actual repository bytes, bind the minimum sufficient set in episodes/E001/visual_packet.json with path/SHA-256/role/allowed_influence/forbidden_inference, and advance exactly to VISUAL_PACKET_LOCK. Do not generate B01 until those actual bytes are bound.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -36,6 +31,12 @@
       "from": "STORY_LOCK",
       "to": "STORYBOARD_LOCK",
       "evidence": "Locked four slide contracts with state deltas, distinct beat-serving camera choices, physical actions, expressions, continuity, phone geometry, text-safe regions and post-art copy."
+    },
+    {
+      "at": "2026-09-07T10:26:00Z",
+      "from": "STORYBOARD_LOCK",
+      "to": "STORYBOARD_LOCK",
+      "evidence": "resumed WAITING_REQUIRED_BYTES after reference-policy correction: the required D/E bytes already exist in-repository; user/project designation is sufficient production provenance, independent authorship verification is recorded separately, and repository retrieval must be attempted before any missing-bytes block."
     }
   ],
   "artifacts": []

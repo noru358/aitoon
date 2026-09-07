@@ -19,6 +19,7 @@ class StateTests(unittest.TestCase):
         shutil.copytree(PROJECT_ROOT / "config", self.root / "config")
         shutil.copytree(PROJECT_ROOT / "templates", self.root / "templates")
         shutil.copytree(PROJECT_ROOT / "calibration", self.root / "calibration")
+        shutil.copytree(PROJECT_ROOT / "references", self.root / "references")
 
     def tearDown(self) -> None:
         self.temp.cleanup()
@@ -39,7 +40,7 @@ class StateTests(unittest.TestCase):
         state = resume("E001", "built-in image capability is available", self.root)
         self.assertEqual(state["run_status"], "ACTIVE")
         self.assertIsNone(state["blocked"])
-        self.assertEqual(validate_repository(self.root), ["policy", "calibration", "E001"])
+        self.assertEqual(validate_repository(self.root), ["policy", "references", "calibration", "E001"])
 
     def test_cannot_skip_stage(self) -> None:
         init_episode("E001", "test", 4, self.root)

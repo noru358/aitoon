@@ -11,8 +11,7 @@ An episode succeeds only when all are true:
 
 - the story begins from traceable human-produced material and retains specific
   human behavior or wording rather than generic AI invention;
-- the art uses the selected human-drawn reference language without copying a
-  particular work or character;
+- the art uses the selected user-designated production reference language to target a human-drawn visual grammar without copying a particular work or character;
 - recurring people, episode-only people, palette, line behavior and location are
   coherent across the episode;
 - camera, pose, expression and staging serve different beats rather than falling
@@ -162,26 +161,59 @@ hands onto one small object at once.
 
 ### VISUAL_PACKET_LOCK
 
-Bind actual files, not textual claims that a reference exists. Minimum packet:
+Bind actual files, not textual claims that a reference exists. Reference authority
+is defined by `docs/REFERENCE_POLICY.md` and `references/registry.json`.
 
-1. one human-drawn person/style reference;
-2. one interaction or full-body reference when people interact;
-3. one background/scene reference when a location matters;
+Production provenance is operational, not forensic: a visual reference explicitly
+supplied or designated by the user/project as a target reference is sufficient for
+production use unless conflicting evidence exists. Record whether authorship was
+independently verified, but do not require independent proof merely to proceed and
+do not fabricate such proof.
+
+Required *coverage* is:
+
+1. person/style drawing language;
+2. interaction or full-body drawing language when people interact;
+3. background/scene drawing language when a location matters;
 4. identity sheet for any recurring project character used;
 5. a compact episode palette and line/shape grammar.
 
-Each reference record states `path`, `sha256`, `role`, `allowed_influence`, and
-`forbidden_inference`. A style reference does not authorize copying its identity,
-pose, clothing, story, camera or location.
+This is not a minimum file count. One reference may satisfy several roles when its
+actual pixels genuinely contain the required evidence.
 
-Fail closed if required bytes cannot be inspected. This is a retryable resource
-state, not permission to replace the reference with prose.
+Reference hierarchy:
+
+1. `PRIMARY_STYLE`: permanent user-designated style authority;
+2. `CONTINUITY_ANCHOR`: selectively promoted approved episode art for identity,
+   outfit, location or prop continuity;
+3. `EPISODE_LOCAL`: current-episode boards/slides used only for local continuity.
+
+Generated episode art is never automatically promoted and never overrides
+`PRIMARY_STYLE`. Promotion requires explicit user visual approval, objective QC
+PASS, and nonredundant continuity value.
+
+Each reference record states `path`, `sha256`, `role`, `allowed_influence`,
+and `forbidden_inference`. Permanent references also resolve to a production-
+eligible registry entry. A style reference does not authorize copying its identity,
+pose, clothing, story, camera or location unless that influence is explicitly
+allowed.
+
+If eligible bytes already exist in `aitoon`, the operator must retrieve and inspect
+those actual bytes and provide them to the image runtime. A repository path alone is
+not image conditioning, but absence from the current chat attachment list is not a
+user-blocking condition. Use `WAITING_REQUIRED_BYTES` only after retrieval of the
+known repository file actually fails.
+
+Fail closed only when required coverage or actual bytes remain unavailable after
+that retrieval attempt. Do not replace missing visual evidence with prose.
 
 ### BOARD_DISPATCH_READY
 
 Create one target-only dispatch per board. Supply the actual reference media,
 the board plan, and no future-board instructions except continuity facts needed
-at the boundary.
+at the boundary. Use the minimum sufficient set: primary style references plus only
+those continuity anchors that materially constrain the current board. Do not dump
+the accumulated episode archive into every dispatch.
 
 The master board prompt must require:
 

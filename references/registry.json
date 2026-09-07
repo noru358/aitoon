@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "authority_order": [
+    "PRIMARY_STYLE",
+    "CONTINUITY_ANCHOR",
+    "EPISODE_LOCAL"
+  ],
+  "note": "Curated production reference authority. User designation is sufficient provenance unless conflicting evidence exists; independent authorship verification is recorded separately and is not a production gate.",
+  "assets": [
+    {
+      "id": "LEGACY_REF_V2_D",
+      "path": "calibration/references/REF_V2_D_MAIN_CAST_GAEUN_HARIN_TAEMIN.jpeg",
+      "sha256": "dbddf458a97c89781075e6be03ab2c393eff75b95e8856f044bd81f29310ec07",
+      "authority": "PRIMARY_STYLE",
+      "provenance_basis": "USER_DESIGNATED_PROJECT_REFERENCE",
+      "independent_authorship_verification": false,
+      "production_eligible": true,
+      "source_kind": "USER_DESIGNATED_PROJECT_REFERENCE",
+      "role": "Harin identity and person drawing language",
+      "allowed_influence": "identity proportions, eye grammar, line and flat-color behavior",
+      "forbidden_inference": "current pose, camera, action, story or location",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "LEGACY_REF_V2_E",
+      "path": "calibration/references/REF_V2_E_3PERSON_INDOOR_SCENE.jpeg",
+      "sha256": "b49683276f94ba5621e3602d7e3d714b0f2e637b2c41fc1fd132bdf6f336b049",
+      "authority": "PRIMARY_STYLE",
+      "provenance_basis": "USER_DESIGNATED_PROJECT_REFERENCE",
+      "independent_authorship_verification": false,
+      "production_eligible": true,
+      "source_kind": "USER_DESIGNATED_PROJECT_REFERENCE",
+      "role": "scene and background drawing language",
+      "allowed_influence": "shared character/background abstraction, line and restrained shading",
+      "forbidden_inference": "room layout, current pose, story, clothing or cast requirement",
+      "status": "ACTIVE"
+    }
+  ]
+}

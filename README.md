@@ -8,9 +8,9 @@ It is designed around two constraints:
    generic AI illustration.
 
 The system does not pretend that a prompt can guarantee those constraints. It
-uses actual human-drawn references, one-generation episode boards, minimum-scope
-editing, deterministic state, and evidence-bound QC to make failures visible and
-repairable.
+uses curated user-designated visual references, one-generation episode boards,
+minimum-scope editing, deterministic state, and evidence-bound QC to make failures
+visible and repairable.
 
 ## Canonical path
 
@@ -64,7 +64,9 @@ The ChatGPT operator follows `docs/GPT_APP_PROTOCOL.md`. Machine policy is in
 | `AGENTS.md` | fail-closed boot and autonomy contract |
 | `docs/GPT_APP_PROTOCOL.md` | canonical creative/execution protocol |
 | `docs/PLATFORM_ASSUMPTIONS.md` | official capability evidence and uncertainty boundary |
-| `config/policy.json` | machine-readable stages, retries, cost and QC policy |
+| `config/policy.json` | machine-readable stages, retries, cost, reference and QC policy |
+| `references/registry.json` | curated production reference authority and provenance basis |
+| `docs/REFERENCE_POLICY.md` | primary/continuity/episode-local reference hierarchy and promotion rules |
 | `schemas/` | episode, board, dispatch and QC contracts |
 | `pipeline/` | state, validation, board extraction and command-line tools |
 | `templates/` | prompts and editable episode artifacts |

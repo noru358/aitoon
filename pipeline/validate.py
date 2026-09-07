@@ -34,6 +34,51 @@ def validate_policy(root: Path = ROOT) -> None:
     _require(data.get("product", {}).get("delivery") == "ONE_FILE_PER_SLIDE", "delivery contract drift")
 
 
+
+def validate_reference_registry(root: Path = ROOT) -> None:
+    registry = read_json(root / "references" / "registry.json")
+    _require(registry.get("schema_version") == "1.0", "production reference registry version drift")
+    assets = registry.get("assets")
+    _require(isinstance(assets, list) and assets, "production reference registry is empty")
+    allowed_authorities = {"PRIMARY_STYLE", "CONTINUITY_ANCHOR"}
+    seen_ids: set[str] = set()
+    primary_count = 0
+    for item in assets:
+        required = {
+            "id", "path", "sha256", "authority", "provenance_basis",
+            "independent_authorship_verification", "production_eligible",
+            "source_kind", "role", "allowed_influence", "forbidden_inference", "status"
+        }
+        _require(required.issubset(item), "malformed production reference registry entry")
+        _require(item["id"] not in seen_ids, f"duplicate production reference id: {item['id']}")
+        seen_ids.add(item["id"])
+        _require(item["authority"] in allowed_authorities, f"bad reference authority: {item['authority']}")
+        _require(isinstance(item["production_eligible"], bool), "production_eligible must be boolean")
+        _require(
+            isinstance(item["independent_authorship_verification"], bool),
+            "independent_authorship_verification must be boolean",
+        )
+        _require(bool(item["provenance_basis"]), "reference provenance basis missing")
+        _require(
+            bool(item["allowed_influence"]) and bool(item["forbidden_inference"]),
+            "reference influence bounds missing",
+        )
+        path = (root / item["path"]).resolve()
+        try:
+            path.relative_to(root.resolve())
+        except ValueError as exc:
+            raise ValidationError("production reference escapes repository") from exc
+        _require(path.is_file(), f"production reference missing: {item['path']}")
+        _require(sha256_file(path) == item["sha256"], f"production reference hash mismatch: {item['path']}")
+        if item["authority"] == "PRIMARY_STYLE":
+            primary_count += 1
+            _require(
+                item["source_kind"] != "AI_GENERATED_APPROVED",
+                "generated episode art cannot be PRIMARY_STYLE",
+            )
+    _require(primary_count >= 1, "at least one PRIMARY_STYLE reference is required")
+
+
 def validate_calibration(root: Path = ROOT) -> None:
     directory = root / "calibration"
     registry = read_json(directory / "references" / "registry.json")
@@ -124,8 +169,9 @@ def validate_episode(episode_dir: Path, root: Path = ROOT) -> None:
 
 def validate_repository(root: Path = ROOT) -> list[str]:
     validate_policy(root)
+    validate_reference_registry(root)
     validate_calibration(root)
-    checked = ["policy", "calibration"]
+    checked = ["policy", "references", "calibration"]
     episodes = root / "episodes"
     if episodes.is_dir():
         for directory in sorted(path for path in episodes.iterdir() if path.is_dir()):

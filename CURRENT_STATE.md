@@ -1,6 +1,6 @@
 # Current state
 
-Updated: 2026-09-07 18:36 KST  
+Updated: 2026-09-07 19:26 KST  
 Repository: `noru358/aitoon`  
 Architecture: `GPT_APP_BOARD_FIRST_V1`
 
@@ -25,8 +25,7 @@ fixture and is not E001 content.
 Active episode: `E001`  
 Title: `그냥 세탁기에 돌려도 되는데`  
 Stage: `STORYBOARD_LOCK`  
-Run status: `BLOCKED_RETRYABLE`  
-Block code: `WAITING_REQUIRED_BYTES`
+Run status: `ACTIVE`
 
 Completed for E001:
 
@@ -37,28 +36,29 @@ Completed for E001:
   anatomy/contact intent, phone front/back geometry, continuity and text-safe regions;
 - future copy is recorded in storyboard metadata but no lettering is permitted in art.
 
-## Fail-closed reference gate
+## Reference-policy correction
 
-Image generation is forbidden at the current state.
+The earlier E001 `WAITING_REQUIRED_BYTES` block was over-conservative and is
+cleared. The actual D/E reference bytes already exist in the repository and are
+hash-bound.
 
-The repository has actual hash-bound calibration reference files, but
-`calibration/references/registry.json` explicitly records that human-authorship
-provenance is **not asserted** for them. Therefore they cannot satisfy the
-production requirement for an actual provenance-verified human-drawn reference.
+Canonical rules now are:
 
-No rejected or quarantined generated artifact is eligible to repair this gap.
+- user/project designation is sufficient production provenance unless conflicting
+  evidence exists; independent authorship verification is recorded separately;
+- existing repository bytes must be retrieved by the operator before declaring
+  `WAITING_REQUIRED_BYTES`;
+- required visual roles are coverage requirements, not one-file-per-role quotas;
+- generated approved art is `EPISODE_LOCAL` by default and may become only a
+  `CONTINUITY_ANCHOR` after explicit user pixel approval, objective QC PASS and
+  nonredundant continuity value;
+- continuity anchors never override `PRIMARY_STYLE`;
+- dispatches use the minimum sufficient reference set rather than accumulating all
+  approved episode images.
 
-For this two-person home story, the production visual packet must bind actual
-human-drawn evidence covering:
-
-1. person/style drawing language;
-2. interaction/full-body drawing language;
-3. home/interior scene drawing language.
-
-Each accepted reference must have actual inspectable bytes plus `path`,
-`sha256`, `role`, `allowed_influence`, and `forbidden_inference`. The media
-must also be available as actual image input to the ChatGPT image runtime; a
-repository path or prose description alone is not conditioning.
+The curated production authority is `references/registry.json`. The existing D/E
+files remain stored under `calibration/references/` and are active
+`PRIMARY_STYLE` references; duplicating the binary files is unnecessary.
 
 ## Anatomy/contact guard update
 
@@ -79,12 +79,14 @@ architecture via `docs/ANATOMY_CONTACT_POLICY.md`.
 
 ## Exact next action
 
-Acquire and inspect provenance-verified actual human-drawn person/style,
-interaction/full-body, and home/interior reference media as actual files usable by
-the ChatGPT image runtime; copy only permitted bytes into `noru358/aitoon`,
-record path/SHA-256/role/allowed_influence/forbidden_inference in
-`episodes/E001/visual_packet.json`, exclude all rejected/quarantined/generated
-artifacts from reference authority, then resume E001 and advance exactly to
-`VISUAL_PACKET_LOCK` before compiling `B01`.
+Resolve the production-eligible D/E entries from `references/registry.json`,
+retrieve and inspect their actual repository bytes, bind the minimum sufficient set
+in `episodes/E001/visual_packet.json` with path/SHA-256/role/allowed_influence/
+forbidden_inference, and advance exactly to `VISUAL_PACKET_LOCK`.
+
+Do not require three separate reference files when the actual D/E pixels cover
+multiple roles. Do not generate B01 until those actual bytes are bound. After
+`VISUAL_PACKET_LOCK`, compile the text-free 2x2 B01 dispatch and continue the
+canonical board-first, slide-final pipeline.
 
 See `episodes/E001/state.json` for the machine resume record.
