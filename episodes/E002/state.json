@@ -3,10 +3,10 @@
   "episode_id": "E002",
   "title": "그냥 세탁기에 돌려도 되는데",
   "slide_count": 4,
-  "stage": "PREPRODUCTION_REVIEW",
+  "stage": "SOURCE_LOCK",
   "run_status": "ACTIVE",
   "blocked": null,
-  "exact_next_action": "Present the E002 PREPRODUCTION_REVIEW payload to the user: source/topic, premise, 4 beats, all dialogue/thought copy, lowest-sufficient background plan, and cover concept. Accept edits or explicit approval. Do not execute any image dispatch. After approval, hash-lock source.md, story.md and storyboard.json in editorial_review.json and advance exactly to SOURCE_LOCK.",
+  "exact_next_action": "Advance exactly to STORY_LOCK without changing the approved story file.",
   "stage_history": [
     {
       "at": "2026-09-07T09:36:09Z",
@@ -97,6 +97,12 @@
       "from": "MASTER_BOARD_QC",
       "to": "PREPRODUCTION_REVIEW",
       "evidence": "Protocol-v2 structural migration requested by the user. The prior E002 creative locks were created without a user preproduction review, so downstream visual packet/dispatch authority was invalidated. Rejected image evidence remains quarantine-only. E002 was reopened as a reviewable draft with lowest-sufficient backgrounds, semantic thought/dialogue roles, a cover concept, and explicit face-acting deltas."
+    },
+    {
+      "at": "2026-09-07T18:20:00Z",
+      "from": "PREPRODUCTION_REVIEW",
+      "to": "SOURCE_LOCK",
+      "evidence": "User-approved PREPRODUCTION_REVIEW hash-bound source.md, story.md and storyboard.json; source hash matched the approved review record."
     }
   ],
   "artifacts": [
