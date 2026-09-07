@@ -216,9 +216,14 @@ def compile_master_board_dispatch(
             "Return exactly one master-board image and nothing else inside the image.",
         ]
     )
+    dispatch_id = (
+        f"{episode_id}-{board['board_id']}-V{revision}-MASTER-A{attempt}"
+        if revision >= 2
+        else f"{episode_id}-{board['board_id']}-MASTER-A{attempt}"
+    )
     dispatch = {
         "schema_version": "1.0",
-        "dispatch_id": f"{episode_id}-{board['board_id']}-MASTER-A{attempt}",
+        "dispatch_id": dispatch_id,
         "episode_id": episode_id,
         "target_id": board["board_id"],
         "operation": "GENERATE_MASTER_BOARD",
