@@ -121,6 +121,7 @@ class DispatchTests(unittest.TestCase):
         output = self.plan.with_name("B01.dispatch.json")
         dispatch = compile_master_board_dispatch("E001", self.plan, output, self.root)
         self.assertEqual(dispatch["operation"], "GENERATE_MASTER_BOARD")
+        self.assertEqual(dispatch["dispatch_id"], "E001-B01-V2-MASTER-A1")
         self.assertEqual(len(dispatch["bound_media"]), 1)
         self.assertIn("TOP_LEFT S01", dispatch["prompt"])
         self.assertIn("TEXT-FREE", dispatch["prompt"])
@@ -129,6 +130,9 @@ class DispatchTests(unittest.TestCase):
         self.assertIn("LOWEST-SUFFICIENT", dispatch["prompt"])
         self.assertIn("background_level=NONE", dispatch["prompt"])
         self.assertIn("face_acting_intent=", dispatch["prompt"])
+        self.assertIn("state_delta=", dispatch["prompt"])
+        self.assertIn("continuity_in=", dispatch["prompt"])
+        self.assertIn("Target character definitions:", dispatch["prompt"])
         self.assertIn("Palette match alone is not a style PASS", dispatch["prompt"])
         runtime = dispatch["runtime_attachment"]
         self.assertTrue(runtime["preflight_required_before_execute"])
