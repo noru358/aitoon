@@ -18,7 +18,7 @@
     }
   ],
   "attempt": 2,
-  "status": "READY",
+  "status": "SUPERSEDED",
   "runtime_attachment": {
     "preflight_required_before_execute": true,
     "source_authority": "REPOSITORY_REGISTRY_SHA256",
@@ -34,5 +34,7 @@
     "opaque_runtime_handle_is_reference_authority": false
   },
   "retry_of": "E002-B01-MASTER-A1",
-  "retry_reason": "A1 failed board-wide semantic/cast/text-free QC: it copied the reference trio and living-room activity instead of the locked couple denim-laundry story, and baked Latin Z marks into art."
+  "retry_reason": "A1 failed board-wide semantic/cast/text-free QC: it copied the reference trio and living-room activity instead of the locked couple denim-laundry story, and baked Latin Z marks into art.",
+  "eligible_for_execution": false,
+  "superseded_reason": "Protocol-v2 migration reopened E002 at PREPRODUCTION_REVIEW. This dispatch was compiled from unreviewed v1 locks and must never be executed."
 }
