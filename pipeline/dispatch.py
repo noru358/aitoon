@@ -169,10 +169,17 @@ def compile_master_board_dispatch(
                 f"; background_level={level}; essential_background={json.dumps(essential, ensure_ascii=False)}"
                 f"; face_acting_intent={face}; emotion_delta={emotion}"
             )
+        continuity_in = slide.get("continuity_in", [])
+        continuity_out = slide.get("continuity_out", [])
+        if not isinstance(continuity_in, list) or not isinstance(continuity_out, list):
+            raise DispatchError(f"{slide_id}: continuity_in/out must be lists")
         cell_lines.append(
             f"- {_cell_label(*position)} {slide_id}: shot={slide['shot']}; "
             f"action={slide['action']}; expression={slide['expression']}; "
             f"visual_owner={slide['visual_owner']}; beat={slide['beat']}; "
+            f"state_delta={slide['state_delta']}; "
+            f"continuity_in={json.dumps(continuity_in, ensure_ascii=False)}; "
+            f"continuity_out={json.dumps(continuity_out, ensure_ascii=False)}; "
             f"leave_text_space={slide['text_safe_region']}{design_text}{geometry_text}{anatomy_text}"
         )
     for position in ((0, 0), (0, 1), (1, 0), (1, 1)):
@@ -224,7 +231,7 @@ def compile_master_board_dispatch(
             f"Style-match dimensions that must all agree with the references: {style_dimensions or 'line, face/eye grammar, proportion, hair massing, shading, texture, detail budget'}. Palette match alone is not a style PASS.",
             "Cells:",
             *cell_lines,
-            "Preserve only declared recurring identity, clothing, palette, story-bearing location anchors, object states, and drawing language across cells. Do not preserve decorative background clutter. Make each framing, expression, and body action serve its own beat; when emotion_delta changes, visible face acting must change rather than reusing a near-identical face render.",
+            "Treat state_delta plus continuity_in/continuity_out as hard story-state contracts. Preserve only declared recurring identity, clothing, palette, story-bearing location anchors, object states, and drawing language across cells. Do not preserve decorative background clutter. Make each framing, expression, and body action serve its own beat; when emotion_delta changes, visible face acting must change rather than reusing a near-identical face render.",
             "Do not add titles, dialogue, captions, speech bubbles, letters, numerals, logos, watermarks, panel labels, or readable UI text.",
             f"Reject: {reject}.",
             "Return exactly one master-board image and nothing else inside the image.",
